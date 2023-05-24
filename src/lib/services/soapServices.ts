@@ -10,37 +10,50 @@ import {
   USER_FILE_RO
 } from '@/types';
 
-export const getUserFilesList = async (
-  payload: USER_FILE_DTO
-): Promise<IResponseRO<USER_FILE_RO>> => {
-  const result = await getUserFiles(payload);
+export const list = {
+  get: {
+    userFiles: async (payload: USER_FILE_DTO): Promise<IResponseRO<USER_FILE_RO>> =>
+      await getUserFiles(payload),
+    sites: async (payload: SITE_DTO): Promise<IResponseRO<SITE_RO>> =>
+      await getTableDataBase(payload),
+    companies: async (payload: COMPANY_DTO): Promise<IResponseRO<COMPANY_RO>> =>
+      await getTableDataBase(payload),
+    controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL_RO>> =>
+      await getTableDataBase(payload)
+  }
+}
 
-  return result;
-};
+// export const getUserFilesList = async (
+//   payload: USER_FILE_DTO
+// ): Promise<IResponseRO<USER_FILE_RO>> => {
+//   const result = await getUserFiles(payload);
 
-export const getSitesList = async (
-  payload: SITE_DTO
-): Promise<IResponseRO<SITE_RO>> => {
-  const result = await getTableDataBase(payload);
-  console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
+//   return result;
+// };
 
-  return result;
-};
+// export const getSitesList = async (
+//   payload: SITE_DTO
+// ): Promise<IResponseRO<SITE_RO>> => {
+//   const result = await getTableDataBase(payload);
+//   console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
 
-export const getCompaniesList = async (
-  payload: COMPANY_DTO
-): Promise<IResponseRO<COMPANY_RO>> => {
-  const result = await getTableDataBase(payload);
-  console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
+//   return result;
+// };
 
-  return result;
-};
+// export const getCompaniesList = async (
+//   payload: COMPANY_DTO
+// ): Promise<IResponseRO<COMPANY_RO>> => {
+//   const result = await getTableDataBase(payload);
+//   console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
 
-export const getControlsList = async (
-  payload: CONTROL_DTO
-): Promise<IResponseRO<CONTROL_RO>> => {
-  const result = await getTableDataBase(payload);
-  console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
+//   return result;
+// };
 
-  return result;
-};
+// export const getControlsList = async (
+//   payload: CONTROL_DTO
+// ): Promise<IResponseRO<CONTROL_RO>> => {
+//   const result = await getTableDataBase(payload);
+//   console.log('🚀 ~ file: soapServices.ts:9 ~ result:', result);
+
+//   return result;
+// };
