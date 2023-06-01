@@ -1,14 +1,23 @@
 import { CONTROL_DTO } from "@/types/data"
-import { dataWrapper } from "@/lib/services"
+import { CONTROL } from "@/types/schema"
+import { IResponseRO, dataWrapper } from "@/lib/services"
 
-export default async function getControls() {
+export default async function getControls({
+  siteId,
+  pageIndex,
+  pageSize,
+}: {
+  siteId: string
+  pageIndex: number
+  pageSize: number
+}): Promise<IResponseRO<CONTROL>> {
   const payload: CONTROL_DTO = {
-    version: "1",
     table: "CONTROLE",
+    version: "1",
     company: "",
-    site: "01",
-    pageNumber: 1,
-    pageSize: 10,
+    site: siteId,
+    pageNumber: pageIndex,
+    pageSize: pageSize,
   }
 
   try {
