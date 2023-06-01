@@ -1,18 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import { SITE_RO } from "@/types/data"
-import { cn } from "@/lib/utils"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { formatSiteId } from "@/lib/utils"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 type Props = {
   sites: SITE_RO[]
@@ -35,11 +27,12 @@ export default function SitesClient({ sites }: Props) {
                   <Card
                     key={site.IdSite}
                     className="w-[350px]  cursor-pointer"
-                    onClick={() => router.push(`/admin/sites/${site.IdSite}`)}
+                    onClick={() =>
+                      router.push(`/admin/sites/${formatSiteId(site.IdSite)}`)
+                    }
                   >
                     <CardHeader>
                       <CardTitle>{site.LibSite}</CardTitle>
-                      {/*  <CardDescription>Id site: {site.IdSite}</CardDescription> */}
                     </CardHeader>
                     <CardContent className="grid gap-4">
                       <div className=" flex items-center space-x-4 rounded-md border p-4">
@@ -56,14 +49,6 @@ export default function SitesClient({ sites }: Props) {
                         </div>
                       </div>
                     </CardContent>
-                    {/*                     <CardFooter>
-                      <Link
-                        className="w-full"
-                        href={`/admin/sites/${site.IdSite}`}
-                      >
-                        Afficher
-                      </Link>
-                    </CardFooter> */}
                   </Card>
                 )
               })
