@@ -1,12 +1,12 @@
-import { SITE_RO } from "@/types/data"
-import { siteConfig } from "@/config/site"
-import ClientOnly from "@/components/ui/clientOnly"
-import getSites from "@/app/actions/getSites"
+import { SITE_RO } from "@/types/data";
+import { siteConfig } from "@/config/site";
+import ClientOnly from "@/components/ui/clientOnly";
+import getSites from "@/app/actions/getSites";
 
-import SitesClient from "./SitesClient"
+import SitesClient from "./SitesClient";
 
 export default async function IndexPage() {
-  const { data: sites = [] } = await getSites()
+  const { data: sites = [] } = await getSites();
 
   /*
   if (!sites || (sites && sites.length === 0)) {
@@ -26,5 +26,5 @@ export default async function IndexPage() {
     <ClientOnly>
       <SitesClient sites={sites} />
     </ClientOnly>
-  )
+  );
 }

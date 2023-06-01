@@ -1,4 +1,4 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Bigard - RTI",
@@ -6,7 +6,7 @@ export const siteConfig = {
   mainNav: [
     {
       title: "Accueil",
-      href: "/",
+      href: "/"
     },
     /*     {
       title: "RH",
@@ -14,8 +14,8 @@ export const siteConfig = {
     }, */
     {
       title: "Admin/Sites",
-      href: "/admin/sites",
-    },
+      href: "/admin/sites"
+    }
   ],
-  links: {},
-}
+  links: {}
+};

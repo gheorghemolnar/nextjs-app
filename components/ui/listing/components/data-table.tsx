@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React from "react"
-import * as Dialog from "@radix-ui/react-dialog"
+import React from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,64 +15,64 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
+  useReactTable
+} from "@tanstack/react-table";
 
-import { CONTROL } from "@/types/schema"
-import { IResponseRO } from "@/lib/services"
-import { Button } from "@/components/ui/button"
-import { ControlDetails } from "@/components/ui/rti/controlDetails"
-import { Skeleton } from "@/components/ui/skeleton"
+import { CONTROL } from "@/types/schema";
+import { IResponseRO } from "@/lib/services";
+import { Button } from "@/components/ui/button";
+import { ControlDetails } from "@/components/ui/rti/controlDetails";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+  TableRow
+} from "@/components/ui/table";
 
-import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar } from "./data-table-toolbar"
-import "./styles.css"
-import { formatDate } from "@/lib/utils"
+import { DataTablePagination } from "./data-table-pagination";
+import { DataTableToolbar } from "./data-table-toolbar";
+import "./styles.css";
+import { formatDate } from "@/lib/utils";
 
-const pageIndexDefault = 0
-const pageSizeDefault = 20
-const pageCountDefault = -1
+const pageIndexDefault = 0;
+const pageSizeDefault = 20;
+const pageCountDefault = -1;
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
   getData: (options: {
-    siteId: string
-    pageIndex: number
-    pageSize: number
-    callback?: (data: IResponseRO<CONTROL>) => void
-  }) => Promise<IResponseRO<CONTROL>>
-  siteId: string
+    siteId: string;
+    pageIndex: number;
+    pageSize: number;
+    callback?: (data: IResponseRO<CONTROL>) => void;
+  }) => Promise<IResponseRO<CONTROL>>;
+  siteId: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   siteId,
-  getData,
+  getData
 }: DataTableProps<TData, TValue>) {
   /** Modal */
-  const [open, onOpenDialog] = React.useState(false)
+  const [open, onOpenDialog] = React.useState(false);
   const [selectedDialogRowData, setSelectedDialogRowData] =
-    React.useState<CONTROL>()
+    React.useState<CONTROL>();
   /** Modal */
 
   /**  Pagination*/
-  const [dataFetched, setDataFetched] = React.useState<IResponseRO<CONTROL>>()
+  const [dataFetched, setDataFetched] = React.useState<IResponseRO<CONTROL>>();
 
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
       pageIndex: pageIndexDefault,
-      pageSize: pageSizeDefault,
-    })
+      pageSize: pageSizeDefault
+    });
 
   /*   
   const fetchDataOptions = {
@@ -83,52 +83,52 @@ export function DataTable<TData, TValue>({
   const pagination = React.useMemo(() => {
     return {
       pageIndex,
-      pageSize,
-    }
-  }, [pageIndex, pageSize])
+      pageSize
+    };
+  }, [pageIndex, pageSize]);
 
   React.useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     const fetchData = async () => {
       try {
         const data = await getData({
           siteId,
           pageIndex,
-          pageSize,
-        })
+          pageSize
+        });
 
-        setDataFetched(data)
+        setDataFetched(data);
       } catch (error) {
-        console.log("Fetching Data ERROR: ", error)
+        console.log("Fetching Data ERROR: ", error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    fetchData()
-  }, [pageIndex, pageSize])
+    };
+    fetchData();
+  }, [pageIndex, pageSize]);
 
   const pageCount = dataFetched?.numberOfRecords
     ? Math.ceil(dataFetched?.numberOfRecords / pageSize)
-    : pageCountDefault
+    : pageCountDefault;
 
   /**  Pagination*/
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     meta: {
       setSelectedDialogRowData,
       showModal: () => {
-        onOpenDialog(true)
-      },
+        onOpenDialog(true);
+      }
     },
     data: dataFetched?.data || [],
     columns,
@@ -138,7 +138,7 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
       columnFilters,
-      pagination,
+      pagination
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -154,8 +154,8 @@ export function DataTable<TData, TValue>({
 
     // Pagination
     manualPagination: true,
-    onPaginationChange: setPagination,
-  })
+    onPaginationChange: setPagination
+  });
 
   return (
     <div className="space-y-4">
@@ -229,7 +229,7 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -266,5 +266,5 @@ export function DataTable<TData, TValue>({
       </div>
       <DataTablePagination table={table} />
     </div>
-  )
+  );
 }

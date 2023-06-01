@@ -1,8 +1,8 @@
-import React from "react"
-import { useRouter } from "next/navigation"
+import React from "react";
+import { useRouter } from "next/navigation";
 
-import { Button } from "./button"
+import { Button } from "./button";
 
 export default function emptyState() {
-  return <div>EMPTY STATE </div>
+  return <div>EMPTY STATE </div>;
 }

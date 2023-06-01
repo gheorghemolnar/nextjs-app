@@ -1,30 +1,30 @@
-import React from "react"
+import React from "react";
 
-import { CONTROL } from "@/types/schema"
-import { Label } from "@/components/ui/label"
+import { CONTROL } from "@/types/schema";
+import { Label } from "@/components/ui/label";
 
 type Props = {
-  control: CONTROL
-}
+  control: CONTROL;
+};
 
-type Image = { src: string; alt: string }
+type Image = { src: string; alt: string };
 
 export function ControlDetails({ control }: Props) {
-  const [images, setImages] = React.useState<Image[]>([])
-  const comment = control.CommCont ?? ""
+  const [images, setImages] = React.useState<Image[]>([]);
+  const comment = control.CommCont ?? "";
 
   React.useEffect(() => {
-    const photos = control.Photos?.PhotoCtrl
+    const photos = control.Photos?.PhotoCtrl;
 
     if (photos && photos.length > 0) {
       const imagesList: Image[] = photos.map((photo) => ({
         src: "data:image/png;base64," + photo.FicPhotoControle,
-        alt: photo.LibPhotoControle,
-      }))
+        alt: photo.LibPhotoControle
+      }));
 
-      setImages(imagesList)
+      setImages(imagesList);
     }
-  }, [])
+  }, []);
 
   return (
     <div className="grid grid-cols-2 items-center gap-4 mb-5">
@@ -44,5 +44,5 @@ export function ControlDetails({ control }: Props) {
         <p className="col-span-2">{comment}</p>
       </div>
     </div>
-  )
+  );
 }

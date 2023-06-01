@@ -1,42 +1,42 @@
-"use client"
+"use client";
 
-import React from "react"
-import { useParams } from "next/navigation"
-import { ColumnDef } from "@tanstack/react-table"
+import React from "react";
+import { useParams } from "next/navigation";
+import { ColumnDef } from "@tanstack/react-table";
 
-import { CONTROL_RO, PHOTO, SITE } from "@/types/data"
-import { CONTROL } from "@/types/schema"
-import { IResponseRO } from "@/lib/services"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { DataTableColumnHeader } from "@/components/ui/listing/components/data-table-column-header"
-import { DataTableRowActions } from "@/components/ui/listing/components/data-table-row-actions"
-import { statuses } from "@/components/ui/listing/data/data"
-import Listing from "@/components/ui/listing/listing"
+import { CONTROL_RO, PHOTO, SITE } from "@/types/data";
+import { CONTROL } from "@/types/schema";
+import { IResponseRO } from "@/lib/services";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { DataTableColumnHeader } from "@/components/ui/listing/components/data-table-column-header";
+import { DataTableRowActions } from "@/components/ui/listing/components/data-table-row-actions";
+import { statuses } from "@/components/ui/listing/data/data";
+import Listing from "@/components/ui/listing/listing";
 
-const URL_BASE = "http://localhost:3000"
+const URL_BASE = "http://localhost:3000";
 
 type Props = {
   //TODO: TO BE DELETED, ONLY TEMPORARY
-  site: SITE
-  controls: CONTROL_RO[]
-}
+  site: SITE;
+  controls: CONTROL_RO[];
+};
 
 async function getClientControls({
   siteId,
   pageIndex,
-  pageSize,
+  pageSize
 }: {
-  siteId: string
-  pageIndex: number
-  pageSize: number
+  siteId: string;
+  pageIndex: number;
+  pageSize: number;
 }): Promise<IResponseRO<CONTROL_RO>> {
   const response = await fetch(
     `${URL_BASE}/api/controls/${siteId}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-  )
-  const result: IResponseRO<CONTROL> = await response.json()
+  );
+  const result: IResponseRO<CONTROL> = await response.json();
 
-  return result
+  return result;
 }
 
 export const columns: ColumnDef<CONTROL, any>[] = [
@@ -80,7 +80,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
       <DataTableColumnHeader column={column} title="Date" />
     ),
     cell: ({ row }) => {
-      const dt = new Date(row.getValue("DaHeCont"))
+      const dt = new Date(row.getValue("DaHeCont"));
 
       return (
         <div className="flex space-x-2">
@@ -88,8 +88,8 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             {dt.toLocaleDateString()}
           </span>
         </div>
-      )
-    },
+      );
+    }
   },
   {
     accessorKey: "LibAtelier",
@@ -103,8 +103,8 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             {row.getValue("LibAtelier")}
           </span>
         </div>
-      )
-    },
+      );
+    }
   },
   {
     accessorKey: "LibCtrl",
@@ -118,8 +118,8 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             {row.getValue("LibCtrl")}
           </span>
         </div>
-      )
-    },
+      );
+    }
   },
   {
     accessorKey: "ResultCont",
@@ -129,24 +129,24 @@ export const columns: ColumnDef<CONTROL, any>[] = [
     cell: ({ row }) => {
       const status = statuses.find(
         (status) => status.value === row.getValue("ResultCont")
-      )
+      );
 
       if (!status) {
-        return null
+        return null;
       }
 
-      const color = status.color ?? ""
+      const color = status.color ?? "";
       return (
         <div className="flex w-[120px] items-center">
           {status.icon && <status.icon className={cn("mr-2 h-6 w-6", color)} />}
           <span>{status.label}</span>
         </div>
-      )
+      );
     },
 
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+      return value.includes(row.getValue(id));
+    }
   },
   {
     header: () => (
@@ -154,28 +154,28 @@ export const columns: ColumnDef<CONTROL, any>[] = [
     ),
     accessorKey: "details",
     cell: ({ row, table }) => {
-      const rawPhotos = row.original?.Photos
-      let photos: PHOTO[] | null = null
+      const rawPhotos = row.original?.Photos;
+      let photos: PHOTO[] | null = null;
       if (rawPhotos) {
-        const tableMeta = table.options.meta
+        const tableMeta = table.options.meta;
         return (
           <div className="flex justify-center items-center">
             <Button
               className="px-2"
               onClick={() => {
                 tableMeta?.setSelectedDialogRowData! &&
-                  tableMeta.setSelectedDialogRowData(row.original)
-                tableMeta?.showModal! && tableMeta.showModal(true)
+                  tableMeta.setSelectedDialogRowData(row.original);
+                tableMeta?.showModal! && tableMeta.showModal(true);
               }}
             >
               Détails
             </Button>
           </div>
-        )
+        );
       }
 
-      return ""
-    },
+      return "";
+    }
   },
   {
     accessorKey: "CreaQui",
@@ -190,17 +190,17 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             {row.getValue("CreaQui")}
           </span>
         </div>
-      )
-    },
+      );
+    }
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
-]
+    cell: ({ row }) => <DataTableRowActions row={row} />
+  }
+];
 
 export default function SiteClient({ site, controls }: Props) {
-  const { siteId } = useParams()
+  const { siteId } = useParams();
 
   return (
     <>
@@ -222,5 +222,5 @@ export default function SiteClient({ site, controls }: Props) {
         />
       </section>
     </>
-  )
+  );
 }

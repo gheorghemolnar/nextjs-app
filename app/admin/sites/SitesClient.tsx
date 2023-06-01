@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
-import { SITE_RO } from "@/types/data"
-import { formatSiteId } from "@/lib/utils"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { SITE_RO } from "@/types/data";
+import { formatSiteId } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type Props = {
-  sites: SITE_RO[]
-}
+  sites: SITE_RO[];
+};
 
 export default function SitesClient({ sites }: Props) {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
@@ -50,11 +50,11 @@ export default function SitesClient({ sites }: Props) {
                       </div>
                     </CardContent>
                   </Card>
-                )
+                );
               })
             : "NO data"}
         </div>
       </div>
     </section>
-  )
+  );
 }

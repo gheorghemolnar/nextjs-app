@@ -1,27 +1,27 @@
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table";
 
-import { CONTROL } from "@/types/schema"
-import { IResponseRO } from "@/lib/services"
+import { CONTROL } from "@/types/schema";
+import { IResponseRO } from "@/lib/services";
 
 /* import { columns } from "./components/columns" */
-import { DataTable } from "./components/data-table"
+import { DataTable } from "./components/data-table";
 
 /* import { z } from "zod" */
 
 type Props = {
-  columns: ColumnDef<CONTROL, any>[]
-  data: CONTROL[]
-  siteId: string
+  columns: ColumnDef<CONTROL, any>[];
+  data: CONTROL[];
+  siteId: string;
   getData: ({
     siteId,
     pageIndex,
-    pageSize,
+    pageSize
   }: {
-    siteId: string
-    pageIndex: number
-    pageSize: number
-  }) => Promise<IResponseRO<CONTROL>>
-}
+    siteId: string;
+    pageIndex: number;
+    pageSize: number;
+  }) => Promise<IResponseRO<CONTROL>>;
+};
 
 export default function Listing({ columns, data, getData, siteId }: Props) {
   return (
@@ -42,5 +42,5 @@ export default function Listing({ columns, data, getData, siteId }: Props) {
         />
       </div>
     </>
-  )
+  );
 }

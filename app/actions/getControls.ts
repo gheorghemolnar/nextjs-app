@@ -1,15 +1,15 @@
-import { CONTROL_DTO } from "@/types/data"
-import { CONTROL } from "@/types/schema"
-import { IResponseRO, dataWrapper } from "@/lib/services"
+import { CONTROL_DTO } from "@/types/data";
+import { CONTROL } from "@/types/schema";
+import { IResponseRO, dataWrapper } from "@/lib/services";
 
 export default async function getControls({
   siteId,
   pageIndex,
-  pageSize,
+  pageSize
 }: {
-  siteId: string
-  pageIndex: number
-  pageSize: number
+  siteId: string;
+  pageIndex: number;
+  pageSize: number;
 }): Promise<IResponseRO<CONTROL>> {
   const payload: CONTROL_DTO = {
     table: "CONTROLE",
@@ -17,14 +17,14 @@ export default async function getControls({
     company: "",
     site: siteId,
     pageNumber: pageIndex,
-    pageSize: pageSize,
-  }
+    pageSize: pageSize
+  };
 
   try {
-    const data = await dataWrapper.get.controls(payload)
+    const data = await dataWrapper.get.controls(payload);
 
-    return data
+    return data;
   } catch (error: any) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
 }

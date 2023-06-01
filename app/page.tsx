@@ -1,5 +1,5 @@
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { siteConfig } from "@/config/site";
+import { buttonVariants } from "@/components/ui/button";
 
 export default async function IndexPage() {
   return (
@@ -14,5 +14,5 @@ export default async function IndexPage() {
       </div>
       <div className="flex gap-4">A COMPLETER</div>
     </section>
-  )
+  );
 }

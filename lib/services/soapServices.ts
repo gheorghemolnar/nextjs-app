@@ -7,16 +7,16 @@ import {
   SITE_DTO,
   SITE_RO,
   USER_FILE_DTO,
-  USER_FILE_RO,
-} from "@/types/data"
+  USER_FILE_RO
+} from "@/types/data";
 
 import {
   IResponseRO,
   createData,
   getTableDataBase,
   getTableDataBasePagination,
-  getUserFiles,
-} from "./clientSoap"
+  getUserFiles
+} from "./clientSoap";
 
 export const dataWrapper = {
   get: {
@@ -30,9 +30,9 @@ export const dataWrapper = {
     // controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL_RO>> =>
     //   await getTableDataBase(payload),
     controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL_RO>> =>
-      await getTableDataBasePagination(payload),
+      await getTableDataBasePagination(payload)
   },
   post: {
-    createUser: async (payload: CREATE_SITE_DTO) => await createData(payload),
-  },
-}
+    createUser: async (payload: CREATE_SITE_DTO) => await createData(payload)
+  }
+};

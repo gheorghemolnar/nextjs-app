@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 // We're keeping a simple non-relational schema here.
 export const photoSchema = z.object({
@@ -9,14 +9,14 @@ export const photoSchema = z.object({
   FicPhotoControle: z.string(),
   IdPhotoControle: z.number(),
   LibPhotoControle: z.string(),
-  ModifQui: z.string().nullish(),
-})
+  ModifQui: z.string().nullish()
+});
 
 export const photoControlSchema = z
   .object({
-    PhotoCtrl: z.array(photoSchema),
+    PhotoCtrl: z.array(photoSchema)
   })
-  .nullable()
+  .nullable();
 
 export const controlSchema = z.object({
   IdControle: z.number(),
@@ -38,7 +38,7 @@ export const controlSchema = z.object({
   LibSecteur: z.string(),
   Photos: photoControlSchema,
   ResultCont: z.string(),
-  TypeGrille: z.string(),
-})
+  TypeGrille: z.string()
+});
 
-export type CONTROL = z.infer<typeof controlSchema>
+export type CONTROL = z.infer<typeof controlSchema>;
