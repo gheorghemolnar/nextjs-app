@@ -15,6 +15,7 @@ import {
 export interface IResponseRO<T> {
   status: string
   errorMessage: string
+  numberOfRecords?: number
   data?: T[]
 }
 
@@ -28,8 +29,6 @@ const URL = `http://${SERVER}:${PORT}/ServiceBigExploit.svc?wsdl`
 const WS_USER = process?.env?.WS_USER
 const WS_PASSWORD = process?.env?.WS_PASSWORD
 
-console.log("🚀 > URL:", URL)
-
 export interface IClientData {
   client: soap.Client
   /*   getUserFiles: (payload: USER_FILE_DTO) => Promise<IResponseRO<USER_FILE_RO>>;
@@ -41,7 +40,7 @@ let clientSoap: soap.Client
 let clientWrapper: IClientData | null = null
 
 const SoapClient = async () => {
-  console.log("🚀 >>>>> URL >>>>>>>", URL)
+  console.log("🚀 DEBUG >>>>> URL >>>>>>>", URL)
 
   if (!(WS_USER || WS_PASSWORD)) {
     throw new Error("Config: Variables missing !")
@@ -104,25 +103,31 @@ export const getTableDataBase = async (
 export const getTableDataBasePagination = async (
   payload: REQUEST
 ): Promise<IResponseRO<any>> => {
+  console.log("🚀 CLIENT_SOAP >", payload)
+
   if (!clientSoap) {
     await SoapClient()
   }
 
-  const [
-    {
-      Get_Table_Admin_Pagination_V1Result: {
-        listObjects: { Table: data },
-        returnMessage,
-        numberOfRecords,
-        status,
-      },
+  const [{ Get_Table_Admin_Pagination_V1Result }] =
+    await clientSoap.Get_Table_Admin_Pagination_V1Async(payload)
+
+  const {
+    listObjects: { Table: data },
+    returnMessage,
+    numberOfRecords,
+    status,
+  } = {
+    ...Get_Table_Admin_Pagination_V1Result,
+    listObjects: Get_Table_Admin_Pagination_V1Result?.listObjects || {
+      Table: [],
     },
-  ] = await clientSoap.Get_Table_Admin_Pagination_V1Async(payload)
-  return { status, data, errorMessage: returnMessage }
+    returnMessage: Get_Table_Admin_Pagination_V1Result?.returnMessage || "",
+    numberOfRecords: Get_Table_Admin_Pagination_V1Result?.numberOfRecords || 0,
+    status: Get_Table_Admin_Pagination_V1Result?.status || "",
+  }
 
-  // const [tmp] = await clientSoap.Get_Table_Admin_Pagination_V1Async(payload)
-
-  return { status, data, errorMessage: returnMessage }
+  return { status, data, numberOfRecords, errorMessage: returnMessage }
 }
 
 export const createData = async (
@@ -133,8 +138,6 @@ export const createData = async (
   if (!clientSoap) {
     await SoapClient()
   }
-
-  //  obj: any, name: string, nsPrefix: any, nsURI: string
 
   const { version, table, payload } = params
   console.log("🚀 ~ file: clientSoap.ts:115 ~ version:", version)
