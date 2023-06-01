@@ -2,10 +2,16 @@
 
 import React from "react"
 import { useParams } from "next/navigation"
+import { ColumnDef } from "@tanstack/react-table"
 
-import { CONTROL_RO, SITE } from "@/types/data"
+import { CONTROL_RO, PHOTO, SITE } from "@/types/data"
 import { CONTROL } from "@/types/schema"
 import { IResponseRO } from "@/lib/services"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { DataTableColumnHeader } from "@/components/ui/listing/components/data-table-column-header"
+import { DataTableRowActions } from "@/components/ui/listing/components/data-table-row-actions"
+import { statuses } from "@/components/ui/listing/data/data"
 import Listing from "@/components/ui/listing/listing"
 
 const URL_BASE = "http://localhost:3000"
@@ -33,7 +39,7 @@ async function getClientControls({
   return result
 }
 
-export const columns: ColumnDef<CONTROL>[] = [
+export const columns: ColumnDef<CONTROL, any>[] = [
   /*
   {
     id: "select",
@@ -208,7 +214,12 @@ export default function SiteClient({ site, controls }: Props) {
             {site.code_BG}
           </p>
         </div>
-        <Listing siteId={siteId} data={controls} getData={getClientControls} />
+        <Listing
+          siteId={siteId}
+          columns={columns}
+          data={controls}
+          getData={getClientControls}
+        />
       </section>
     </>
   )

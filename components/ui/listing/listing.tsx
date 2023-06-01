@@ -1,12 +1,15 @@
+import { ColumnDef } from "@tanstack/react-table"
+
 import { CONTROL } from "@/types/schema"
 import { IResponseRO } from "@/lib/services"
 
-import { columns } from "./components/columns"
+/* import { columns } from "./components/columns" */
 import { DataTable } from "./components/data-table"
 
 /* import { z } from "zod" */
 
 type Props = {
+  columns: ColumnDef<CONTROL, any>[]
   data: CONTROL[]
   siteId: string
   getData: ({
@@ -20,7 +23,7 @@ type Props = {
   }) => Promise<IResponseRO<CONTROL>>
 }
 
-export default function Listing({ data, getData, siteId }: Props) {
+export default function Listing({ columns, data, getData, siteId }: Props) {
   return (
     <>
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
