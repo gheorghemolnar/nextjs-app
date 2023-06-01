@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { controlSchema } from "../../../../types/schema"
-import { labels } from "../data/data"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -28,7 +27,14 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const controlRowData = controlSchema.parse(row.original)
+  try {
+    // TODO: USED TO CHECK IF DATA is VALID: some issues with data formatting: 1 timestamp, then string
+    controlSchema.parse(row.original)
+    console.log("🚀 > row.original:", row.original)
+  } catch (error) {
+    // console.log("DataTableRowAction parsing > ERROR >", error)
+    // console.log("DataTableRowAction parsing > ERROR >", row.original)
+  }
 
   return (
     <DropdownMenu>
@@ -44,16 +50,16 @@ export function DataTableRowActions<TData>({
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>
           <Pen className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Edit
+          Editer
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        {/*         <DropdownMenuItem>
           <Copy className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Make a copy
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Star className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Favorite
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         {/*         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
@@ -71,11 +77,11 @@ export function DataTableRowActions<TData>({
           </DropdownMenuSubContent>
         </DropdownMenuSub> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        {/*         <DropdownMenuItem>
           <Trash className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   )

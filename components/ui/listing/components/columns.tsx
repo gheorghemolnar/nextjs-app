@@ -2,22 +2,26 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 
+import { PHOTO, PHOTO_CTRL } from "@/types/data"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { Control } from "../../../../types/schema"
-import { labels, priorities, statuses } from "../data/data"
+import { CONTROL } from "../../../../types/schema"
+import { CONTROL_STATUS, statuses } from "../data/data"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 
-export const columns: ColumnDef<Control>[] = [
+export const columns: ColumnDef<CONTROL>[] = [
+  /*
   {
     id: "select",
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Tout sélectionner"
+        aria-label="Tout séléctionner"
         className="translate-y-[2px]"
       />
     ),
@@ -25,7 +29,7 @@ export const columns: ColumnDef<Control>[] = [
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Séléction ligne"
+        aria-label="Sélection ligne"
         className="translate-y-[2px]"
       />
     ),
@@ -38,15 +42,33 @@ export const columns: ColumnDef<Control>[] = [
       <DataTableColumnHeader column={column} title="Id" />
     ),
     cell: ({ row }) => (
-      <div className="w-[60px]">{row.getValue("IdControle")}</div>
+      <div className="w-[50px]">{row.getValue("IdControle")}</div>
     ),
     enableSorting: false,
     enableHiding: false,
   },
+  */
+  {
+    accessorKey: "DaHeCont",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => {
+      const dt = new Date(row.getValue("DaHeCont"))
+
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[100px] truncate font-medium">
+            {dt.toLocaleDateString()}
+          </span>
+        </div>
+      )
+    },
+  },
   {
     accessorKey: "LibAtelier",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Atélier" />
+      <DataTableColumnHeader column={column} title="Atelier" />
     ),
     cell: ({ row }) => {
       return (
@@ -59,36 +81,14 @@ export const columns: ColumnDef<Control>[] = [
     },
   },
   {
-    accessorKey: "LibSecteur",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Secteur" />
-    ),
-    cell: ({ row }) => {
-      // TODO: Use the Code C/M
-      //const label = labels.find((label) => label.value === row.original.label)
-
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("LibSecteur")}
-          </span>
-        </div>
-      )
-    },
-  },
-  {
     accessorKey: "LibCtrl",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Contrôle" />
     ),
     cell: ({ row }) => {
-      // TODO: Use the Code C/M
-      //const label = labels.find((label) => label.value === row.original.label)
-
       return (
         <div className="flex space-x-2">
-          {/*  {label && <Badge variant="outline">{label.label}</Badge>} */}
-          <span className="max-w-[500px] truncate font-medium">
+          <span className="max-w-[300px] truncate font-medium">
             {row.getValue("LibCtrl")}
           </span>
         </div>
@@ -109,11 +109,10 @@ export const columns: ColumnDef<Control>[] = [
         return null
       }
 
+      const color = status.color ?? ""
       return (
         <div className="flex w-[120px] items-center">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          {status.icon && <status.icon className={cn("mr-2 h-6 w-6", color)} />}
           <span>{status.label}</span>
         </div>
       )
@@ -123,42 +122,42 @@ export const columns: ColumnDef<Control>[] = [
       return value.includes(row.getValue(id))
     },
   },
-  /*   {
-    accessorKey: "priority",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Priority" />
+  {
+    header: () => (
+      <div className="flex w-[80px] items-center justify-center">Détails</div>
     ),
-    cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      )
+    accessorKey: "details",
+    cell: ({ row, table }) => {
+      const failedControl = row.original?.ResultCont === CONTROL_STATUS.NC
 
-      if (!priority) {
-        return null
+      if (failedControl) {
+        console.log(row.original)
+        const tableMeta = table.options.meta
+        return (
+          <div className="flex justify-center items-center">
+            <Button
+              className="px-2"
+              onClick={() => {
+                tableMeta?.setSelectedDialogRowData! &&
+                  tableMeta.setSelectedDialogRowData(row.original)
+                tableMeta?.showModal! && tableMeta.showModal(true)
+              }}
+            >
+              Détails
+            </Button>
+          </div>
+        )
       }
 
-      return (
-        <div className="flex items-center">
-          {priority.icon && (
-            <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{priority.label}</span>
-        </div>
-      )
+      return ""
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  }, */
+  },
   {
     accessorKey: "CreaQui",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Qui" />
     ),
     cell: ({ row }) => {
-      // TODO: Use the Code C/M
-      //const label = labels.find((label) => label.value === row.original.label)
-
       return (
         <div className="flex space-x-2">
           {/*  {label && <Badge variant="outline">{label.label}</Badge>} */}
