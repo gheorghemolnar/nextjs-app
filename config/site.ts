@@ -8,10 +8,10 @@ export const siteConfig = {
       title: "Accueil",
       href: "/",
     },
-    {
+    /*     {
       title: "RH",
       href: "/rh",
-    },
+    }, */
     {
       title: "Admin/Sites",
       href: "/admin/sites",
