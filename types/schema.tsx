@@ -1,12 +1,29 @@
 import { z } from "zod"
 
 // We're keeping a simple non-relational schema here.
-// IRL, you will have a schema for your data models.
+export const photoSchema = z.object({
+  CodeCont: z.string(),
+  CodePhotoControle: z.string(),
+  CreaQuand: z.date(),
+  CreaQui: z.string(),
+  FicPhotoControle: z.string(),
+  IdPhotoControle: z.number(),
+  LibPhotoControle: z.string(),
+  ModifQui: z.string().nullish(),
+})
+
+export const photoControlSchema = z
+  .object({
+    PhotoCtrl: z.array(photoSchema),
+  })
+  .nullable()
+
 export const controlSchema = z.object({
-  CodeAtelier: z.string(),
   IdControle: z.number(),
+  CodeAtelier: z.string(),
   CodeCont: z.string(),
   CodeSecteur: z.string(),
+  CommCont: z.string().nullish(),
   CreaQuand: z.date(),
   CreaQui: z.string(),
   DaHeCont: z.date(),
@@ -19,24 +36,9 @@ export const controlSchema = z.object({
   LibAtelier: z.string(),
   LibCtrl: z.string(),
   LibSecteur: z.string(),
-  Photos: z
-    .object({
-      PhotoCtrl: z.array(
-        z.object({
-          CodeCont: z.string(),
-          CodePhotoControle: z.string(),
-          CreaQuand: z.date(),
-          CreaQui: z.string(),
-          FicPhotoControle: z.string(),
-          IdPhotoControle: z.number(),
-          LibPhotoControle: z.string(),
-          ModifQui: z.string(),
-        })
-      ),
-    })
-    .nullable(),
+  Photos: photoControlSchema,
   ResultCont: z.string(),
   TypeGrille: z.string(),
 })
 
-export type Control = z.infer<typeof controlSchema>
+export type CONTROL = z.infer<typeof controlSchema>

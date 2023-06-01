@@ -1,3 +1,7 @@
+import { z } from "zod"
+
+import { controlSchema, photoControlSchema, photoSchema } from "./schema"
+
 export type USER_FILE_DTO = {
   version: string
   company: string
@@ -55,11 +59,10 @@ export type CONTROL_DTO = {
   pageSize: number
 }
 
-export type CONTROL_RO = {
-  IdSociete: number
-  LibSociete: string
-  OrdreAff: number
-}
+export type CONTROL_RO = z.infer<typeof controlSchema>
+export type PHOTO_CTRL = z.infer<typeof photoControlSchema>
+export type PHOTO = z.infer<typeof photoSchema>
+
 export type CREATE_SITE_DTO = {
   version: number
   table: string
@@ -77,4 +80,12 @@ export type CREATE_RO = {
   IdSociete: number
   LibSociete: string
   OrdreAff: number
+}
+
+// TODO: Temporary FIX, TO BE DELETED !!!
+export type SITE = {
+  siteId: number
+  siteLabel: string
+  code_BG: string
+  code_RH: string
 }
