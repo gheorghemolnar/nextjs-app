@@ -2,8 +2,7 @@ export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
   name: "Bigard - RTI",
-  description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+  description: "Beautifully designed components",
   mainNav: [
     {
       title: "Accueil",
@@ -18,11 +17,5 @@ export const siteConfig = {
       href: "/admin/sites",
     },
   ],
-  links: {
-    /*
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
-    */
-  },
+  links: {},
 }
