@@ -24,7 +24,9 @@ export type REQUEST = SITE_DTO;
 const SERVER =
   process?.env?.WS_SERVER === "" ? "localhost" : process.env.WS_SERVER;
 const PORT = process?.env?.WS_PORT ?? 44368;
-const URL = `http://${SERVER}:${PORT}/ServiceBigExploit.svc?wsdl`;
+const WS_CONTEXT_PATH = process?.env?.WS_CONTEXT_PATH;
+
+const URL = `http://${SERVER}:${PORT}/${WS_CONTEXT_PATH}/ServiceBigExploit.svc?wsdl`;
 
 const WS_USER = process?.env?.WS_USER;
 const WS_PASSWORD = process?.env?.WS_PASSWORD;
