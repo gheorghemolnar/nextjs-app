@@ -53,59 +53,45 @@ const mapping: { [key: string]: SITE } = {
     code_BG: "01"
   },
 
-  siteId_02: {
-    siteId: 2,
+  siteId_03: {
+    siteId: 3,
     siteLabel: "Castres",
     code_RH: "003",
     code_BG: "03"
   },
 
-  siteId_03: {
-    siteId: 3,
+  siteId_14: {
+    siteId: 14,
     siteLabel: "Evron",
     code_RH: "014",
     code_BG: "14"
   },
 
-  siteId_04: {
-    siteId: 4,
+  siteId_30: {
+    siteId: 30,
     siteLabel: "Cherré",
     code_RH: "030",
     code_BG: "30"
   },
 
-  siteId_05: {
-    siteId: 5,
+  siteId_48: {
+    siteId: 48,
     siteLabel: "Anglet",
     code_RH: "148",
     code_BG: "48"
   },
 
-  siteId_06: {
-    siteId: 6,
+  siteId_71: {
+    siteId: 71,
     siteLabel: "Cholet",
     code_RH: "071",
     code_BG: "71"
   },
 
-  siteId_07: {
-    siteId: 7,
+  siteId_35: {
+    siteId: 35,
     siteLabel: "Le Neubourg",
     code_RH: "035",
     code_BG: "35"
-  },
-
-  siteId_09: {
-    siteId: 9,
-    siteLabel: "Bond",
-    code_RH: "007",
-    code_BG: "77"
-  },
-
-  siteId_13: {
-    siteId: 13,
-    siteLabel: "Bond",
-    code_RH: "008",
-    code_BG: "78"
   }
 };

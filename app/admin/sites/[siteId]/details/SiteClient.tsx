@@ -88,8 +88,23 @@ export const columns: ColumnDef<CONTROL, any>[] = [
 
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[100px] truncate font-medium">
-            {dt.toLocaleDateString()}
+          <span className="max-w-[200px] truncate font-medium">
+            {`${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`}
+          </span>
+        </div>
+      );
+    }
+  },
+  {
+    accessorKey: "LibSecteur",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Secteur" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("LibSecteur")}
           </span>
         </div>
       );
@@ -230,7 +245,6 @@ export const columns: ColumnDef<CONTROL, any>[] = [
 
 export default function SiteClient({ site, controls }: Props) {
   const { siteId } = useParams();
-  console.log("🚀 ~ file: SiteClient.tsx:229 ~ SiteClient ~ siteId:", siteId);
 
   return (
     <>
@@ -239,11 +253,12 @@ export default function SiteClient({ site, controls }: Props) {
           <h1 className="text-lg font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-1xl lg:text-2xl">
             {site.siteLabel}
           </h1>
-          <p className="max-w-[700px] text-sm text-muted-foreground">
+
+          {/*           <p className="max-w-[700px] text-sm text-muted-foreground">
             ID site : {siteId} / Code RH: {site.code_RH} / Code BG:{" "}
             {site.code_BG}
             &nbsp;
-          </p>
+          </p> */}
         </div>
         <Listing
           siteId={siteId}
