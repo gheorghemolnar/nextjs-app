@@ -42,3 +42,5 @@ export const controlSchema = z.object({
 });
 
 export type CONTROL = z.infer<typeof controlSchema>;
+
+export type CONTROL_STATUS = "NC" | "C";
