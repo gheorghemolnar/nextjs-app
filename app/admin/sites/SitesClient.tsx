@@ -28,7 +28,9 @@ export default function SitesClient({ sites }: Props) {
                     key={site.IdSite}
                     className="w-[350px]  cursor-pointer"
                     onClick={() =>
-                      router.push(`/admin/sites/${formatSiteId(site.IdSite)}`)
+                      router.replace(
+                        `/admin/sites/${formatSiteId(site.IdSite)}/dashboard`
+                      )
                     }
                   >
                     <CardHeader>
