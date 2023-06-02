@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-import { controlSchema, photoControlSchema, photoSchema } from "./schema";
+import {
+  CONTROL_STATUS,
+  controlSchema,
+  photoControlSchema,
+  photoSchema
+} from "./schema";
 
 export type USER_FILE_DTO = {
   version: string;
@@ -81,6 +86,25 @@ export type CREATE_RO = {
   LibSociete: string;
   OrdreAff: number;
 };
+
+export type ATELIER = {
+  [K in CONTROL_STATUS]: number;
+} & {
+  id: number;
+  label: string;
+};
+
+export type SECTOR = {
+  [K in CONTROL_STATUS]: number;
+} & {
+  count: number;
+  label: string;
+  ateliers: ATELIER[];
+};
+
+export interface SECTORS {
+  [k: string]: SECTOR;
+}
 
 // TODO: Temporary FIX, TO BE DELETED !!!
 export type SITE = {
