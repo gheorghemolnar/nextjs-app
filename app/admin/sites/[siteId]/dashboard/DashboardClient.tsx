@@ -33,7 +33,7 @@ export default function DashboardClient({ sectors }: Props) {
         <h1 className="text-1xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           Tableau de Bord <br className="hidden sm:inline" />
         </h1>
-        <div className="flex flex-wrap max gap-4">
+        <div className="flex flex-wrap max gap-4 mt-10">
           {hasData
             ? Object.keys(sectors).map((key: string) => {
                 const sector = sectors[key];
