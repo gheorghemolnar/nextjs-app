@@ -1,5 +1,3 @@
-import { SITE_RO } from "@/types/data";
-import { siteConfig } from "@/config/site";
 import ClientOnly from "@/components/ui/clientOnly";
 import getSites from "@/app/actions/getSites";
 

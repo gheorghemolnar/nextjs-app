@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { SITE_RO } from "@/types/data";
 import { formatSiteId } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type Props = {
@@ -24,37 +25,63 @@ export default function SitesClient({ sites }: Props) {
           {sites
             ? sites.map((site: SITE_RO) => {
                 return (
-                  <Card
-                    key={site.IdSite}
-                    className="w-[350px]  cursor-pointer"
-                    onClick={() =>
-                      router.replace(
-                        `/admin/sites/${formatSiteId(site.IdSite)}/dashboard`
-                      )
-                    }
-                  >
+                  <Card key={site.IdSite} className="w-[350px]">
                     <CardHeader>
                       <CardTitle>{site.LibSite}</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-4">
                       <div className=" flex items-center space-x-4 rounded-md border p-4">
                         <div className="flex-1 space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            Site ID {site.IdSite}
-                          </p>
-                          <p className="text-sm font-medium leading-none">
-                            Code RH {site.CodeSiteRh}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Code BG {site.CodeSiteBg}
-                          </p>
+                          <Button
+                            variant="outline"
+                            onClick={() =>
+                              router.push(
+                                `/admin/sites/${site.CodeSiteBg}/dashboard`
+                              )
+                            }
+                          >
+                            Mes Contrôles
+                          </Button>
+                          <Button
+                            disabled
+                            variant="outline"
+                            onClick={() =>
+                              router.push(
+                                `/admin/sites/${site.IdSite}/dashboard`
+                              )
+                            }
+                          >
+                            Mes Ressources Humaines
+                          </Button>
+                          <Button
+                            disabled
+                            variant="outline"
+                            onClick={() =>
+                              router.push(
+                                `/admin/sites/${site.IdSite}/dashboard`
+                              )
+                            }
+                          >
+                            Mes Communications
+                          </Button>
+                          <Button
+                            disabled
+                            variant="outline"
+                            onClick={() =>
+                              router.push(
+                                `/admin/sites/${site.IdSite}/dashboard`
+                              )
+                            }
+                          >
+                            Mes Documents
+                          </Button>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
                 );
               })
-            : "NO data"}
+            : "Données à venir"}
         </div>
       </div>
     </section>
