@@ -17,7 +17,8 @@ export default async function getControls({
     company: "",
     site: siteId,
     pageNumber: pageIndex,
-    pageSize: pageSize
+    // TODO: FIX MEEEE !!!!!!
+    pageSize: pageSize + 1000
   };
 
   try {
