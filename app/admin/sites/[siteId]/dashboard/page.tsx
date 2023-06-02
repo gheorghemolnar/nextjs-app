@@ -1,29 +1,11 @@
 import React from "react";
 
-import { CONTROL, CONTROL_STATUS } from "@/types/schema";
+import { ATELIER, SECTORS } from "@/types/data";
+import { CONTROL } from "@/types/schema";
 import ClientOnly from "@/components/ui/clientOnly";
 import getControls from "@/app/actions/getControls";
 
 import DashboardClient from "./DashboardClient";
-
-export type ATELIER = {
-  [K in CONTROL_STATUS]: number;
-} & {
-  id: number;
-  label: string;
-};
-
-export type SECTOR = {
-  [K in CONTROL_STATUS]: number;
-} & {
-  count: number;
-  label: string;
-  ateliers: ATELIER[];
-};
-
-export interface SECTORS {
-  [k: string]: SECTOR;
-}
 
 function consolidateData(controls: CONTROL[]): SECTORS {
   const consolidation = controls?.reduce((acc: any, control: CONTROL) => {
@@ -81,7 +63,11 @@ function consolidateData(controls: CONTROL[]): SECTORS {
   return consolidation;
 }
 
-export default async function page({ params: { siteId } }) {
+export default async function page({
+  params: { siteId }
+}: {
+  params: { siteId: string };
+}) {
   const { data: controls } = await getControls({
     siteId,
     pageIndex: 0,
