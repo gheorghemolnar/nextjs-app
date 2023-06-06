@@ -25,7 +25,7 @@ export default function Page({ params: { siteId } }: Props) {
   if (!controls || (controls && controls.length === 0)) {
     return (
       <ClientOnly>
-                 <EmptyState
+        <EmptyState
           title="No Reservation found"
           subtitle="Looks like you have no reservations on your properties."
         />
@@ -39,7 +39,7 @@ export default function Page({ params: { siteId } }: Props) {
 
   return (
     <ClientOnly>
-      <SiteClient controls={[]} site={site} />
+      <SiteClient site={site} />
     </ClientOnly>
   );
 }

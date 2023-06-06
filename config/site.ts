@@ -7,6 +7,26 @@ export const siteConfig = {
     {
       title: "Accueil",
       href: "/"
+    },
+    {
+      title: "Mes Contrôles",
+      href: "/"
+    },
+    {
+      title: "Mes Ressources Humaines",
+      href: "/"
+    },
+    {
+      title: "Mes Communications",
+      href: "/"
+    },
+    {
+      title: "Mes Documents",
+      href: "/"
+    },
+    {
+      title: "Admin",
+      href: "/admin/params"
     }
   ],
   links: {}

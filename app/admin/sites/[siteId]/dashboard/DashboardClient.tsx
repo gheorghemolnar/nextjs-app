@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { BellRing } from "lucide-react";
 
 import { SECTORS } from "@/types/data";
+import { CONTROL_STATUS } from "@/types/schema";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,6 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { CONTROL_STATUS } from "@/components/ui/listing/data/data";
 
 type Props = {
   sectors: SECTORS;
@@ -53,8 +53,8 @@ export default function DashboardClient({ sectors }: Props) {
                               >
                                 <div className="flex-1 space-y-1">
                                   <p className="text-sm font-medium leading-none">
-                                    <b>Atelier:</b> {atelier.label}{" "}
-                                    {`${atelier[CONTROL_STATUS.NC]} NC / ${
+                                    <b>Atelier:</b> {atelier.label} :
+                                    {` ${atelier[CONTROL_STATUS.NC]} NC / ${
                                       atelier[CONTROL_STATUS.C]
                                     }`}
                                   </p>
@@ -70,7 +70,7 @@ export default function DashboardClient({ sectors }: Props) {
                               >
                                 <div className="flex-1 space-y-1">
                                   <p className="text-sm font-medium leading-none">
-                                    <b>Atelier:</b> {atelier.label}{" "}
+                                    <b>Atelier:</b> {atelier.label} : 0 NC /{" "}
                                     {` ${atelier[CONTROL_STATUS.C]}`}
                                   </p>
                                 </div>
