@@ -43,4 +43,36 @@ export const controlSchema = z.object({
 
 export type CONTROL = z.infer<typeof controlSchema>;
 
-export type CONTROL_STATUS = "NC" | "C";
+export enum CONTROL_STATUS {
+  NC = "NC",
+  C = "C"
+}
+
+export const companySchema = z.object({
+  ORDREAFF: z.number(),
+  MODIFQUI: z.string().nullable(),
+  MODIFQUAND: z.date().nullable(),
+  LIBSOCIETE: z.string(),
+  IDSOCIETE: z.number(),
+  CREAQUI: z.string(),
+  CREAQUAND: z.date(),
+  CODESOCIETE: z.string(),
+  ANNUQUI: z.string().nullable(),
+  ANNUQUAND: z.date().nullable()
+});
+
+export type COMPANY = z.infer<typeof companySchema>;
+
+export const userSchema = z.object({
+  codeutil: z.string(),
+  idprofil: z.number(),
+  matricule: z.number(),
+  nomutil: z.string(),
+  preutil: z.string(),
+  mdputil: z.string(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish()
+});
+
+export type USER = z.infer<typeof userSchema>;

@@ -1,40 +1,35 @@
 import * as soap from "soap";
 
 import {
-  COMPANY_DTO,
-  COMPANY_RO,
-  CONTROL_DTO,
-  CONTROL_RO,
   CREATE_SITE_DTO,
   SITE_DTO,
-  SITE_RO,
-  USER_FILE_DTO,
+  USERS_DTO,
+  USER_DTO,
   USER_FILE_RO
 } from "@/types/data";
 
-export interface IResponseRO<T> {
+export interface IResponseRO<T = undefined> {
   status: string;
   errorMessage: string;
   numberOfRecords?: number;
-  data?: T[];
+  data?: T extends undefined ? never : T[];
 }
 
-export type REQUEST = SITE_DTO;
+export type REQUEST_CREATE = SITE_DTO | USER_DTO;
+export type REQUEST_GET = USERS_DTO;
 
 const SERVER =
   process?.env?.WS_SERVER === "" ? "localhost" : process.env.WS_SERVER;
-const PORT = process?.env?.WS_PORT ?? 44368;
+const PORT = process?.env?.WS_PORT ? ":" + process?.env?.WS_PORT : "";
 const WS_CONTEXT_PATH = process?.env?.WS_CONTEXT_PATH;
 
-const URL = `http://${SERVER}:${PORT}/${WS_CONTEXT_PATH}/ServiceBigExploit.svc?wsdl`;
+const URL = `http://${SERVER}${PORT}/${WS_CONTEXT_PATH}/ServiceBigExploit.svc?wsdl`;
 
 const WS_USER = process?.env?.WS_USER;
 const WS_PASSWORD = process?.env?.WS_PASSWORD;
 
 export interface IClientData {
   client: soap.Client;
-  /*   getUserFiles: (payload: USER_FILE_DTO) => Promise<IResponseRO<USER_FILE_RO>>;
-  getTableDataBase: (payload: REQUEST) => Promise<IResponseRO<any>>; */
 }
 
 let clientSoap: soap.Client;
@@ -80,9 +75,9 @@ export const getUserFiles = async (
 };
 
 // TODO: A GARDER ???
-export const getTableDataBase = async (
-  payload: REQUEST
-): Promise<IResponseRO<any>> => {
+export async function getTableDataBase<T = undefined>(
+  payload: REQUEST_CREATE
+): Promise<IResponseRO<T>> {
   if (!clientSoap) {
     await SoapClient();
   }
@@ -98,20 +93,19 @@ export const getTableDataBase = async (
   ] = await clientSoap.Get_Table_Admin_V1Async(payload);
 
   return { status, data, errorMessage: returnMessage };
-};
-
+}
 // Get_Table_Admin_Pagination_V1(int version, string table, string company, string site, int pageNumber, int pageSize
 // TODO: check if NO RESULTS !!
-export const getTableDataBasePagination = async (
-  payload: REQUEST
-): Promise<IResponseRO<any>> => {
+export async function getTableDataBasePagination<T = undefined>(
+  payload: REQUEST_GET
+): Promise<IResponseRO<T>> {
   console.log("🚀 CLIENT_SOAP >", payload);
 
   if (!clientSoap) {
     await SoapClient();
   }
 
-  const [{ Get_Table_Admin_Pagination_V1Result }] =
+  const [{ Get_Table_Admin_Pagination_V1Result }, , , rawRequest] =
     await clientSoap.Get_Table_Admin_Pagination_V1Async(payload);
 
   const {
@@ -130,11 +124,11 @@ export const getTableDataBasePagination = async (
   };
 
   return { status, data, numberOfRecords, errorMessage: returnMessage };
-};
+}
 
-export const createData = async (
-  params: CREATE_SITE_DTO
-): Promise<IResponseRO<any>> => {
+export async function createData<T = undefined>(
+  params: T
+): Promise<IResponseRO<T>> {
   console.log("🚀 createData >>>>>>>>>>>> ~ params:", params);
 
   if (!clientSoap) {
@@ -142,9 +136,7 @@ export const createData = async (
   }
 
   const { version, table, payload } = params;
-  console.log("🚀 ~ file: clientSoap.ts:115 ~ version:", version);
-  console.log("🚀 ~ file: clientSoap.ts:115 ~ table:", table);
-  console.log("🚀 ~ file: clientSoap.ts:115 ~ payload:", payload);
+  console.log("🚀 createData >>>> ", { version, table, payload });
 
   /*   let Table = class {
     CodeSiteBg = "";
@@ -182,7 +174,7 @@ export const createData = async (
   ] = await clientSoap.Insert_Data_Admin_V1Async({
     version,
     table,
-    unObj: JSON.stringify(payload)
+    payload: JSON.stringify(payload)
   });
 
   /*
@@ -193,4 +185,4 @@ export const createData = async (
   ] = await clientSoap.Insert_Data_Admin_V1Async(version, table, payload); */
 
   return { status, errorMessage: returnMessage };
-};
+}

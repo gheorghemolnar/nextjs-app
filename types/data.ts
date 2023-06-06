@@ -1,17 +1,22 @@
+import { LucideIcon } from "lucide-react";
 import { z } from "zod";
 
 import {
   CONTROL_STATUS,
+  USER,
   controlSchema,
   photoControlSchema,
   photoSchema
 } from "./schema";
 
-export type USER_FILE_DTO = {
+type BASE_DTO = {
   version: string;
+  table: string;
+};
+
+export type USER_FILE_DTO = BASE_DTO & {
   company: string;
   site: string;
-  table: string;
 };
 
 export type USER_FILE_RO = {
@@ -26,12 +31,7 @@ export type USER_FILE_RO = {
   DocPdf: Uint8Array[];
 };
 
-export type SITE_DTO = {
-  version: string;
-  table: string;
-  company: string;
-  site: string;
-};
+export type SITE_DTO = BASE_DTO & { company: string; site: string };
 
 export type SITE_RO = {
   IdSite: number;
@@ -42,11 +42,11 @@ export type SITE_RO = {
   IdSociete: number;
 };
 
-export type COMPANY_DTO = {
-  version: string;
-  table: string;
+export type COMPANY_DTO = BASE_DTO & {
   company: string;
   site: string;
+  pageNumber: number;
+  pageSize: number;
 };
 
 export type COMPANY_RO = {
@@ -55,22 +55,19 @@ export type COMPANY_RO = {
   OrdreAff: number;
 };
 
-export type CONTROL_DTO = {
-  version: string;
-  table: string;
+export type CONTROL_DTO = BASE_DTO & {
   company: string;
   site: string;
   pageNumber: number;
   pageSize: number;
 };
 
-export type CONTROL_RO = z.infer<typeof controlSchema>;
+export type CONTROL = z.infer<typeof controlSchema>;
 export type PHOTO_CTRL = z.infer<typeof photoControlSchema>;
 export type PHOTO = z.infer<typeof photoSchema>;
 
-export type CREATE_SITE_DTO = {
-  version: number;
-  table: string;
+export type CREATE_SITE_DTO = BASE_DTO & {
+  company: string;
   payload: {
     CodeSiteBg: string;
     CodeSiteRh: string;
@@ -81,10 +78,10 @@ export type CREATE_SITE_DTO = {
   };
 };
 
-export type CREATE_RO = {
-  IdSociete: number;
-  LibSociete: string;
-  OrdreAff: number;
+export type USERS_DTO = BASE_DTO;
+
+export type USER_DTO = BASE_DTO & {
+  payload: USER;
 };
 
 export type ATELIER = {
@@ -104,6 +101,13 @@ export type SECTOR = {
 
 export interface SECTORS {
   [k: string]: SECTOR;
+}
+
+export interface TABLE_CONTROL_STATUS {
+  value: CONTROL_STATUS;
+  label: string;
+  icon: LucideIcon;
+  color: string;
 }
 
 // TODO: Temporary FIX, TO BE DELETED !!!

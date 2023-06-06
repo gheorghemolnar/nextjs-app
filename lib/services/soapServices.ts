@@ -2,13 +2,14 @@ import {
   COMPANY_DTO,
   COMPANY_RO,
   CONTROL_DTO,
-  CONTROL_RO,
-  CREATE_SITE_DTO,
   SITE_DTO,
   SITE_RO,
+  USERS_DTO,
+  USER_DTO,
   USER_FILE_DTO,
   USER_FILE_RO
 } from "@/types/data";
+import { CONTROL, USER } from "@/types/schema";
 
 import {
   IResponseRO,
@@ -26,13 +27,13 @@ export const dataWrapper = {
     sites: async (payload: SITE_DTO): Promise<IResponseRO<SITE_RO>> =>
       await getTableDataBase(payload),
     companies: async (payload: COMPANY_DTO): Promise<IResponseRO<COMPANY_RO>> =>
-      await getTableDataBase(payload),
-    // controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL_RO>> =>
-    //   await getTableDataBase(payload),
-    controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL_RO>> =>
+      await getTableDataBasePagination(payload),
+    controls: async (payload: CONTROL_DTO): Promise<IResponseRO<CONTROL>> =>
+      await getTableDataBasePagination<CONTROL>(payload),
+    users: async (payload: USERS_DTO): Promise<IResponseRO<USER>> =>
       await getTableDataBasePagination(payload)
   },
   post: {
-    createUser: async (payload: CREATE_SITE_DTO) => await createData(payload)
+    createUser: async (payload: USER_DTO) => await createData(payload)
   }
 };
