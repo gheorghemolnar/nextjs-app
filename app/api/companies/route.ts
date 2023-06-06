@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { CONTROL } from "@/types/schema";
+import "@/types/schema";
+import { COMPANY_RO } from "@/types/data";
 import { IResponseRO } from "@/lib/services/clientSoap";
-import getControls from "@/app/actions/controls";
+import { getCompanies } from "@/app/actions/companies";
 
-export async function GET(
-  request: Request,
-  { params: { siteId } }: { params: { siteId: string } }
-) {
+export async function GET(request: Request) {
   const { searchParams } = ({} = new URL(request.url));
 
   console.log("🚀 DEBUG > GET > searchParams > ", searchParams);
@@ -17,10 +15,10 @@ export async function GET(
     pageSize: Number(searchParams.get("pageSize"))
   };
 
-  const newParams = { siteId, ...newSearchParams };
+  const newParams = { ...newSearchParams };
   console.log("🚀 DEBUG > GET > newParams:", newParams);
 
-  let result: IResponseRO<CONTROL> = await getControls(newParams);
+  let result: IResponseRO<COMPANY_RO> = await getCompanies(newParams);
 
   return NextResponse.json(result);
 }

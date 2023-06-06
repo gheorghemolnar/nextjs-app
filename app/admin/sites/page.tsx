@@ -1,5 +1,5 @@
 import ClientOnly from "@/components/ui/clientOnly";
-import getSites from "@/app/actions/getSites";
+import getSites from "@/app/actions/sites";
 
 import SitesClient from "./SitesClient";
 

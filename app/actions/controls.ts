@@ -18,7 +18,29 @@ export default async function getControls({
     site: siteId,
     pageNumber: pageIndex,
     // TODO: FIX MEEEE !!!!!!
-    pageSize: pageSize + 1000
+    pageSize: 20
+    /*
+    filters: {
+      filter: [
+        {
+          fieldName: "IDSECTEUR",
+          operand: "EQUALS",
+          value: "1"
+        },
+        {
+          fieldName: "DaHeCont",
+          operand: "EQUALS",
+          value: "2023-06-02 12:44:44.999"
+        },
+        {
+          fieldName: "IDATELIER",
+          operand: "EQUALS",
+          value: "2"
+        }
+
+      ]
+    }
+    */
   };
 
   try {

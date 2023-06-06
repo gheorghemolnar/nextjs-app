@@ -3,7 +3,7 @@ import React from "react";
 import { ATELIER, SECTORS } from "@/types/data";
 import { CONTROL } from "@/types/schema";
 import ClientOnly from "@/components/ui/clientOnly";
-import getControls from "@/app/actions/getControls";
+import getControls from "@/app/actions/controls";
 
 import DashboardClient from "./DashboardClient";
 
