@@ -1,4 +1,3 @@
-import React from "react";
 import { Table } from "@tanstack/react-table";
 import {
   ChevronLeft,
@@ -51,7 +50,7 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          Page {table.getState().pagination.pageIndex + 1} sur{" "}
           {table.getPageCount()}
         </div>
         <div className="flex items-center space-x-2">
@@ -61,7 +60,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
+            <span className="sr-only">Première page</span>
             <ChevronsLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -70,7 +69,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
+            <span className="sr-only">Page précédante</span>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -79,7 +78,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="sr-only">Page suivante</span>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button
@@ -88,7 +87,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
+            <span className="sr-only">Dernière page</span>
             <ChevronsRight className="h-4 w-4" />
           </Button>
         </div>

@@ -3,27 +3,49 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { ColumnDef } from "@tanstack/react-table";
+import { Check, XIcon } from "lucide-react";
 
-import { CONTROL_RO, PHOTO, SITE } from "@/types/data";
-import { CONTROL } from "@/types/schema";
+import { PHOTO, SITE } from "@/types/data";
+import { CONTROL, CONTROL_STATUS } from "@/types/schema";
 import { IResponseRO } from "@/lib/services";
-import { cn } from "@/lib/utils";
+import { cn, formatDate, getUrlBase } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { DataTableColumnHeader } from "@/components/ui/listing/components/data-table-column-header";
 import { DataTableRowActions } from "@/components/ui/listing/components/data-table-row-actions";
-import { statuses } from "@/components/ui/listing/data/data";
 import Listing from "@/components/ui/listing/listing";
 
-/* const URL_BASE = process.env.URL_BASE; */
-// TODO: !!!!!!! FIX THIS !!!!!!!!
-const URL_BASE = "http://localhost:3000";
+const URL_BASE = getUrlBase();
 
-console.log("🚀 ~ file: SiteClient.tsx:18 ~ URL_BASE:", URL_BASE);
+async function getData() {
+  console.log("GET DATA >>>>");
+
+  const payload = {
+    siteId: "01",
+    pageIndex: 0,
+    pageSize: 20,
+    filters: [
+      {
+        operand: "EQUALS",
+        field: "IDATELIER",
+        value: "2"
+      }
+      /*
+      { "NOT_EQUALS", "<>" },
+      { "LESS", "<"},
+      { "LESS_OR_EQUALS", "<="},
+      { "GREATER", ">"},
+      { "GREATER_OR_EQUALS", ">="}
+      */
+    ]
+  };
+  const response = await getClientControls(payload);
+  //const res = await response.json();
+  console.log("🚀 RESULT:", response);
+}
 
 type Props = {
   //TODO: TO BE DELETED, ONLY TEMPORARY
   site: SITE;
-  controls: CONTROL_RO[];
 };
 
 async function getClientControls({
@@ -34,7 +56,7 @@ async function getClientControls({
   siteId: string;
   pageIndex: number;
   pageSize: number;
-}): Promise<IResponseRO<CONTROL_RO>> {
+}): Promise<IResponseRO<CONTROL>> {
   const response = await fetch(
     `${URL_BASE}/api/controls/${siteId}?pageIndex=${pageIndex}&pageSize=${pageSize}`
   );
@@ -43,54 +65,33 @@ async function getClientControls({
   return result;
 }
 
+export const statuses = [
+  {
+    value: CONTROL_STATUS.C,
+    label: "Conforme",
+    icon: Check,
+    color: "text-green-900"
+  },
+  {
+    value: CONTROL_STATUS.NC,
+    label: "NonConforme",
+    icon: XIcon,
+    color: "text-red-900"
+  }
+];
+
 export const columns: ColumnDef<CONTROL, any>[] = [
-  /*
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Tout séléctionner"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Sélection ligne"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "IdControle",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-    cell: ({ row }) => (
-      <div className="w-[50px]">{row.getValue("IdControle")}</div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  */
   {
     accessorKey: "DaHeCont",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
+      <DataTableColumnHeader column={column} title="Date Heure" />
     ),
     cell: ({ row }) => {
-      const dt = new Date(row.getValue("DaHeCont"));
+      const dt = formatDate(row.getValue("DaHeCont"));
 
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[200px] truncate font-medium">
-            {`${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`}
-          </span>
+          <span className="max-w-[200px] truncate font-medium">{`${dt}`}</span>
         </div>
       );
     }
@@ -168,13 +169,13 @@ export const columns: ColumnDef<CONTROL, any>[] = [
     }
   },
   {
+    id: "details",
     header: () => (
       <div className="flex w-[80px] items-center justify-center">Détails</div>
     ),
-    accessorKey: "details",
     cell: ({ row, table }) => {
       const rawPhotos = row.original?.Photos;
-      let photos: PHOTO[] | null = null;
+
       if (rawPhotos) {
         const tableMeta = table.options.meta;
         return (
@@ -243,7 +244,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
   console.log("HandleCLick End");
 }; */
 
-export default function SiteClient({ site, controls }: Props) {
+export default function SiteClient({ site }: Props) {
   const { siteId } = useParams();
 
   return (
@@ -254,16 +255,18 @@ export default function SiteClient({ site, controls }: Props) {
             {site.siteLabel}
           </h1>
 
-          {/*           <p className="max-w-[700px] text-sm text-muted-foreground">
+          {/*
+          <p className="max-w-[700px] text-sm text-muted-foreground">
             ID site : {siteId} / Code RH: {site.code_RH} / Code BG:{" "}
             {site.code_BG}
             &nbsp;
-          </p> */}
+          </p>
+          */}
         </div>
         <Listing
           siteId={siteId}
           columns={columns}
-          data={controls}
+          options={{ statuses }}
           getData={getClientControls}
         />
       </section>

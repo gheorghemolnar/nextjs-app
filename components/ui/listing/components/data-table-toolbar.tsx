@@ -3,19 +3,21 @@
 import { Table } from "@tanstack/react-table";
 import { X } from "lucide-react";
 
+import { TABLE_CONTROL_STATUS } from "@/types/data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/ui/listing/components/data-table-view-options";
 
-import { statuses } from "../data/data";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
+  options: { statuses: TABLE_CONTROL_STATUS[] };
 }
 
 export function DataTableToolbar<TData>({
-  table
+  table,
+  options: { statuses }
 }: DataTableToolbarProps<TData>) {
   const isFiltered =
     table.getPreFilteredRowModel().rows.length >
@@ -25,7 +27,7 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filtrer..."
+          placeholder="Filtrer sur le contrôle..."
           value={(table.getColumn("LibCtrl")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("LibCtrl")?.setFilterValue(event.target.value)

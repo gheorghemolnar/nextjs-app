@@ -20,6 +20,7 @@ import {
 
 import { CONTROL } from "@/types/schema";
 import { IResponseRO } from "@/lib/services";
+import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ControlDetails } from "@/components/ui/rti/controlDetails";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -35,7 +36,7 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import "./styles.css";
-import { formatDate } from "@/lib/utils";
+import { TABLE_CONTROL_STATUS } from "@/types/data";
 
 const pageIndexDefault = 0;
 const pageSizeDefault = 20;
@@ -43,7 +44,8 @@ const pageCountDefault = -1;
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[];
+  options: { statuses: TABLE_CONTROL_STATUS[] };
   getData: (options: {
     siteId: string;
     pageIndex: number;
@@ -57,6 +59,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   siteId,
+  options,
   getData
 }: DataTableProps<TData, TValue>) {
   /** Modal */
@@ -74,11 +77,12 @@ export function DataTable<TData, TValue>({
       pageSize: pageSizeDefault
     });
 
-  /*   
+  /*
   const fetchDataOptions = {
     pageIndex,
     pageSize,
-  } */
+  }
+  */
 
   const pagination = React.useMemo(() => {
     return {
@@ -213,7 +217,7 @@ export function DataTable<TData, TValue>({
         </Dialog.Portal>
       </Dialog.Root>
 
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} options={options} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
