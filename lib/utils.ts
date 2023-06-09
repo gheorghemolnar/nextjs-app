@@ -16,3 +16,7 @@ export function formatDate(dateInput: string) {
 
   return `${date.toLocaleDateString()} à ${date.toLocaleTimeString()}`;
 }
+
+export function getUrlBase() {
+  return window.location.origin;
+}
