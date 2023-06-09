@@ -235,7 +235,7 @@ export default function SideBar() {
                   className="font-medium"
                   //href={component.href}
                 >
-                  <Link href={component.href} className="flex hover:bg-accent">
+                  <Link href={component.href} className="flex">
                     {component?.icon ? component.icon : ""}
                     {component.description}
                     {component?.badge && (
