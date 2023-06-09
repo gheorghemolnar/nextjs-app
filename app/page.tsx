@@ -1,7 +1,7 @@
 import ClientOnly from "@/components/ui/clientOnly";
 import getSites from "@/app/actions/sites";
 
-import SitesClient from "./admin/sites/SitesClient";
+import Loading from "./common";
 
 export default async function IndexPage() {
   const { data: sites = [] } = await getSites();
@@ -22,7 +22,7 @@ export default async function IndexPage() {
 
   return (
     <ClientOnly>
-      <SitesClient sites={sites} />
+      <Loading title="Accueil" />
     </ClientOnly>
   );
 }

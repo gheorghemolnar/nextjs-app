@@ -4,9 +4,11 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { Toast } from "@/components/ui/toast";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Toaster } from "@/components/ui/toaster";
+import SideBar from "@/components/sidebar";
 import { SiteHeader } from "@/components/site-header";
+import { StyleSwitcher } from "@/components/style-switcher";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -43,13 +45,25 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
+            <div className="relative flex min-h-screen">
+              {/* OLD layout
               <SiteHeader />
-              <div className="flex-1">{children}</div>
+              <div className="flex-1">{children}</div> 
+              */}
+              <div className="grid grid-cols-6">
+                <div className="col-span-1 __TODO__bg-gray-100">
+                  <SideBar />
+                </div>
+                <div className="col-span-5  min-w-full">
+                  <Breadcrumbs />
+                  {children}
+                </div>
+              </div>
             </div>
             <TailwindIndicator />
             <Toaster />
           </ThemeProvider>
+          <StyleSwitcher />
         </body>
       </html>
     </>
