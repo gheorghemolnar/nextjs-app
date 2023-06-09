@@ -28,7 +28,7 @@ export default function DashboardClient({ sectors }: Props) {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[1200px] flex-col items-start gap-2">
-        <h1 className="text-1xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
+        <h1 className="text-1xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-2xl lg:text-3xl">
           Mes Contrôles <br className="hidden sm:inline" />
         </h1>
         <div className="flex flex-wrap max gap-4 mt-10">
@@ -84,7 +84,7 @@ export default function DashboardClient({ sectors }: Props) {
                           onClick={() =>
                             router.push(`/admin/sites/${siteId}/details`)
                           }
-                          className="w-full"
+                          className="zbutton w-full"
                         >
                           Consulter
                         </Button>

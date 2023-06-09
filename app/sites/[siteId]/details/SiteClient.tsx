@@ -251,9 +251,9 @@ export default function SiteClient({ site }: Props) {
     <>
       <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
         <div className="flex max-w-[1200px] flex-col items-start gap-2">
-          <h1 className="text-lg font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-1xl lg:text-2xl">
+          {/*           <h1 className="text-lg font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-1xl lg:text-2xl">
             {site.siteLabel}
-          </h1>
+          </h1> */}
 
           {/*
           <p className="max-w-[700px] text-sm text-muted-foreground">
