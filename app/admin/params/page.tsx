@@ -3,7 +3,7 @@ import getParamsList from "@/app/actions/paramsList";
 
 import ParamsClient from "./ParamsClient";
 
-export default async function PageIndex() {
+export default async function page() {
   const listeParams = await getParamsList();
 
   return (
