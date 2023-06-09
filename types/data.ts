@@ -78,9 +78,13 @@ export type CREATE_SITE_DTO = BASE_DTO & {
   };
 };
 
-export type USERS_DTO = BASE_DTO;
+export type USERS_DTO = BASE_DTO & {
+  company: string;
+  site: string;
+};
 
 export type USER_DTO = BASE_DTO & {
+  company: string;
   payload: USER;
 };
 

@@ -74,5 +74,65 @@ export const userSchema = z.object({
   modifqui: z.string().nullish(),
   annuqui: z.string().nullish()
 });
-
 export type USER = z.infer<typeof userSchema>;
+
+export const secteurSchema = z.object({
+  codesecteur: z.string(),
+  libsecteur: z.string(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish(),
+  ordreaff: z.number()
+});
+export type SECTEUR = z.infer<typeof secteurSchema>;
+
+export const atelierSchema = z.object({
+  codeatelier: z.string(),
+  libatelier: z.string(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish(),
+  ordreaff: z.number()
+});
+export type ATELIER = z.infer<typeof atelierSchema>;
+
+export const profilSchema = z.object({
+  codeprofil: z.string(),
+  libprofil: z.string(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish(),
+  ordreaff: z.number()
+});
+export type PROFIL = z.infer<typeof profilSchema>;
+
+export const paramSiteSchema = z.object({
+  idsite: z.number(),
+  idatelier: z.number(),
+  idsecteur: z.number(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish()
+});
+export type PARAMSITE = z.infer<typeof paramSiteSchema>;
+
+export const grilleGroupeSchema = z.object({
+  codegrillegr: z.string(),
+  typegrille: z.string(),
+  libctrl: z.string(),
+  descctrl: z.string(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish()
+});
+export type GRILLE_GROUPE = z.infer<typeof grilleGroupeSchema>;
+
+export const grilleSiteSchema = z.object({
+  idgrillesite: z.number(),
+  idatelier: z.number(),
+  idsecteur: z.number(),
+  creaqui: z.string().nullish(),
+  modifqui: z.string().nullish(),
+  annuqui: z.string().nullish()
+});
+export type GRILLE_SITE = z.infer<typeof grilleSiteSchema>;
