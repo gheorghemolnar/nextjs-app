@@ -25,6 +25,7 @@ export const dataWrapper = {
       payload: USER_FILE_DTO
     ): Promise<IResponseRO<USER_FILE_RO>> => await getUserFiles(payload),
     sites: async (payload: SITE_DTO): Promise<IResponseRO<SITE_RO>> =>
+      //await getTableDataBasePagination(payload),
       await getTableDataBase(payload),
     companies: async (payload: COMPANY_DTO): Promise<IResponseRO<COMPANY_RO>> =>
       await getTableDataBasePagination(payload),
@@ -34,6 +35,7 @@ export const dataWrapper = {
       await getTableDataBasePagination(payload)
   },
   post: {
-    createUser: async (payload: USER_DTO) => await createData(payload)
+    createUser: async (payload: USER_DTO): Promise<IResponseRO> =>
+      await createData<undefined>(payload)
   }
 };

@@ -127,7 +127,7 @@ export async function getTableDataBasePagination<T = undefined>(
 }
 
 export async function createData<T = undefined>(
-  params: T
+  params: REQUEST_CREATE
 ): Promise<IResponseRO<T>> {
   console.log("🚀 createData >>>>>>>>>>>> ~ params:", params);
 
@@ -136,36 +136,6 @@ export async function createData<T = undefined>(
   }
 
   const { version, table, payload } = params;
-  console.log("🚀 createData >>>> ", { version, table, payload });
-
-  /*   let Table = class {
-    CodeSiteBg = "";
-    CodeSiteRh = "";
-    LibSite = "";
-    CreaQui = "";
-    OrdreAff = 0;
-    IdSociete = 0;
-
-    constructor(
-      CodeSiteBg: string,
-      CodeSiteRh: string,
-      LibSite: string,
-      CreaQui: string,
-      OrdreAff: number,
-      IdSociete: number
-    ) {
-      this.CodeSiteBg = CodeSiteBg;
-      this.CodeSiteRh = CodeSiteRh;
-      this.LibSite = LibSite;
-      this.CreaQui = CreaQui;
-      this.OrdreAff = OrdreAff;
-      this.IdSociete = IdSociete;
-    }
-  };
-
-  const obj = new Table("77", "007", "Bond", "gmo", 0, 99);
-  console.log("SITEEE > CLASS ", obj);
-  */
 
   const [
     {
@@ -176,13 +146,6 @@ export async function createData<T = undefined>(
     table,
     payload: JSON.stringify(payload)
   });
-
-  /*
-  const [
-    {
-      Insert_Data_Admin_V1Result: { returnMessage, status },
-    },
-  ] = await clientSoap.Insert_Data_Admin_V1Async(version, table, payload); */
 
   return { status, errorMessage: returnMessage };
 }
