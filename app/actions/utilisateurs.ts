@@ -10,6 +10,7 @@ export async function createUser(data: USER): Promise<IResponseRO> {
   const payload: USER_DTO = {
     version: "1",
     table: "UTILISAT",
+    company: "",
     payload: data
   };
 
@@ -29,12 +30,14 @@ export async function createUser(data: USER): Promise<IResponseRO> {
 export async function getUsers(): Promise<IResponseRO<USER>> {
   const payload: USERS_DTO = {
     version: "1",
-    table: "UTILISAT"
+    table: "UTILISAT",
+    company: "",
+    site: ""
   };
 
   try {
     const data = await dataWrapper.get.users(payload);
-    console.log("🚀 ~ file: users.ts:14 ~ createUser ~ data:", data);
+    console.log("🚀 API > GET > getUsers Data:", data);
 
     return data;
   } catch (error: any) {

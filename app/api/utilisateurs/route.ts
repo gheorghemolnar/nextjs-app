@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { USER } from "@/types/schema";
 import { IResponseRO } from "@/lib/services/clientSoap";
-import { createUser, getUsers } from "@/app/actions/users";
+import { createUser, getUsers } from "@/app/actions/utilisateurs";
 
 export async function POST(request: Request) {
   const body = await request.json();
