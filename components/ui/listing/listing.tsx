@@ -12,7 +12,6 @@ import { DataTable } from "./components/data-table";
 
 type ListingProps = {
   columns: ColumnDef<CONTROL, any>[];
-  data?: CONTROL[];
   siteId: string;
   options: { statuses: TABLE_CONTROL_STATUS[] };
   getData: ({
@@ -28,7 +27,6 @@ type ListingProps = {
 
 export default function Listing({
   columns,
-  data,
   options,
   getData,
   siteId

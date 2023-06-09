@@ -44,7 +44,6 @@ const pageCountDefault = -1;
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data?: TData[];
   options: { statuses: TABLE_CONTROL_STATUS[] };
   getData: (options: {
     siteId: string;
@@ -57,7 +56,6 @@ interface DataTableProps<TData, TValue> {
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
   siteId,
   options,
   getData
