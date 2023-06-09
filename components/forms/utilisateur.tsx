@@ -28,7 +28,9 @@ import {
   SelectValue
 } from "../ui/select";
 
-const userFormSchema = z
+const URL_BASE = getUrlBase();
+
+const formSchema = z
   .object({
     codeutil: z
       .string()
@@ -66,31 +68,30 @@ const userFormSchema = z
     path: ["confirmPassword"]
   });
 
-type UserFormValues = z.infer<typeof userFormSchema>;
+type FormValues = z.infer<typeof formSchema>;
 
-const defaultValues: Partial<UserFormValues> = {
+const defaultValues: Partial<FormValues> = {
   codeutil: "",
   nomutil: "",
   preutil: "",
   mdputil: "",
+  confirmPassword: "",
   matricule: "",
   idprofil: ""
 };
 
-const URL_BASE = getUrlBase();
-
-export function UtilisateurForm() {
+export default function UtilisateurForm() {
   const router = useRouter();
 
-  const form = useForm<UserFormValues>({
-    resolver: zodResolver(userFormSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues
   });
   const {
     formState: { isSubmitting }
   } = form;
 
-  async function onSubmit(data: UserFormValues) {
+  async function onSubmit(data: FormValues) {
     const payload: USER = {
       ...data,
       idprofil: Number(data.idprofil),
@@ -98,7 +99,7 @@ export function UtilisateurForm() {
       creaqui: "TODO"
     };
 
-    const response = await fetch(`${URL_BASE}/api/users`, {
+    const response = await fetch(`${URL_BASE}/api/utilisateurs`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -122,7 +123,7 @@ export function UtilisateurForm() {
       });
     } else {
       toast({
-        title: "L'erreur suivante est ssurvenue:",
+        title: "L'erreur suivante est survenue:",
         description: (
           <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
             <p className="text-white">{result.errorMessage.split(":")[1]}</p>
@@ -134,7 +135,40 @@ export function UtilisateurForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-2/3 space-y-6 flex flex-col align-center"
+      >
+        <FormField
+          control={form.control}
+          name="nomutil"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nom utilisateur</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Nom utilisateur"
+                  {...field}
+                  autoComplete="off"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="preutil"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Prénom utilisateur</FormLabel>
+              <FormControl>
+                <Input placeholder="Prénom utilisateur" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="codeutil"
@@ -190,36 +224,7 @@ export function UtilisateurForm() {
             </FormItem>
           )}
         ></FormField>
-        <FormField
-          control={form.control}
-          name="nomutil"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nom utilisateur</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Nom utilisateur"
-                  {...field}
-                  autoComplete="off"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="preutil"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Prénom utilisateur</FormLabel>
-              <FormControl>
-                <Input placeholder="Prénom utilisateur" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="mdputil"
@@ -257,8 +262,8 @@ export function UtilisateurForm() {
           )}
         />
 
-        <Button type="submit" disabled={isSubmitting}>
-          Enregister
+        <Button className="self-center" type="submit" disabled={isSubmitting}>
+          Enregistrer
         </Button>
       </form>
     </Form>
