@@ -26,7 +26,15 @@ export const siteConfig = {
     },
     {
       title: "Admin",
-      href: "/admin/params"
+      path: "/admin/params",
+      children: [
+        { title: "Utilisateurs", href: "utilisateurs" },
+        { title: "Secteurs", href: "secteurs" },
+        { title: "Atéliers", href: "ateliers" },
+        { title: "Profils", href: "profils" },
+        { title: "Params site", href: "paramssite" },
+        { title: "Grille groupe", href: "grillesgroupe" }
+      ]
     }
   ],
   links: {}
