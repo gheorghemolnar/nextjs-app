@@ -9,12 +9,12 @@ export function formatSiteId(id: number) {
   return `${id}`.padStart(2, "0");
 }
 
-export function formatDate(dateInput: string) {
-  const date = new Date(dateInput);
+export function formatDate(dateInput: string | Date) {
+  const dateNew = new Date(dateInput);
 
-  if (!date) return "--";
+  if (!dateNew) return "--";
 
-  return `${date.toLocaleDateString()} à ${date.toLocaleTimeString()}`;
+  return `${dateNew.toLocaleDateString()} à ${dateNew.toLocaleTimeString()}`;
 }
 
 export function getUrlBase() {
