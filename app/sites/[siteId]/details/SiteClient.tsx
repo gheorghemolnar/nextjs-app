@@ -174,7 +174,8 @@ export const columns: ColumnDef<CONTROL, any>[] = [
       <div className="flex w-[80px] items-center justify-center">Détails</div>
     ),
     cell: ({ row, table }) => {
-      const rawPhotos = row.original?.Photos;
+      const rawPhotos =
+        row.original?.Photos || row.original.ResultCont === CONTROL_STATUS.NC;
 
       if (rawPhotos) {
         const tableMeta = table.options.meta;
@@ -183,6 +184,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             <Button
               className="px-2"
               onClick={() => {
+                // TODO: Better TYPESCRIPT !!!
                 tableMeta?.setSelectedDialogRowData! &&
                   tableMeta.setSelectedDialogRowData(row.original);
                 tableMeta?.showModal! && tableMeta.showModal(true);
