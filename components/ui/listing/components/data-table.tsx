@@ -18,7 +18,6 @@ import {
   useReactTable
 } from "@tanstack/react-table";
 
-import { CONTROL } from "@/types/schema";
 import { IResponseRO } from "@/lib/services";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -37,6 +36,7 @@ import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import "./styles.css";
 import { TABLE_CONTROL_STATUS } from "@/types/data";
+import ModalControl from "@/components/modals/modalControl";
 
 const pageIndexDefault = 0;
 const pageSizeDefault = 20;
@@ -45,12 +45,11 @@ const pageCountDefault = -1;
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   options: { statuses: TABLE_CONTROL_STATUS[] };
-  getData: (options: {
+  getData: <T>(options: {
     siteId: string;
     pageIndex: number;
     pageSize: number;
-    callback?: (data: IResponseRO<CONTROL>) => void;
-  }) => Promise<IResponseRO<CONTROL>>;
+  }) => Promise<IResponseRO<T>>;
   siteId: string;
 }
 
@@ -63,11 +62,11 @@ export function DataTable<TData, TValue>({
   /** Modal */
   const [open, onOpenDialog] = React.useState(false);
   const [selectedDialogRowData, setSelectedDialogRowData] =
-    React.useState<CONTROL>();
+    React.useState<TData>();
   /** Modal */
 
   /**  Pagination*/
-  const [dataFetched, setDataFetched] = React.useState<IResponseRO<CONTROL>>();
+  const [dataFetched, setDataFetched] = React.useState<IResponseRO<TData>>();
 
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
@@ -94,7 +93,7 @@ export function DataTable<TData, TValue>({
 
     const fetchData = async () => {
       try {
-        const data = await getData({
+        const data = await getData<TData>({
           siteId,
           pageIndex,
           pageSize
@@ -179,30 +178,8 @@ export function DataTable<TData, TValue>({
                   open &&
                   selectedDialogRowData && (
                     <>
-                      <Dialog.Title className="DialogTitle">
-                        Détails contrôle du{" "}
-                        <span className="font-bold">
-                          {formatDate(selectedDialogRowData.DaHeCont)}
-                        </span>
-                      </Dialog.Title>
-                      <Dialog.Description className="DialogDescription">
-                        <span className="font-bold">Secteur</span>:{" "}
-                        {selectedDialogRowData.LibSecteur} /{" "}
-                        <span className="font-bold">Atélier</span>:{" "}
-                        {selectedDialogRowData.LibAtelier} /{" "}
-                        <span className="font-bold">Contrôle</span>:{" "}
-                        {selectedDialogRowData.LibCtrl}
-                        <br />
-                        <span className="font-bold">
-                          Descriptif contrôle
-                        </span> : {selectedDialogRowData.DescCtrl}
-                      </Dialog.Description>
-
-                      <div className="flex flex-column items-center">
-                        {selectedDialogRowData && (
-                          <ControlDetails control={selectedDialogRowData} />
-                        )}
-                      </div>
+                      {/* // TODO: Better TYPESCRIPT !!! */}
+                      <ModalControl data={selectedDialogRowData} />
                       <Button type="button" onClick={() => onOpenDialog(false)}>
                         Fermer
                       </Button>
