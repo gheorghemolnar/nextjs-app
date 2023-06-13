@@ -1,0 +1,36 @@
+{
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.formatOnPaste": true, // required
+    "editor.formatOnType": true, // required
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file", // required to format on save
+    "files.autoSave": "onFocusChange", // optional but recommended
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "files.exclude": {},
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#F25C05",
+        "titleBar.activeForeground": "#F23005",
+        "titleBar.inactiveBackground": "#BF6B04",
+        "titleBar.inactiveForeground": "#D9B589"
+    },
+    "editor.stickyScroll.enabled": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "files.maxMemoryForLargeFilesMB": 8192,
+    "eslint.workingDirectories": [{ "pattern": "apps/*/" }, { "pattern": "packages/*/" }],
+    "json.schemas": [
+        {
+            "url": "https://cdn.jsdelivr.net/npm/tsup/schema.json",
+            "fileMatch": ["package.json", "tsup.config.json"]
+        }
+    ]
+}
