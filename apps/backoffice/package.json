@@ -21,7 +21,8 @@
         "postcss": "8.4.24",
         "tsconfig": "workspace:*",
         "typescript": "^5.1.3",
-        "vite": "^4.3.9"
+        "vite": "^4.3.9",
+        "vite-tsconfig-paths": "4.2.0"
     },
     "name": "@big/backoffice",
     "private": true,
