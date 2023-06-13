@@ -1,5 +1,11 @@
 {
-    "exclude": ["dist", "build", "node_modules"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@ui/*": ["src/*"]
+        }
+    },
+    "exclude": ["node_modules"],
     "extends": "tsconfig/react-library.json",
-    "include": ["."]
+    "include": ["src", "tailwind.config.js", "postcss.config.js"]
 }
