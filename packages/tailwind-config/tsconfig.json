@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@backoffice/*": ["src/*"]
+        }
+    },
+    "exclude": ["node_modules"],
+    "extends": "tsconfig/library.json",
+    "include": ["**/*.ts", "index.ts"]
+}
