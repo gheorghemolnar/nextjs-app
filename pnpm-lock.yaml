@@ -52,6 +52,9 @@ importers:
 
     apps/backoffice:
         dependencies:
+            '@big/ui':
+                specifier: workspace:*
+                version: link:../../packages/ui
             class-variance-authority:
                 specifier: 0.6.0
                 version: 0.6.0(typescript@5.1.3)
@@ -73,10 +76,10 @@ importers:
             tailwindcss:
                 specifier: 3.3.2
                 version: 3.3.2(ts-node@10.9.1)
-            tailwindcss-animate:
-                specifier: 1.0.6
-                version: 1.0.6(tailwindcss@3.3.2)
         devDependencies:
+            '@big/tailwind-config':
+                specifier: workspace:*
+                version: link:../../packages/tailwind-config
             '@types/node':
                 specifier: 20.3.1
                 version: 20.3.1
@@ -86,12 +89,6 @@ importers:
             '@types/react-dom':
                 specifier: ^18.2.5
                 version: 18.2.5
-            '@typescript-eslint/eslint-plugin':
-                specifier: ^5.59.11
-                version: 5.59.11(@typescript-eslint/parser@5.59.11)(eslint@8.42.0)(typescript@5.1.3)
-            '@typescript-eslint/parser':
-                specifier: ^5.59.11
-                version: 5.59.11(eslint@8.42.0)(typescript@5.1.3)
             '@vitejs/plugin-react-swc':
                 specifier: ^3.3.2
                 version: 3.3.2(vite@4.3.9)
@@ -119,6 +116,9 @@ importers:
 
     apps/docs:
         dependencies:
+            '@big/ui':
+                specifier: workspace:*
+                version: link:../../packages/ui
             next:
                 specifier: ^13.4.5
                 version: 13.4.5(react-dom@18.2.0)(react@18.2.0)
@@ -128,9 +128,6 @@ importers:
             react-dom:
                 specifier: ^18.2.0
                 version: 18.2.0(react@18.2.0)
-            ui:
-                specifier: workspace:*
-                version: link:../../packages/ui
         devDependencies:
             '@types/node':
                 specifier: ^20.3.1
@@ -153,6 +150,9 @@ importers:
 
     apps/web:
         dependencies:
+            '@big/ui':
+                specifier: workspace:*
+                version: link:../../packages/ui
             next:
                 specifier: ^13.4.5
                 version: 13.4.5(react-dom@18.2.0)(react@18.2.0)
@@ -162,9 +162,6 @@ importers:
             react-dom:
                 specifier: ^18.2.0
                 version: 18.2.0(react@18.2.0)
-            ui:
-                specifier: workspace:*
-                version: link:../../packages/ui
         devDependencies:
             '@types/node':
                 specifier: ^20.3.1
@@ -212,22 +209,71 @@ importers:
                 specifier: ^47.0.0
                 version: 47.0.0(eslint@8.42.0)
 
-    packages/tsconfig: {}
-
-    packages/ui:
-        devDependencies:
-            '@types/react':
-                specifier: ^18.2.12
-                version: 18.2.12
-            '@types/react-dom':
-                specifier: ^18.2.5
-                version: 18.2.5
+    packages/tailwind-config:
+        dependencies:
+            '@types/node':
+                specifier: 20.3.1
+                version: 20.3.1
             eslint:
                 specifier: ^8.42.0
                 version: 8.42.0
             eslint-config-custom:
                 specifier: workspace:*
                 version: link:../eslint-config-custom
+            tailwindcss:
+                specifier: 3.3.2
+                version: 3.3.2(ts-node@10.9.1)
+            tailwindcss-animate:
+                specifier: 1.0.6
+                version: 1.0.6(tailwindcss@3.3.2)
+            tsconfig:
+                specifier: workspace:*
+                version: link:../tsconfig
+            typescript:
+                specifier: ^5.1.3
+                version: 5.1.3
+
+    packages/tsconfig: {}
+
+    packages/ui:
+        dependencies:
+            class-variance-authority:
+                specifier: 0.6.0
+                version: 0.6.0(typescript@5.1.3)
+            clsx:
+                specifier: 1.2.1
+                version: 1.2.1
+            lucide-react:
+                specifier: 0.244.0
+                version: 0.244.0(react@18.2.0)
+            tailwind-merge:
+                specifier: 1.13.1
+                version: 1.13.1
+            tailwindcss:
+                specifier: 3.3.2
+                version: 3.3.2(ts-node@10.9.1)
+        devDependencies:
+            '@big/tailwind-config':
+                specifier: workspace:*
+                version: link:../tailwind-config
+            '@types/react':
+                specifier: ^18.2.12
+                version: 18.2.12
+            '@types/react-dom':
+                specifier: ^18.2.5
+                version: 18.2.5
+            autoprefixer:
+                specifier: 10.4.14
+                version: 10.4.14(postcss@8.4.24)
+            eslint:
+                specifier: ^8.42.0
+                version: 8.42.0
+            eslint-config-custom:
+                specifier: workspace:*
+                version: link:../eslint-config-custom
+            postcss:
+                specifier: 8.4.24
+                version: 8.4.24
             react:
                 specifier: ^18.2.0
                 version: 18.2.0
@@ -1193,6 +1239,7 @@ packages:
             {
                 integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==,
             }
+        dev: false
 
     /@types/keyv@3.1.4:
         resolution:
@@ -1285,6 +1332,7 @@ packages:
             {
                 integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==,
             }
+        dev: false
 
     /@types/through@0.0.30:
         resolution:
@@ -1324,6 +1372,7 @@ packages:
             typescript: 5.1.3
         transitivePeerDependencies:
             - supports-color
+        dev: false
 
     /@typescript-eslint/parser@5.59.11(eslint@8.42.0)(typescript@5.1.3):
         resolution:
@@ -1346,6 +1395,7 @@ packages:
             typescript: 5.1.3
         transitivePeerDependencies:
             - supports-color
+        dev: false
 
     /@typescript-eslint/scope-manager@5.59.11:
         resolution:
@@ -1356,6 +1406,7 @@ packages:
         dependencies:
             '@typescript-eslint/types': 5.59.11
             '@typescript-eslint/visitor-keys': 5.59.11
+        dev: false
 
     /@typescript-eslint/type-utils@5.59.11(eslint@8.42.0)(typescript@5.1.3):
         resolution:
@@ -1378,6 +1429,7 @@ packages:
             typescript: 5.1.3
         transitivePeerDependencies:
             - supports-color
+        dev: false
 
     /@typescript-eslint/types@5.59.11:
         resolution:
@@ -1385,6 +1437,7 @@ packages:
                 integrity: sha512-epoN6R6tkvBYSc+cllrz+c2sOFWkbisJZWkOE+y3xHtvYaOE6Wk6B8e114McRJwFRjGvYdJwLXQH5c9osME/AA==,
             }
         engines: { node: ^12.22.0 || ^14.17.0 || >=16.0.0 }
+        dev: false
 
     /@typescript-eslint/typescript-estree@5.59.11(typescript@5.1.3):
         resolution:
@@ -1408,6 +1461,7 @@ packages:
             typescript: 5.1.3
         transitivePeerDependencies:
             - supports-color
+        dev: false
 
     /@typescript-eslint/utils@5.59.11(eslint@8.42.0)(typescript@5.1.3):
         resolution:
@@ -1430,6 +1484,7 @@ packages:
         transitivePeerDependencies:
             - supports-color
             - typescript
+        dev: false
 
     /@typescript-eslint/visitor-keys@5.59.11:
         resolution:
@@ -1440,6 +1495,7 @@ packages:
         dependencies:
             '@typescript-eslint/types': 5.59.11
             eslint-visitor-keys: 3.4.1
+        dev: false
 
     /@vitejs/plugin-react-swc@3.3.2(vite@4.3.9):
         resolution:
@@ -1695,7 +1751,7 @@ packages:
             postcss: ^8.1.0
         dependencies:
             browserslist: 4.21.8
-            caniuse-lite: 1.0.30001482
+            caniuse-lite: 1.0.30001502
             fraction.js: 4.2.0
             normalize-range: 0.1.2
             picocolors: 1.0.0
@@ -1886,13 +1942,6 @@ packages:
             }
         engines: { node: '>= 6' }
         dev: false
-
-    /caniuse-lite@1.0.30001482:
-        resolution:
-            {
-                integrity: sha512-F1ZInsg53cegyjroxLNW9DmrEQ1SuGRTO1QlpA0o2/6OpQ0gFeDRoq1yFmnr8Sakn9qwwt9DmbxHB6w167OSuQ==,
-            }
-        dev: true
 
     /caniuse-lite@1.0.30001502:
         resolution:
@@ -2816,6 +2865,7 @@ packages:
         dependencies:
             esrecurse: 4.3.0
             estraverse: 4.3.0
+        dev: false
 
     /eslint-scope@7.2.0:
         resolution:
@@ -2934,6 +2984,7 @@ packages:
                 integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==,
             }
         engines: { node: '>=4.0' }
+        dev: false
 
     /estraverse@5.3.0:
         resolution:
@@ -3448,6 +3499,7 @@ packages:
             {
                 integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==,
             }
+        dev: false
 
     /graphemer@1.4.0:
         resolution:
@@ -4535,6 +4587,7 @@ packages:
             {
                 integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==,
             }
+        dev: false
 
     /natural-compare@1.4.0:
         resolution:
@@ -6277,6 +6330,7 @@ packages:
         dependencies:
             tslib: 1.14.1
             typescript: 5.1.3
+        dev: false
 
     /turbo-darwin-64@1.10.3:
         resolution:
