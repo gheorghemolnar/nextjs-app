@@ -1,20 +1,27 @@
 {
     "dependencies": {
+        "class-variance-authority": "0.6.0",
+        "clsx": "1.2.1",
+        "lucide-react": "0.244.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "tailwind-merge": "1.13.1",
+        "tailwindcss": "3.3.2",
+        "tailwindcss-animate": "1.0.6"
     },
     "devDependencies": {
-        "@types/react": "^18.0.37",
-        "@types/react-dom": "^18.0.11",
-        "@typescript-eslint/eslint-plugin": "^5.59.0",
-        "@typescript-eslint/parser": "^5.59.0",
-        "@vitejs/plugin-react-swc": "^3.0.0",
-        "eslint": "^8.38.0",
+        "@types/node": "20.3.1",
+        "@types/react": "^18.2.12",
+        "@types/react-dom": "^18.2.5",
+        "@typescript-eslint/eslint-plugin": "^5.59.11",
+        "@typescript-eslint/parser": "^5.59.11",
+        "@vitejs/plugin-react-swc": "^3.3.2",
+        "autoprefixer": "10.4.14",
+        "eslint": "^8.42.0",
         "eslint-config-custom": "workspace:*",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-refresh": "^0.3.4",
+        "postcss": "8.4.24",
         "tsconfig": "workspace:*",
-        "typescript": "^5.0.2",
+        "typescript": "^5.1.3",
         "vite": "^4.3.9"
     },
     "name": "@big/backoffice",
