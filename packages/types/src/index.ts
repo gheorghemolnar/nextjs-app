@@ -1,2 +1,2 @@
-export * from './src/atelier'
-export * from './src/site'
+export * from './atelier';
+export * from './site';
