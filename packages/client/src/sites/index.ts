@@ -1,10 +1,9 @@
-import { sleep } from ".."
-import { SITE_RO } from "@big/types"
+import { SITE_RO } from '@big/types';
 
+import { sleep } from '@client/index';
 
-const atelierList:SITE_RO[] = [{}]
+const sitesList: SITE_RO[] = [];
 export async function getSites(): Promise<SITE_RO[]> {
-    await sleep()
-    return sitesList
-
+    await sleep();
+    return sitesList;
 }
