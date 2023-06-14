@@ -24,7 +24,8 @@
     "name": "@big/ui",
     "scripts": {
         "generate:component": "turbo gen react-component",
-        "lint": "eslint \"**/*.ts*\""
+        "lint": "eslint \"**/*.ts*\"",
+        "type-check": "tsc --noEmit"
     },
     "types": "./src/index.tsx",
     "version": "0.0.0"
