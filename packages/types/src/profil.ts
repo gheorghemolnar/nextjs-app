@@ -1,23 +1,23 @@
-import { PartialTypeForEdit, PartialType } from ".";
+import { PartialType, PartialTypeForEdit } from '.';
 
 export interface PROFIL {
-  id: number;
-  codeprofil: string;
-  libprofil: string;
-  creaqui: string;
-  modifqui: string;
-  annuqui: string;
-  ordreaff: number;
+    id: number;
+    codeprofil: string;
+    libprofil: string;
+    creaqui: string;
+    modifqui: string;
+    annuqui: string;
+    ordreaff: number;
 }
 
-  // Edit 
-export type PROFIL_EDIT = PartialTypeForEdit<PROFIL>
+// Edit
+export type PROFIL_EDIT = PartialTypeForEdit<PROFIL>;
 
 // Create
-export type PROFIL_CREATE = Omit<PartialType<PROFIL>, "id"> & {
-  codegrillegr: string;
-  typegrille: string;
-  libctrl: string;
-  descctrl: string;
-  creaqui: string;
-}
+export type PROFIL_CREATE = Omit<PartialType<PROFIL>, 'id'> & {
+    codegrillegr: string;
+    typegrille: string;
+    libctrl: string;
+    descctrl: string;
+    creaqui: string;
+};

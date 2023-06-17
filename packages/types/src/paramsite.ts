@@ -1,23 +1,22 @@
-import { PartialTypeForEdit, PartialType } from ".";
+import { PartialType, PartialTypeForEdit } from '.';
 
 export interface PARAMSITE {
-  id: number;
-  idsite: number;
-  idatelier: number;
-  idsecteur: number;
-  creaqui: string;
-  modifqui: string;
-  annuqui: string;
+    id: number;
+    idsite: number;
+    idatelier: number;
+    idsecteur: number;
+    creaqui: string;
+    modifqui: string;
+    annuqui: string;
 }
 
-
-// Edit 
-export type PARAMSITE_EDIT = PartialTypeForEdit<PARAMSITE>
+// Edit
+export type PARAMSITE_EDIT = PartialTypeForEdit<PARAMSITE>;
 
 // Create
-export type PARAMSITE_CREATE = Omit<PartialType<PARAMSITE>, "id"> & {
-  idsite: number;
-  idatelier: number;
-  idsecteur: number;
-  creaqui: string;
-}
+export type PARAMSITE_CREATE = Omit<PartialType<PARAMSITE>, 'id'> & {
+    idsite: number;
+    idatelier: number;
+    idsecteur: number;
+    creaqui: string;
+};

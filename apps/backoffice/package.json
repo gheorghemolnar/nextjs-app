@@ -1,7 +1,7 @@
 {
     "dependencies": {
-        "@big/types": "workspace:*",
         "@big/forms": "workspace:*",
+        "@big/types": "workspace:*",
         "@big/ui": "workspace:*",
         "@hookform/resolvers": "3.1.1",
         "class-variance-authority": "0.6.0",

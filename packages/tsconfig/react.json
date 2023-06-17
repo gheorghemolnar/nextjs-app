@@ -7,11 +7,7 @@
         "declarationMap": false,
         "incremental": true,
         "jsx": "preserve",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
+        "lib": ["dom", "dom.iterable", "esnext"],
         "module": "esnext",
         "noEmit": true,
         "plugins": [
@@ -24,8 +20,6 @@
         "target": "es5"
     },
     "display": "React.js",
-    "exclude": [
-        "node_modules"
-    ],
+    "exclude": ["node_modules"],
     "extends": "./base.json"
 }
