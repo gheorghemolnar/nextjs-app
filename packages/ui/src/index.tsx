@@ -1,4 +1,6 @@
 export * from './components';
+export * from './lib/utils';
+
 //TODO: delete later
 export const Bonjour = () => {
     return (
