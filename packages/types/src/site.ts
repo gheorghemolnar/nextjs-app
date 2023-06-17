@@ -1,8 +1,25 @@
+import { PartialTypeForEdit, PartialType } from ".";
+
 export interface SITE {
-    name: string;
-    code: number;
+  id: number;
+  codesitebg: string;
+  codesiterh: string;
+  libsite: string;
+  idsociete: number;
+  creaqui: string;
+  modifqui: string;
+  annuqui: string;
+  ordreaff: number;
 }
 
-export type SITE_RO = {
-    id: string;
-};
+// Edit 
+export type SITE_EDIT = PartialTypeForEdit<SITE>
+
+// Create
+export type SITE_CREATE = Omit<PartialType<SITE>, "id"> & {
+  codesitebg: string;
+  codesiterh: string;
+  libsite: string;
+  idsociete: number;
+  creaqui: string;
+}
