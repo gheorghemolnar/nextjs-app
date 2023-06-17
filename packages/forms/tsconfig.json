@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@forms/*": ["src/*"]
+        }
+    },
+    "exclude": ["node_modules"],
+    "extends": "tsconfig/react.json",
+    "include": ["**/*.ts"]
+}
