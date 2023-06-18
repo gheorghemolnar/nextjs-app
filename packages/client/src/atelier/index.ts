@@ -1,9 +1,37 @@
-import { ATELIER_RO } from '@big/types';
+import type { AxiosInstance } from 'axios';
+import z from 'zod';
 
-import { sleep } from '..'; // @client/index is also valid like in sites/index example
+import { type ATELIER, type ATELIER_CREATE, IResponseRO } from '@big/types';
+import { Schema_Atelier_RO } from '@big/validators';
 
-const atelierList: ATELIER_RO[] = [];
-export async function getAteliers(): Promise<ATELIER_RO[]> {
-    await sleep();
-    return atelierList;
-}
+export const atelierREST = ({ client }: { client: AxiosInstance }) => {
+    const getAll = async () => {
+        const response = await client<IResponseRO<ATELIER[]>>({
+            method : 'GET',
+            url    : '/ateliers',
+        });
+
+        //Check if the response is valid
+        z.array(Schema_Atelier_RO).parse(response.data.data);
+
+        return response.data;
+    };
+
+    const create = async (dto: ATELIER_CREATE) => {
+        const response = await client<IResponseRO<ATELIER>>({
+            method : 'POST',
+            url    : '/ateliers',
+            data   : dto,
+        });
+
+        //Check if the response is valid
+        Schema_Atelier_RO.parse(response.data.data);
+
+        return response.data;
+    };
+
+    return {
+        getAll,
+        create,
+    };
+};

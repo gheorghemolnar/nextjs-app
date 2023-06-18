@@ -1,7 +1,10 @@
 {
     "author": "",
     "dependencies": {
-        "@big/types": "workspace:*"
+        "@big/types": "workspace:*",
+        "@big/validators": "workspace:*",
+        "axios": "1.4.0",
+        "zod": "3.21.4"
     },
     "description": "",
     "devDependencies": {
