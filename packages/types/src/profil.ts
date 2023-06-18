@@ -1,23 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface PROFIL {
-    id: number;
-    codeprofil: string;
-    libprofil: string;
-    creaqui: string;
-    modifqui: string;
-    annuqui: string;
-    ordreaff: number;
-}
+import {
+    Schema_Profil_Create_DTO,
+    Schema_Profil_Edit_DTO,
+    Schema_Profil_RO,
+} from '@big/validators';
 
-// Edit
-export type PROFIL_EDIT = PartialTypeForEdit<PROFIL>;
-
-// Create
-export type PROFIL_CREATE = Omit<PartialType<PROFIL>, 'id'> & {
-    codegrillegr: string;
-    typegrille: string;
-    libctrl: string;
-    descctrl: string;
-    creaqui: string;
-};
+export type PROFIL = z.infer<typeof Schema_Profil_RO>;
+export type PROFIL_EDIT = z.infer<typeof Schema_Profil_Edit_DTO>;
+export type PROFIL_CREATE = z.infer<typeof Schema_Profil_Create_DTO>;

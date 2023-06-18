@@ -1,21 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface SECTEUR {
-    id: number;
-    codesecteur: string;
-    libsecteur: string;
-    creaqui: string;
-    modifqui: string;
-    annuqui: string;
-    ordreaff: number;
-}
+import {
+    Schema_Secteur_Create_DTO,
+    Schema_Secteur_Edit_DTO,
+    Schema_Secteur_RO,
+} from '@big/validators';
 
-// Edit
-export type SECTEUR_EDIT = PartialTypeForEdit<SECTEUR>;
-
-// Create
-export type SECTEUR_CREATE = Omit<PartialType<SECTEUR>, 'id'> & {
-    codesecteur: string;
-    libsecteur: string;
-    creaqui: string;
-};
+export type SECTEUR = z.infer<typeof Schema_Secteur_RO>;
+export type SECTEUR_EDIT = z.infer<typeof Schema_Secteur_Edit_DTO>;
+export type SECTEUR_CREATE = z.infer<typeof Schema_Secteur_Create_DTO>;

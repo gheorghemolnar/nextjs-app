@@ -1,6 +1,6 @@
 export * from './commons';
 export * from './atelier';
-export * from './grille_groupe';
+export * from './grille-groupe';
 export * from './paramsite';
 export * from './profil';
 export * from './secteur';

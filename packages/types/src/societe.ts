@@ -1,23 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface SOCIETE {
-    ordreaff: number;
-    modifqui: string;
-    libsociete: string;
-    idsociete: number;
-    creaqui: string;
-    codesociete: string;
-    annuqui: string;
-}
+import {
+    Schema_Societe_Create_DTO,
+    Schema_Societe_Edit_DTO,
+    Schema_Societe_RO,
+} from '@big/validators';
 
-// Edit
-export type SOCIETE_EDIT = PartialTypeForEdit<SOCIETE>;
-
-// Create
-export type SOCIETE_CREATE = Omit<PartialType<SOCIETE>, 'id'> & {
-    codegrillegr: string;
-    typegrille: string;
-    libctrl: string;
-    descctrl: string;
-    creaqui: string;
-};
+export type SOCIETE = z.infer<typeof Schema_Societe_RO>;
+export type SOCIETE_EDIT = z.infer<typeof Schema_Societe_Edit_DTO>;
+export type SOCIETE_CREATE = z.infer<typeof Schema_Societe_Create_DTO>;

@@ -1,22 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface PARAMSITE {
-    id: number;
-    idsite: number;
-    idatelier: number;
-    idsecteur: number;
-    creaqui: string;
-    modifqui: string;
-    annuqui: string;
-}
+import {
+    Schema_Paramsite_Create_DTO,
+    Schema_Paramsite_Edit_DTO,
+    Schema_Paramsite_RO,
+} from '@big/validators';
 
-// Edit
-export type PARAMSITE_EDIT = PartialTypeForEdit<PARAMSITE>;
-
-// Create
-export type PARAMSITE_CREATE = Omit<PartialType<PARAMSITE>, 'id'> & {
-    idsite: number;
-    idatelier: number;
-    idsecteur: number;
-    creaqui: string;
-};
+export type PARAMSITE = z.infer<typeof Schema_Paramsite_RO>;
+export type PARAMSITE_EDIT = z.infer<typeof Schema_Paramsite_Edit_DTO>;
+export type PARAMSITE_CREATE = z.infer<typeof Schema_Paramsite_Create_DTO>;

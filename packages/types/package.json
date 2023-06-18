@@ -1,5 +1,9 @@
 {
     "author": "",
+    "dependencies": {
+        "@big/validators": "workspace:*",
+        "zod": "3.21.4"
+    },
     "description": "",
     "devDependencies": {
         "@types/node": "20.3.1",

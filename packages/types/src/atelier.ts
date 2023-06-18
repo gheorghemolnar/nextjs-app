@@ -1,21 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface ATELIER {
-    id: number;
-    codeatelier: string;
-    libatelier: string;
-    creaqui: string;
-    modifqui: string;
-    annuqui: string;
-    ordreaff: number;
-}
+import {
+    Schema_Atelier_Create_DTO,
+    Schema_Atelier_Edit_DTO,
+    Schema_Atelier_RO,
+} from '@big/validators';
 
-// Edit
-export type ATELIER_EDIT = PartialTypeForEdit<ATELIER>;
-
-// Create
-export type ATELIER_CREATE = Omit<PartialType<ATELIER>, 'id'> & {
-    codeatelier: string;
-    libatelier: string;
-    creaqui: string;
-};
+export type ATELIER = z.infer<typeof Schema_Atelier_RO>;
+export type ATELIER_EDIT = z.infer<typeof Schema_Atelier_Edit_DTO>;
+export type ATELIER_CREATE = z.infer<typeof Schema_Atelier_Create_DTO>;

@@ -1,28 +1,11 @@
-import { PartialType, PartialTypeForEdit } from '.';
+import z from 'zod';
 
-export interface UTILISATEUR {
-    id: number;
-    codeutil: string;
-    idprofil: number;
-    matricule: number;
-    nomutil: string;
-    preutil: string;
-    mdputil: string;
-    creaqui: string;
-    modifqui: string;
-    annuqui: string;
-}
+import {
+    Schema_Utilisateur_Create_DTO,
+    Schema_Utilisateur_Edit_DTO,
+    Schema_Utilisateur_RO,
+} from '@big/validators';
 
-// Edit
-export type UTILISATEUR_EDIT = PartialTypeForEdit<UTILISATEUR>;
-
-// Create
-export type UTILISATEUR_CREATE = Omit<PartialType<UTILISATEUR>, 'id'> & {
-    codeutil: string;
-    idprofil: number;
-    matricule: number;
-    nomutil: string;
-    preutil: string;
-    mdputil: string;
-    creaqui: string;
-};
+export type UTILISATEUR = z.infer<typeof Schema_Utilisateur_RO>;
+export type UTILISATEUR_EDIT = z.infer<typeof Schema_Utilisateur_Edit_DTO>;
+export type UTILISATEUR_CREATE = z.infer<typeof Schema_Utilisateur_Create_DTO>;
