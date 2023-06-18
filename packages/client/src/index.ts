@@ -4,6 +4,11 @@ import { DEFAULT_TIMEOUT } from '@big/validators';
 
 import { atelierREST } from './atelier';
 import { siteREST } from './site';
+import { grillegroupeREST } from './grillegroupe';
+import { paramsiteREST } from './paramsite';
+import { profilREST } from './profil';
+import { secteurREST } from './secteur';
+import { utilisateurREST } from './utilisateur';
 
 type Host = `https://${string}` | `http://${string}`;
 
@@ -26,10 +31,21 @@ export const CLIENT_API = ({
     const url = `${host}`;
     const axiosClient = axios.create({ baseURL: url, timeout });
 
-    const atelier = atelierREST({ client: axiosClient });
+    const ateliers = atelierREST({ client: axiosClient });
     const sites = siteREST({ client: axiosClient });
+    const grillesgroupe = grillegroupeREST({ client: axiosClient });
+    const paramsites = paramsiteREST({ client: axiosClient });
+    const profils = profilREST({ client: axiosClient });
+    const secteurs = secteurREST({ client: axiosClient });
+    const utilisateurs = utilisateurREST({ client: axiosClient });
+
     return {
-        atelier,
+        ateliers,
         sites,
+        grillesgroupe,
+        paramsites,
+        profils,
+        secteurs,
+        utilisateurs
     };
 };
