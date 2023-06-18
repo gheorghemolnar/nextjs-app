@@ -9,7 +9,7 @@ function Controles({}: Props) {
   const params = useParams();
   let secteurs: SECTEUR[] = [];
 
-  if (params?.scontroleId)
+  if (params?.controleId)
     secteurs = getControles(params?.controleId as CONTROL_TYPES);
 
   console.log("🚀 ~ file: Controles.tsx:14 ~ Controles ~ secteurs:", secteurs);
