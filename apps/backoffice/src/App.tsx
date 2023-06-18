@@ -1,17 +1,49 @@
-// import {
-//     Accordion,
-//     AccordionContent,
-//     AccordionItem,
-//     AccordionTrigger,
-// } from '@big/ui';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import { AtelierForm } from '@backoffice/components/forms';
+import MainLayout from './layouts/MainLayout';
+import Secteur from './pages/Secteurs/Secteurs';
+import Controles from './pages/Controles/Controles';
+import Utilisateurs from './pages/Params/Utilisateurs';
+import NoMatch from './pages/NoMatch';
+import ErrorPage from './pages/ErrorPage';
 
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <MainLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+        {
+            path: "controles/:controleId/secteur/:secteurId",
+            element: <Secteur />,
+        },
+        {
+            path: "controles/:controleId/",
+            element: <Controles />,
+            //loader: controlesLoader,
+        },
+        {
+            path: "params/utilisateurs",
+            element: <Utilisateurs />,
+        },
+        {
+            path: "params/secteurs",
+            element: <Utilisateurs />,
+        },
+        {
+            path: "*",
+            element: <NoMatch />,
+        },
+        ],
+    },
+]);
+    
+   /*
 function App() {
     return (
         <div>
             <AtelierForm />
-            {/* <p className="text-green-500 text-xl text-center">BONJOUR</p>
+            <p className="text-green-500 text-xl text-center">BONJOUR</p>
             <div className="flex justify-center">
                 <div className="w-80 xl:max-w-lg">
                     <Accordion type="single" collapsible className="w-full">
@@ -39,9 +71,14 @@ function App() {
                         </AccordionItem>
                     </Accordion>
                 </div>
-            </div> */}
+            </div>
         </div>
-    );
+    ); 
+}
+*/
+
+export default function App() {
+    return <RouterProvider router={ router} fallbackElement={<p>Loading .... </p>} />
 }
 
-export default App;
+
