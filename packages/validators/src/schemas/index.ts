@@ -1,5 +1,6 @@
 export * from './atelier';
 export * from './grille-groupe';
+export * from './grille-site';
 export * from './paramsite';
 export * from './profil';
 export * from './secteur';
