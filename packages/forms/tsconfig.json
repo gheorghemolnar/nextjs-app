@@ -7,5 +7,5 @@
     },
     "exclude": ["node_modules"],
     "extends": "tsconfig/react.json",
-    "include": ["**/*.ts"]
+    "include": ["**/*.tsx"]
 }

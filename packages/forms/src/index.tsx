@@ -8,10 +8,7 @@ import {
     useFormContext,
 } from 'react-hook-form';
 
-import { cn, Label } from '@big/ui';
-
-import * as LabelPrimitive from '@radix-ui/react-label';
-import { Slot } from '@radix-ui/react-slot';
+import { cn, Label, LabelPrimitive, Slot } from '@big/ui';
 
 const Form = FormProvider;
 
@@ -180,4 +177,4 @@ export {
     FormField,
 };
 
-export { useForm } from 'react-hook-form';
+// export { useForm } from 'react-hook-form';
