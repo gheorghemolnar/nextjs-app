@@ -12,7 +12,11 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // Adds a new breakpoint in addition to the default breakpoints
+            gridTemplateColumns: {
+                sidebar: "300px auto", // for sidebar layout
+                "sidebar-collapsed": "6'px auto" // for sidebar layout
+            },
+            // Adds a new breakpoi,nt in addition to the default breakpoints
             screens: {
                 '3xl': '1600px',
             }
