@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import * as z from 'zod';
+import { Loader2 } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 
+// import { useNavigate } from 'react-router-dom';
 import {
     Form,
     FormControl,
@@ -8,48 +9,23 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    useForm,
 } from '@big/forms';
-import { ATELIER_CREATE, IResponseRO } from '@big/types';
-import { Button, Input, toast } from '@big/ui';
+import { ATELIER_CREATE } from '@big/types';
+import { Button, Input } from '@big/ui';
 
-import { getUrlBase } from '@backoffice/lib/utils';
+import { useCreateAtelier } from '@backoffice/api/atelier';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const URL_BASE = getUrlBase();
+import { defaultValues, formSchema, FormValues } from './helper';
 
-const formSchema = z.object({
-    codeatelier: z
-        .string()
-        .min(2, { message: 'Veuillez saisir au moins 1 charactères.' })
-        .max(50, { message: 'Le code ne doit pas dépasser 10 charactères.' }),
-    libatelier: z
-        .string()
-        .min(2, { message: 'Veuillez saisir le libellé.' })
-        .max(50, { message: 'Le nom ne doit pas dépasser 50 charactères.' }),
-    ordreaff: z.string().regex(/\d{1,10}/, {
-        message: 'Veuillez saisir une valeur numérique (max 10 chiffres)',
-    }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
-const defaultValues: Partial<FormValues> = {
-    codeatelier : '',
-    libatelier  : '',
-    ordreaff    : '',
-};
-
-export default function AtelierForm() {
-    const navigate = useNavigate();
+export function AtelierForm() {
+    // const navigate = useNavigate();
+    const { mutateAsync: createAtelier, isLoading } = useCreateAtelier();
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues,
     });
-    const {
-        formState: { isSubmitting },
-    } = form;
 
     async function onSubmit(data: FormValues) {
         const payload: ATELIER_CREATE = {
@@ -58,44 +34,15 @@ export default function AtelierForm() {
             creaqui  : 'TODO',
         };
 
-        const response = await fetch(`${URL_BASE}/api/utilisateurs`, {
-            method  : 'POST',
-            headers : {
-                Accept         : 'application/json',
-                'Content-Type' : 'application/json',
-            },
-            body: JSON.stringify(payload),
-        });
+        const { data: atelier } = await createAtelier(payload);
 
-        const result: IResponseRO = await response.json();
-        if (result.status === '900') {
-            toast({
-                title       : "L'erreur suivante est survenue:",
-                description : (
-                    <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                        <p className="text-white">
-                            {result.errorMessage.split(':')[1]}
-                        </p>
-                    </div>
-                ),
-            });
-        } else {
-            form.reset();
-            navigate('/');
+        if (!atelier) return;
 
-            toast({
-                title       : 'Création secteur:',
-                description : (
-                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                        <code className="text-white">
-                            {'Le secteur a été créé'}
-                        </code>
-                    </pre>
-                ),
-            });
-        }
+        form.reset();
+        // navigate(`/`);
     }
 
+    const { control } = form;
     return (
         <Form {...form}>
             <form
@@ -103,7 +50,7 @@ export default function AtelierForm() {
                 className="w-2/3 space-y-6 flex flex-col align-center"
             >
                 <FormField
-                    control={form.control}
+                    control={control}
                     name="codeatelier"
                     render={({ field }) => (
                         <FormItem>
@@ -120,7 +67,7 @@ export default function AtelierForm() {
                     )}
                 />
                 <FormField
-                    control={form.control}
+                    control={control}
                     name="libatelier"
                     render={({ field }) => (
                         <FormItem>
@@ -136,7 +83,7 @@ export default function AtelierForm() {
                     )}
                 />
                 <FormField
-                    control={form.control}
+                    control={control}
                     name="ordreaff"
                     render={({ field }) => (
                         <FormItem>
@@ -156,8 +103,11 @@ export default function AtelierForm() {
                 <Button
                     className="self-center"
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isLoading}
                 >
+                    {isLoading && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
                     Enregistrer
                 </Button>
             </form>

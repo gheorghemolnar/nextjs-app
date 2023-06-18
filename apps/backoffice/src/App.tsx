@@ -1,36 +1,17 @@
-import type { AccordionProps } from '@big/ui';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-    Bonjour,
-    CustomAccordion,
-} from '@big/ui';
+// import {
+//     Accordion,
+//     AccordionContent,
+//     AccordionItem,
+//     AccordionTrigger,
+// } from '@big/ui';
+
+import { AtelierForm } from '@backoffice/components/forms';
 
 function App() {
-    const content: AccordionProps = {
-        data: [
-            {
-                trigger : 'Title 1',
-                content : 'Content 1',
-            },
-            {
-                trigger : 'Title 2',
-                content : (
-                    <div>
-                        <p className="underline">Underline</p>
-                        Je suis un component
-                    </div>
-                ),
-            },
-        ],
-    };
-
     return (
         <div>
-            <p className="text-green-500 text-xl text-center">BONJOUR</p>
-            <Bonjour />
+            <AtelierForm />
+            {/* <p className="text-green-500 text-xl text-center">BONJOUR</p>
             <div className="flex justify-center">
                 <div className="w-80 xl:max-w-lg">
                     <Accordion type="single" collapsible className="w-full">
@@ -58,14 +39,7 @@ function App() {
                         </AccordionItem>
                     </Accordion>
                 </div>
-            </div>
-            <br />
-            <br />
-            <div className="flex justify-center">
-                <div className="w-80 xl:max-w-lg">
-                    <CustomAccordion data={content.data} />
-                </div>
-            </div>
+            </div> */}
         </div>
     );
 }

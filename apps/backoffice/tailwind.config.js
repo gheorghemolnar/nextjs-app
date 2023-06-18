@@ -8,5 +8,6 @@ module.exports = {
         './src/**/*.{js,ts,jsx,tsx}',
         // include packages because not transpiling
         '../../packages/ui/src/**/*.{js,ts,jsx,tsx}',
+        '../../packages/forms/src/**/*.{js,ts,jsx,tsx}',
     ],
 };
