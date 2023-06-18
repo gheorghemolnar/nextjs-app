@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { cn } from '@ui/lib/utils';
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(

@@ -1,11 +1,19 @@
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 
-const pages = [
-    { name: 'Contrôles', href: '/controles', current: false },
-    { name: 'Matière', href: '/controles/matiere', current: false },
-];
+//TODO: Delete this part
+// const pages = [
+//     { name: 'Contrôles', href: '/controles', current: false },
+//     { name: 'Matière', href: '/controles/matiere', current: false },
+// ];
 
-export default function Breadcrumbs() {
+// eslint-disable-next-line unicorn/prevent-abbreviations
+export type BreadcrumbsProps = {
+    name: string;
+    href: `/${string}`;
+    current: boolean;
+}[];
+
+const Breadcrumbs: React.FC<BreadcrumbsProps> = (properties) => {
     return (
         <nav className="flex p-10" aria-label="Breadcrumb">
             <ol role="list" className="flex items-center space-x-4">
@@ -23,19 +31,21 @@ export default function Breadcrumbs() {
                         </a>
                     </div>
                 </li>
-                {pages.map((page) => (
-                    <li key={page.name}>
+                {properties.map((property) => (
+                    <li key={property.name}>
                         <div className="flex items-center">
                             <ChevronRightIcon
                                 className="h-5 w-5 flex-shrink-0 text-gray-400"
                                 aria-hidden="true"
                             />
                             <a
-                                href={page.href}
+                                href={property.href}
                                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                                aria-current={page.current ? 'page' : undefined}
+                                aria-current={
+                                    property.current ? 'page' : undefined
+                                }
                             >
-                                {page.name}
+                                {property.name}
                             </a>
                         </div>
                     </li>
@@ -43,4 +53,6 @@ export default function Breadcrumbs() {
             </ol>
         </nav>
     );
-}
+};
+
+export { Breadcrumbs };

@@ -22,3 +22,5 @@ const Label = React.forwardRef<
 Label.displayName = LabelPrimitive.Root.displayName;
 
 export { Label };
+
+export * as LabelPrimitive from '@radix-ui/react-label';

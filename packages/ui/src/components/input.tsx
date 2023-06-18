@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { cn } from '@ui/lib/utils';
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

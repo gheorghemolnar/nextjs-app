@@ -15,3 +15,5 @@ export * from './textArea';
 export * from './toast';
 export * from './toaster';
 export * from './use-toast';
+
+export { Slot } from '@radix-ui/react-slot';
