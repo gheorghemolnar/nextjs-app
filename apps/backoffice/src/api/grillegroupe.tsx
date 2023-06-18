@@ -1,15 +1,15 @@
-import { ATELIER_CREATE } from '@big/types';
-import { Schema_Atelier_Create_DTO } from '@big/validators';
+import { GRILLE_GROUPE_CREATE } from '@big/types';
+import { Schema_Grille_Groupe_Create_DTO } from '@big/validators';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { client, errorHandler, successHandler } from '.';
 
-export const useListAtelier = () => {
+export const useListGrillesGroupe = () => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['ateliers'],
+        queryKey : ['grillesgroupe'],
         queryFn  : async () => {
-            return await client().ateliers.getAll();
+            return await client().grillesgroupe.getAll();
         },
         onError: (error) => {
             errorHandler(error);
@@ -26,22 +26,22 @@ export const useListAtelier = () => {
     };
 };
 
-export const useCreateAtelier = () => {
+export const useCreateGrilleGroupe = () => {
     const { data, isLoading, isSuccess, mutateAsync, isError } = useMutation({
-        mutationKey : ['createAtelier'],
-        mutationFn  : async (dto: ATELIER_CREATE) => {
+        mutationKey : ['createGrillegroupe'],
+        mutationFn  : async (dto: GRILLE_GROUPE_CREATE) => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            const parsedDto = Schema_Atelier_Create_DTO.parse(dto);
-            return await client().ateliers.create(parsedDto);
+            const parsedDto = Schema_Grille_Groupe_Create_DTO.parse(dto);
+            return await client().grillesgroupe.create(parsedDto);
         },
         onError: (error) => {
             errorHandler(error);
         },
         onSuccess: async () => {
             await successHandler({
-                title       : 'Atelier créé',
-                description : "L'atelier a bien été créé",
-                queryKey    : ['ateliers'],
+                title       : 'Grille groupe créée',
+                description : "La grille groupe a bien été créée",
+                queryKey    : ['grillesgroupe'],
             });
         },
     });

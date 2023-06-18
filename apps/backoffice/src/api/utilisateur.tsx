@@ -1,15 +1,15 @@
-import { ATELIER_CREATE } from '@big/types';
-import { Schema_Atelier_Create_DTO } from '@big/validators';
+import { UTILISATEUR_CREATE } from '@big/types';
+import { Schema_Utilisateur_Create_DTO } from '@big/validators';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { client, errorHandler, successHandler } from '.';
 
-export const useListAtelier = () => {
+export const useListUtilisateur = () => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['ateliers'],
+        queryKey : ['utilisateurs'],
         queryFn  : async () => {
-            return await client().ateliers.getAll();
+            return await client().utilisateurs.getAll();
         },
         onError: (error) => {
             errorHandler(error);
@@ -26,22 +26,22 @@ export const useListAtelier = () => {
     };
 };
 
-export const useCreateAtelier = () => {
+export const useCreateUtilisateur = () => {
     const { data, isLoading, isSuccess, mutateAsync, isError } = useMutation({
-        mutationKey : ['createAtelier'],
-        mutationFn  : async (dto: ATELIER_CREATE) => {
+        mutationKey : ['createUtilisateur'],
+        mutationFn  : async (dto: UTILISATEUR_CREATE) => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            const parsedDto = Schema_Atelier_Create_DTO.parse(dto);
-            return await client().ateliers.create(parsedDto);
+            const parsedDto = Schema_Utilisateur_Create_DTO.parse(dto);
+            return await client().utilisateurs.create(parsedDto);
         },
         onError: (error) => {
             errorHandler(error);
         },
         onSuccess: async () => {
             await successHandler({
-                title       : 'Atelier créé',
-                description : "L'atelier a bien été créé",
-                queryKey    : ['ateliers'],
+                title       : 'Utilisateur créé',
+                description : "L'utilisateur a bien été créé",
+                queryKey    : ['utilisateurs'],
             });
         },
     });
