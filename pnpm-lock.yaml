@@ -52,6 +52,9 @@ importers:
 
     apps/backoffice:
         dependencies:
+            '@big/client':
+                specifier: workspace:*
+                version: link:../../packages/client
             '@big/forms':
                 specifier: workspace:*
                 version: link:../../packages/forms
@@ -61,9 +64,18 @@ importers:
             '@big/ui':
                 specifier: workspace:*
                 version: link:../../packages/ui
+            '@big/validators':
+                specifier: workspace:*
+                version: link:../../packages/validators
             '@hookform/resolvers':
                 specifier: 3.1.1
                 version: 3.1.1(react-hook-form@7.44.3)
+            '@tanstack/react-query':
+                specifier: 4.29.14
+                version: 4.29.14(react-dom@18.2.0)(react@18.2.0)
+            axios:
+                specifier: 1.4.0
+                version: 1.4.0
             class-variance-authority:
                 specifier: 0.6.0
                 version: 0.6.0(typescript@5.1.3)
@@ -79,6 +91,9 @@ importers:
             react-dom:
                 specifier: ^18.2.0
                 version: 18.2.0(react@18.2.0)
+            react-hook-form:
+                specifier: 7.44.3
+                version: 7.44.3(react@18.2.0)
             react-router-dom:
                 specifier: 6.13.0
                 version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
@@ -91,10 +106,16 @@ importers:
             zod:
                 specifier: 3.21.4
                 version: 3.21.4
+            zod-validation-error:
+                specifier: 1.3.0
+                version: 1.3.0(zod@3.21.4)
         devDependencies:
             '@big/tailwind-config':
                 specifier: workspace:*
                 version: link:../../packages/tailwind-config
+            '@tanstack/react-query-devtools':
+                specifier: 4.29.14
+                version: 4.29.14(@tanstack/react-query@4.29.14)(react-dom@18.2.0)(react@18.2.0)
             '@types/node':
                 specifier: 20.3.1
                 version: 20.3.1
@@ -137,6 +158,15 @@ importers:
             '@big/types':
                 specifier: workspace:*
                 version: link:../types
+            '@big/validators':
+                specifier: workspace:*
+                version: link:../validators
+            axios:
+                specifier: 1.4.0
+                version: 1.4.0
+            zod:
+                specifier: 3.21.4
+                version: 3.21.4
         devDependencies:
             '@types/node':
                 specifier: 20.3.1
@@ -186,30 +216,42 @@ importers:
             '@big/ui':
                 specifier: workspace:*
                 version: link:../ui
-            '@radix-ui/react-label':
-                specifier: 2.0.2
-                version: 2.0.2(@types/react-dom@18.2.5)(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
-            '@radix-ui/react-slot':
-                specifier: 1.0.2
-                version: 1.0.2(@types/react@18.2.12)(react@18.2.0)
+            autoprefixer:
+                specifier: 10.4.14
+                version: 10.4.14(postcss@8.4.24)
             eslint:
                 specifier: ^8.42.0
                 version: 8.42.0
+            postcss:
+                specifier: 8.4.24
+                version: 8.4.24
             react:
                 specifier: ^18.2.0
                 version: 18.2.0
             react-hook-form:
                 specifier: 7.44.3
                 version: 7.44.3(react@18.2.0)
+            tailwindcss:
+                specifier: 3.3.2
+                version: 3.3.2(ts-node@10.9.1)
         devDependencies:
+            '@big/tailwind-config':
+                specifier: workspace:*
+                version: link:../tailwind-config
             '@types/node':
                 specifier: 20.3.1
                 version: 20.3.1
             '@types/react':
                 specifier: ^18.2.12
                 version: 18.2.12
+            eslint-config-custom:
+                specifier: workspace:*
+                version: link:../eslint-config-custom
+            tsconfig:
+                specifier: workspace:*
+                version: link:../tsconfig
             typescript:
-                specifier: 5.1.3
+                specifier: ^5.1.3
                 version: 5.1.3
 
     packages/tailwind-config:
@@ -239,6 +281,13 @@ importers:
     packages/tsconfig: {}
 
     packages/types:
+        dependencies:
+            '@big/validators':
+                specifier: workspace:*
+                version: link:../validators
+            zod:
+                specifier: 3.21.4
+                version: 3.21.4
         devDependencies:
             '@types/node':
                 specifier: 20.3.1
@@ -337,6 +386,28 @@ importers:
             react:
                 specifier: ^18.2.0
                 version: 18.2.0
+            tsconfig:
+                specifier: workspace:*
+                version: link:../tsconfig
+            typescript:
+                specifier: ^5.1.3
+                version: 5.1.3
+
+    packages/validators:
+        dependencies:
+            zod:
+                specifier: 3.21.4
+                version: 3.21.4
+        devDependencies:
+            '@types/node':
+                specifier: 20.3.1
+                version: 20.3.1
+            eslint:
+                specifier: ^8.42.0
+                version: 8.42.0
+            eslint-config-custom:
+                specifier: workspace:*
+                version: link:../eslint-config-custom
             tsconfig:
                 specifier: workspace:*
                 version: link:../tsconfig
@@ -2119,6 +2190,60 @@ packages:
             defer-to-connect: 1.1.3
         dev: true
 
+    /@tanstack/match-sorter-utils@8.8.4:
+        resolution:
+            {
+                integrity: sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==,
+            }
+        engines: { node: '>=12' }
+        dependencies:
+            remove-accents: 0.4.2
+        dev: true
+
+    /@tanstack/query-core@4.29.14:
+        resolution:
+            {
+                integrity: sha512-ElEAahtLWA7Y7c2Haw10KdEf2tx+XZl/Z8dmyWxZehxWK3TPL5qtXtb7kUEhvt/8u2cSP62fLxgh2qqzMMGnDQ==,
+            }
+
+    /@tanstack/react-query-devtools@4.29.14(@tanstack/react-query@4.29.14)(react-dom@18.2.0)(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-2H4otgQiXJSU7z8HIPw6whm7xfaEA3ouoM2PrWTHs+DMFX0BbodhOfQeJxsjw5uq2oV1yln/DABLJjZoQmQbpQ==,
+            }
+        peerDependencies:
+            '@tanstack/react-query': 4.29.14
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            '@tanstack/match-sorter-utils': 8.8.4
+            '@tanstack/react-query': 4.29.14(react-dom@18.2.0)(react@18.2.0)
+            react: 18.2.0
+            react-dom: 18.2.0(react@18.2.0)
+            superjson: 1.12.3
+            use-sync-external-store: 1.2.0(react@18.2.0)
+        dev: true
+
+    /@tanstack/react-query@4.29.14(react-dom@18.2.0)(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-wh4bd/QIy85YgTDBtj/7/9ZkpRX41QdZuUL8xKoSzuMCukXvAE1/oJ4p0F15lqQq9W3g2pgcbr2Aa+CNvqABhg==,
+            }
+        peerDependencies:
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+            react-native: '*'
+        peerDependenciesMeta:
+            react-dom:
+                optional: true
+            react-native:
+                optional: true
+        dependencies:
+            '@tanstack/query-core': 4.29.14
+            react: 18.2.0
+            react-dom: 18.2.0(react@18.2.0)
+            use-sync-external-store: 1.2.0(react@18.2.0)
+
     /@tsconfig/node10@1.0.9:
         resolution:
             {
@@ -2691,6 +2816,13 @@ packages:
         engines: { node: '>=8' }
         dev: true
 
+    /asynckit@0.4.0:
+        resolution:
+            {
+                integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==,
+            }
+        dev: false
+
     /at-least-node@1.0.0:
         resolution:
             {
@@ -2716,7 +2848,6 @@ packages:
             picocolors: 1.0.0
             postcss: 8.4.24
             postcss-value-parser: 4.2.0
-        dev: true
 
     /available-typed-arrays@1.0.5:
         resolution:
@@ -2724,6 +2855,19 @@ packages:
                 integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==,
             }
         engines: { node: '>= 0.4' }
+        dev: false
+
+    /axios@1.4.0:
+        resolution:
+            {
+                integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==,
+            }
+        dependencies:
+            follow-redirects: 1.15.2
+            form-data: 4.0.0
+            proxy-from-env: 1.1.0
+        transitivePeerDependencies:
+            - debug
         dev: false
 
     /balanced-match@1.0.2:
@@ -2797,7 +2941,6 @@ packages:
             electron-to-chromium: 1.4.429
             node-releases: 2.0.12
             update-browserslist-db: 1.0.11(browserslist@4.21.8)
-        dev: true
 
     /buffer@5.7.1:
         resolution:
@@ -2897,7 +3040,6 @@ packages:
             {
                 integrity: sha512-AZ+9tFXw1sS0o0jcpJQIXvFTOB/xGiQ4OQ2t98QX3NDn2EZTSRBC801gxrsGgViuq2ak/NLkNgSNEPtCr5lfKg==,
             }
-        dev: true
 
     /chalk@2.4.2:
         resolution:
@@ -3129,6 +3271,16 @@ packages:
             }
         dev: true
 
+    /combined-stream@1.0.8:
+        resolution:
+            {
+                integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==,
+            }
+        engines: { node: '>= 0.8' }
+        dependencies:
+            delayed-stream: 1.0.0
+        dev: false
+
     /commander@10.0.1:
         resolution:
             {
@@ -3193,6 +3345,16 @@ packages:
             {
                 integrity: sha512-SmmCYnOniSsAa9GqWOeLqc179lfr5TRu5b4QFDkbsrJ5TZjPJx85wtOr3zn+1dbeNiXDKGPbZ72IKbPhLXh/Lg==,
             }
+        dev: true
+
+    /copy-anything@3.0.5:
+        resolution:
+            {
+                integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==,
+            }
+        engines: { node: '>=12.13' }
+        dependencies:
+            is-what: 4.1.15
         dev: true
 
     /core-js-pure@3.31.0:
@@ -3388,6 +3550,14 @@ packages:
             slash: 3.0.0
         dev: true
 
+    /delayed-stream@1.0.0:
+        resolution:
+            {
+                integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==,
+            }
+        engines: { node: '>=0.4.0' }
+        dev: false
+
     /detect-file@1.0.0:
         resolution:
             {
@@ -3517,7 +3687,6 @@ packages:
             {
                 integrity: sha512-COua8RvN548KwPFzKMrTjFbmDsQRgdi0zSAhmo70TwC1tfLOSqq8p09n+GkdF5buvzE/NEYn1dP3itbfhun9gg==,
             }
-        dev: true
 
     /emoji-regex@8.0.0:
         resolution:
@@ -3665,7 +3834,6 @@ packages:
                 integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==,
             }
         engines: { node: '>=6' }
-        dev: true
 
     /escape-string-regexp@1.0.5:
         resolution:
@@ -4115,6 +4283,19 @@ packages:
                 integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==,
             }
 
+    /follow-redirects@1.15.2:
+        resolution:
+            {
+                integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==,
+            }
+        engines: { node: '>=4.0' }
+        peerDependencies:
+            debug: '*'
+        peerDependenciesMeta:
+            debug:
+                optional: true
+        dev: false
+
     /for-each@0.3.3:
         resolution:
             {
@@ -4124,12 +4305,23 @@ packages:
             is-callable: 1.2.7
         dev: false
 
+    /form-data@4.0.0:
+        resolution:
+            {
+                integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==,
+            }
+        engines: { node: '>= 6' }
+        dependencies:
+            asynckit: 0.4.0
+            combined-stream: 1.0.8
+            mime-types: 2.1.35
+        dev: false
+
     /fraction.js@4.2.0:
         resolution:
             {
                 integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==,
             }
-        dev: true
 
     /fs-extra@10.1.0:
         resolution:
@@ -4994,6 +5186,14 @@ packages:
             call-bind: 1.0.2
         dev: false
 
+    /is-what@4.1.15:
+        resolution:
+            {
+                integrity: sha512-uKua1wfy3Yt+YqsD6mTUEa2zSi3G1oPlqTflgaPJ7z63vUGN5pxFpnQfeSLMFnJDEsdvOtkp1rUWkYjB4YfhgA==,
+            }
+        engines: { node: '>=12.13' }
+        dev: true
+
     /is-windows@1.0.2:
         resolution:
             {
@@ -5438,6 +5638,24 @@ packages:
             braces: 3.0.2
             picomatch: 2.3.1
 
+    /mime-db@1.52.0:
+        resolution:
+            {
+                integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==,
+            }
+        engines: { node: '>= 0.6' }
+        dev: false
+
+    /mime-types@2.1.35:
+        resolution:
+            {
+                integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==,
+            }
+        engines: { node: '>= 0.6' }
+        dependencies:
+            mime-db: 1.52.0
+        dev: false
+
     /mimic-fn@2.1.0:
         resolution:
             {
@@ -5597,7 +5815,6 @@ packages:
             {
                 integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==,
             }
-        dev: true
 
     /normalize-package-data@2.5.0:
         resolution:
@@ -5624,7 +5841,6 @@ packages:
                 integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==,
             }
         engines: { node: '>=0.10.0' }
-        dev: true
 
     /normalize-url@4.5.1:
         resolution:
@@ -6171,6 +6387,13 @@ packages:
             react-is: 16.13.1
         dev: false
 
+    /proxy-from-env@1.1.0:
+        resolution:
+            {
+                integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==,
+            }
+        dev: false
+
     /pseudomap@1.0.2:
         resolution:
             {
@@ -6225,7 +6448,6 @@ packages:
             loose-envify: 1.4.0
             react: 18.2.0
             scheduler: 0.23.0
-        dev: false
 
     /react-hook-form@7.44.3(react@18.2.0):
         resolution:
@@ -6490,6 +6712,13 @@ packages:
             jsesc: 0.5.0
         dev: false
 
+    /remove-accents@0.4.2:
+        resolution:
+            {
+                integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==,
+            }
+        dev: true
+
     /require-from-string@2.0.2:
         resolution:
             {
@@ -6688,7 +6917,6 @@ packages:
             }
         dependencies:
             loose-envify: 1.4.0
-        dev: false
 
     /sembear@0.5.2:
         resolution:
@@ -7085,6 +7313,16 @@ packages:
             pirates: 4.0.5
             ts-interface-checker: 0.1.13
         dev: false
+
+    /superjson@1.12.3:
+        resolution:
+            {
+                integrity: sha512-0j+U70KUtP8+roVPbwfqkyQI7lBt7ETnuA7KXbTDX3mCKiD/4fXs2ldKSMdt0MCfpTwiMxo20yFU3vu6ewETpQ==,
+            }
+        engines: { node: '>=10' }
+        dependencies:
+            copy-anything: 3.0.5
+        dev: true
 
     /supports-color@5.5.0:
         resolution:
@@ -7516,7 +7754,6 @@ packages:
             browserslist: 4.21.8
             escalade: 3.1.1
             picocolors: 1.0.0
-        dev: true
 
     /update-check@1.5.4:
         resolution:
@@ -7598,6 +7835,16 @@ packages:
             react: 18.2.0
             tslib: 2.5.0
         dev: false
+
+    /use-sync-external-store@1.2.0(react@18.2.0):
+        resolution:
+            {
+                integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==,
+            }
+        peerDependencies:
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            react: 18.2.0
 
     /util-deprecate@1.0.2:
         resolution:
@@ -7829,6 +8076,18 @@ packages:
                 integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==,
             }
         engines: { node: '>=10' }
+
+    /zod-validation-error@1.3.0(zod@3.21.4):
+        resolution:
+            {
+                integrity: sha512-4WoQnuWnj06kwKR4A+cykRxFmy+CTvwMQO5ogTXLiVx1AuvYYmMjixh7sbkSsQTr1Fvtss6d5kVz8PGeMPUQjQ==,
+            }
+        engines: { node: '>=16.0.0' }
+        peerDependencies:
+            zod: ^3.18.0
+        dependencies:
+            zod: 3.21.4
+        dev: false
 
     /zod@3.21.4:
         resolution:
