@@ -19,6 +19,13 @@ module.exports = {
             // Adds a new breakpoi,nt in addition to the default breakpoints
             screens: {
                 '3xl': '1600px',
+            },
+            colors: {
+                // TODO: Temporary
+                brand1main: '#D0E3D5',
+                brand1sidebar: '#FBF9CB',
+                brand2main: '#FBF9CB',
+                brand2sidebar: '#89B5B8'
             }
         }
     }

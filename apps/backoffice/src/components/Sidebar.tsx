@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useSearchParams} from 'react-router-dom'
 import { AccordionDemo } from "@backoffice/components/menu";
 
 type NavItem = {
@@ -24,10 +25,22 @@ const Sidebar = ({
   setCollapsed,
 }: Props) => {
   const Icon = collapsed ? ChevronRightIcon : ChevronLeftIcon;
+
+  const [URLSearchParams] = useSearchParams()
+
+  let x = "bg-brand1sidebar"
+  if (URLSearchParams.has("v") && URLSearchParams.get("v") === "1") {
+    x = "bg-brand2sidebar"
+  }
+
+  
   return (
     <div
       className={clsx({
         //"bg-red-700 text-zinc-50 fixed md:static md:translate-x-0 z-20": false,
+        // "bg-[#D0E3D5]": true,
+        //"bg-[#89B5B8]": true,
+        [x]: true,
         "fixed md:static md:translate-x-0 z-20": true,
         "transition-all duration-300 ease-in-out": true,
         "w-[300px]": !collapsed,
@@ -62,7 +75,7 @@ const Sidebar = ({
             <Icon className="w-5 h-5" />
           </button>
         </div>
-        <nav className="flex-grow">
+        <nav className="flex-grow mx-2 mt-6">
           {<AccordionDemo collapsed={collapsed} />}
           <div>
             {/*
