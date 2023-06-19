@@ -15,9 +15,9 @@ function Controles({}: Props) {
   console.log("🚀 ~ file: Controles.tsx:14 ~ Controles ~ secteurs:", secteurs);
 
   return (
-    <div className="grid grid-cols-1 gap-2">
-      <div className="flex flex-column gap-4 m-4">
-        CONTROLES
+    <div className="grid grid-cols-1 gap-2 m-4">
+      Mes Contrôles - {`${params?.controleId}`.toUpperCase()} - SECTEURS
+      <div className="flex flex-column gap-4 m-2">
         {secteurs.map(({ codeSecteur, name, nc, total, comm }, index) => {
           return (
             <Link key={index} to={`/controles/matiere/secteur/${codeSecteur}`}>

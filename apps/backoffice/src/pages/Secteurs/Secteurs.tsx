@@ -9,10 +9,11 @@ type Atelier = {
   comm: string;
 };
 
-type Mapping = { [key: string]: { ateliers: Atelier[] } };
+type Mapping = { [key: string]: { name: string, ateliers: Atelier[] } };
 
 const mapping: Mapping = {
   "1": {
+    "name": "1ère transformation Boeuf",
     ateliers: [
       {
         name: "Chaine d'abattage",
@@ -41,6 +42,65 @@ const mapping: Mapping = {
     ],
   },
   "2": {
+    name: "2ème transformation Boeuf",
+    ateliers: [
+      {
+        name: "Chaine d'abattage",
+        nc: 5,
+        total: 350,
+        comm: "+20.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Abat Rouge",
+        nc: 1,
+        total: 110,
+        comm: "+6.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Abat Blanc",
+        nc: 14,
+        total: 820,
+        comm: "+19.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Mise en quartier 1/4",
+        nc: 0,
+        total: 287,
+        comm: "+0.1% par rapport au dernièr mois",
+      },
+    ],
+  },
+  "3": {
+    "name": "1ère transformation Porc",
+    ateliers: [
+      {
+        name: "Chaine d'abattage",
+        nc: 3,
+        total: 120,
+        comm: "+20.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Abat Rouge",
+        nc: 1,
+        total: 420,
+        comm: "+6.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Abat Blanc",
+        nc: 4,
+        total: 620,
+        comm: "+19.1% par rapport au dernièr mois",
+      },
+      {
+        name: "Mise en quartier 1/4",
+        nc: 1,
+        total: 187,
+        comm: "+0.1% par rapport au dernièr mois",
+      },
+    ],
+  },
+  "4": {
+    name: "2ème transformation Porc",
     ateliers: [
       {
         name: "Chaine d'abattage",
@@ -72,14 +132,19 @@ const mapping: Mapping = {
 
 export default function Secteur() {
   const params = useParams();
-  console.log("🚀 ~ file: Secteur.tsx:75 ~ Secteur ~ params:", params);
-  const { secteurId } = useParams();
+  const { controleId, secteurId } = params;
 
   let ateliers: Atelier[] = [];
-  if (secteurId) ateliers = mapping[secteurId]["ateliers"];
+  let sectorName= ""
+  if (secteurId) {
+    ateliers = mapping[secteurId]["ateliers"];
+    sectorName = mapping[secteurId]["name"]
+  }
 
   return (
-    <div className="flex gap-4 m-4">
+    <div className="grid grid-cols-1 gap-2 m-4">
+      Mes Contrôles - {`${controleId}`.toUpperCase()} - {sectorName} - ATELIERS
+      <div className="flex flex-column gap-4 m-2">
       {ateliers.length &&
         ateliers.map(({ name, nc, total, comm }: Atelier, index) => {
           return (
@@ -101,6 +166,7 @@ export default function Secteur() {
             </Link>
           );
         })}
+      </div>
     </div>
   );
 }
