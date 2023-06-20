@@ -1,7 +1,11 @@
 import type { AxiosInstance } from 'axios';
 import z from 'zod';
 
-import { IResponseRO, type UTILISATEUR, type UTILISATEUR_CREATE } from '@big/types';
+import {
+    IResponseRO,
+    type UTILISATEUR,
+    type UTILISATEUR_CREATE,
+} from '@big/types';
 import { Schema_Utilisateur_RO } from '@big/validators';
 
 export const utilisateurREST = ({ client }: { client: AxiosInstance }) => {

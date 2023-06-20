@@ -1,14 +1,15 @@
-import { Table } from '@tanstack/react-table';
 import { X } from 'lucide-react';
 
-import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
 import { Button } from '@big/ui';
 import { Input } from '@big/ui';
+
 import { DataTableViewOptions } from '@backoffice/components/listing/components/data-table-view-options';
+import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
+import { Table } from '@tanstack/react-table';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 
-interface DataTableToolbarProps<TData> {
+interface DataTableToolbarProperties<TData> {
     table: Table<TData>;
     options: { statuses: TABLE_CONTROL_STATUS[] };
 }
@@ -16,7 +17,7 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
     table,
     options: { statuses },
-}: DataTableToolbarProps<TData>) {
+}: DataTableToolbarProperties<TData>) {
     const isFiltered =
         table.getPreFilteredRowModel().rows.length >
         table.getFilteredRowModel().rows.length;

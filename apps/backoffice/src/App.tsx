@@ -1,44 +1,54 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import ControlsListing from './components/listing/controlesListing';
 import MainLayout from './layouts/MainLayout';
-import Secteur from './pages/Secteurs/Secteurs';
 import Controles from './pages/Controles/Controles';
-import Utilisateurs from './pages/Params/Utilisateurs';
-import NoMatch from './pages/NoMatch';
 import ErrorPage from './pages/ErrorPage';
+import NoMatch from './pages/NoMatch';
+import Utilisateurs from './pages/Params/Utilisateurs';
+import Secteur from './pages/Secteurs/Secteurs';
+import Welcome from './tmp/welcome';
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <MainLayout />,
-        errorElement: <ErrorPage />,
-        children: [
-        {
-            path: "controles/:controleId/secteur/:secteurId",
-            element: <Secteur />,
-        },
-        {
-            path: "controles/:controleId/",
-            element: <Controles />,
-            //loader: controlesLoader,
-        },
-        {
-            path: "params/utilisateurs",
-            element: <Utilisateurs />,
-        },
-        {
-            path: "params/secteurs",
-            element: <Utilisateurs />,
-        },
-        {
-            path: "*",
-            element: <NoMatch />,
-        },
+        path         : '/',
+        element      : <MainLayout />,
+        errorElement : <ErrorPage />,
+        children     : [
+            {
+                path    : '/',
+                element : <Welcome />,
+            },
+            {
+                path    : 'controles/:controleId/secteur/:secteurId/liste',
+                element : <ControlsListing />,
+            },
+            {
+                path    : 'controles/:controleId/secteur/:secteurId',
+                element : <Secteur />,
+            },
+            {
+                path    : 'controles/:controleId/',
+                element : <Controles />,
+                //loader: controlesLoader,
+            },
+            {
+                path    : 'params/utilisateurs',
+                element : <Utilisateurs />,
+            },
+            {
+                path    : 'params/secteurs',
+                element : <Utilisateurs />,
+            },
+            {
+                path    : '*',
+                element : <NoMatch />,
+            },
         ],
     },
 ]);
-    
-   /*
+
+/*
 function App() {
     return (
         <div>
@@ -78,7 +88,10 @@ function App() {
 */
 
 export default function App() {
-    return <RouterProvider router={ router} fallbackElement={<p>Loading .... </p>} />
+    return (
+        <RouterProvider
+            router={router}
+            fallbackElement={<p>Loading .... </p>}
+        />
+    );
 }
-
-

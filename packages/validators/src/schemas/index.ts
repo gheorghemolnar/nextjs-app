@@ -1,4 +1,5 @@
 export * from './atelier';
+export * from './control';
 export * from './grille-groupe';
 export * from './grille-site';
 export * from './paramsite';

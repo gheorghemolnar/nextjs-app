@@ -40,7 +40,7 @@ export const useCreateSecteur = () => {
         onSuccess: async () => {
             await successHandler({
                 title       : 'Secteur créé',
-                description : "Le secteur a bien été créé",
+                description : 'Le secteur a bien été créé',
                 queryKey    : ['secteurs'],
             });
         },

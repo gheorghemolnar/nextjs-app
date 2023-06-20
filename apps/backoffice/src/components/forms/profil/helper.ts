@@ -5,7 +5,9 @@ import { Schema_Profil_Create_DTO } from '@big/validators';
 export const formSchema = z.object({
     codeprofil: Schema_Profil_Create_DTO.shape.codeprofil
         .min(2, { message: 'Veuillez saisir au moins 1 charactères.' })
-        .max(50, { message: 'Le code bg ne doit pas dépasser 10 charactères.' }),
+        .max(50, {
+            message: 'Le code bg ne doit pas dépasser 10 charactères.',
+        }),
     libprofil: Schema_Profil_Create_DTO.shape.libprofil
         .min(2, { message: 'Veuillez saisir le libellé.' })
         .max(50, { message: 'Le nom ne doit pas dépasser 50 charactères.' }),
@@ -17,7 +19,7 @@ export const formSchema = z.object({
 export type FormValues = z.infer<typeof formSchema>;
 
 export const defaultValues: FormValues = {
-    codeprofil: '',
-    libprofil: '',
-    ordreaff: '',
+    codeprofil : '',
+    libprofil  : '',
+    ordreaff   : '',
 };

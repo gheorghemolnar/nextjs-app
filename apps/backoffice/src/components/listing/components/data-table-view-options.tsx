@@ -1,4 +1,3 @@
-import { Table } from '@tanstack/react-table';
 import { SlidersHorizontal } from 'lucide-react';
 
 import { Button, DropdownMenuTrigger } from '@big/ui';
@@ -10,13 +9,15 @@ import {
     DropdownMenuSeparator,
 } from '@big/ui';
 
-interface DataTableViewOptionsProps<TData> {
+import { Table } from '@tanstack/react-table';
+
+interface DataTableViewOptionsProperties<TData> {
     table: Table<TData>;
 }
 
 export function DataTableViewOptions<TData>({
     table,
-}: DataTableViewOptionsProps<TData>) {
+}: DataTableViewOptionsProperties<TData>) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -36,7 +37,7 @@ export function DataTableViewOptions<TData>({
                     .getAllColumns()
                     .filter(
                         (column) =>
-                            typeof column.accessorFn !== 'undefined' &&
+                            column.accessorFn !== undefined &&
                             column.getCanHide(),
                     )
                     .map((column) => {

@@ -1,11 +1,12 @@
-import { ColumnDef } from '@tanstack/react-table';
 import { LucideIcon } from 'lucide-react';
 
-import { IResponseRO, CONTROL, CONTROL_STATUS } from '@big/types';
+import { CONTROL, CONTROL_STATUS,IResponseRO } from '@big/types';
+
+import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTable } from './components/data-table';
 
-type ListingProps = {
+type ListingProperties = {
     columns: ColumnDef<CONTROL, any>[];
     siteId: string;
     options: { statuses: TABLE_CONTROL_STATUS[] };
@@ -32,7 +33,7 @@ export default function Listing({
     options,
     getData,
     siteId,
-}: ListingProps) {
+}: ListingProperties) {
     return (
         <>
             <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">

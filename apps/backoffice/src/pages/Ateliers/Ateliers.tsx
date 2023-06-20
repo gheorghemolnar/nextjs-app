@@ -1,3 +1,3 @@
 export default function Ateliers() {
-  return <div>Ateliers</div>;
+    return <div>Ateliers</div>;
 }

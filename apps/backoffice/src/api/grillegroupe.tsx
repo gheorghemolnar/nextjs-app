@@ -40,7 +40,7 @@ export const useCreateGrilleGroupe = () => {
         onSuccess: async () => {
             await successHandler({
                 title       : 'Grille groupe créée',
-                description : "La grille groupe a bien été créée",
+                description : 'La grille groupe a bien été créée',
                 queryKey    : ['grillesgroupe'],
             });
         },

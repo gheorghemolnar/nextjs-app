@@ -3,11 +3,11 @@ import axios from 'axios';
 import { DEFAULT_TIMEOUT } from '@big/validators';
 
 import { atelierREST } from './atelier';
-import { siteREST } from './site';
 import { grillegroupeREST } from './grillegroupe';
 import { paramsiteREST } from './paramsite';
 import { profilREST } from './profil';
 import { secteurREST } from './secteur';
+import { siteREST } from './site';
 import { utilisateurREST } from './utilisateur';
 
 type Host = `https://${string}` | `http://${string}`;
@@ -46,6 +46,6 @@ export const CLIENT_API = ({
         paramsites,
         profils,
         secteurs,
-        utilisateurs
+        utilisateurs,
     };
 };

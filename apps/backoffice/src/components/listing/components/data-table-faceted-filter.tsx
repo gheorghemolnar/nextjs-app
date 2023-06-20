@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { Column } from '@tanstack/react-table';
 import { Check, LucideIcon, PlusCircle } from 'lucide-react';
+import * as React from 'react';
 
 import { Badge, Button, cn } from '@big/ui';
-
 import {
     Command,
     CommandEmpty,
@@ -14,6 +12,8 @@ import {
     CommandSeparator,
 } from '@big/ui';
 import { Popover, PopoverContent, PopoverTrigger, Separator } from '@big/ui';
+
+import { Column } from '@tanstack/react-table';
 
 interface DataTableFacetedFilter<TData, TValue> {
     column?: Column<TData, TValue>;
@@ -107,9 +107,9 @@ export function DataTableFacetedFilter<TData, TValue>({
                                                 );
                                             }
                                             const filterValues =
-                                                Array.from(selectedValues);
+                                                [...selectedValues];
                                             column?.setFilterValue(
-                                                filterValues.length
+                                                filterValues.length > 0
                                                     ? filterValues
                                                     : undefined,
                                             );
@@ -144,7 +144,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                                 <CommandGroup>
                                     <CommandItem
                                         onSelect={() =>
-                                            column?.setFilterValue(undefined)
+                                            column?.setFilterValue()
                                         }
                                         className="justify-center text-center"
                                     >

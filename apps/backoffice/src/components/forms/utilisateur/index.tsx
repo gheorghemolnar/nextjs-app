@@ -11,7 +11,15 @@ import {
     FormMessage,
 } from '@big/forms';
 import { UTILISATEUR_CREATE } from '@big/types';
-import { Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@big/ui';
+import {
+    Button,
+    Input,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@big/ui';
 
 import { useCreateUtilisateur } from '@backoffice/api/utilisateur';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +28,8 @@ import { defaultValues, formSchema, FormValues } from './helper';
 
 export function UtilisateurForm() {
     // const navigate = useNavigate();
-    const { mutateAsync: createUtilisateur, isLoading } = useCreateUtilisateur();
+    const { mutateAsync: createUtilisateur, isLoading } =
+        useCreateUtilisateur();
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -30,9 +39,9 @@ export function UtilisateurForm() {
     async function onSubmit(data: FormValues) {
         const payload: UTILISATEUR_CREATE = {
             ...data,
-            idprofil : Number(data.idprofil),
+            idprofil  : Number(data.idprofil),
             matricule : Number(data.matricule),
-            creaqui  : 'TODO',
+            creaqui   : 'TODO',
         };
 
         const { data: site } = await createUtilisateur(payload);

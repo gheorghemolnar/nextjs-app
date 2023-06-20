@@ -12,7 +12,6 @@ import {
 } from '@big/forms';
 import { GRILLE_GROUPE_CREATE } from '@big/types';
 import { Button, Input } from '@big/ui';
-
 import {
     Select,
     SelectContent,
@@ -21,14 +20,15 @@ import {
     SelectValue,
 } from '@big/ui';
 
-import { useCreateGrilleGroupe} from "@backoffice/api/grillegroupe"
+import { useCreateGrilleGroupe } from '@backoffice/api/grillegroupe';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { defaultValues, formSchema, FormValues } from './helper';
 
-
 export function GrilleGroupeForm() {
-//     const navigate = useNavigate();
-const { mutateAsync: createGrilleGroupe, isLoading } = useCreateGrilleGroupe();
+    //     const navigate = useNavigate();
+    const { mutateAsync: createGrilleGroupe, isLoading } =
+        useCreateGrilleGroupe();
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -41,7 +41,7 @@ const { mutateAsync: createGrilleGroupe, isLoading } = useCreateGrilleGroupe();
             creaqui: 'TODO',
         };
 
-        const {data: grillegroupe} = await createGrilleGroupe(payload);
+        const { data: grillegroupe } = await createGrilleGroupe(payload);
 
         if (!grillegroupe) return;
 

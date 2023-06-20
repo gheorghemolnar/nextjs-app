@@ -40,7 +40,7 @@ export const useCreateProfil = () => {
         onSuccess: async () => {
             await successHandler({
                 title       : 'Profil créé',
-                description : "Le profil a bien été créé",
+                description : 'Le profil a bien été créé',
                 queryKey    : ['profils'],
             });
         },

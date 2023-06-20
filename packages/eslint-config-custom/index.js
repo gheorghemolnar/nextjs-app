@@ -57,6 +57,7 @@ module.exports = {
                 '@typescript-eslint/no-unsafe-return'        : 'off',
                 '@typescript-eslint/no-unsafe-argument'      : 'off',
                 '@typescript-eslint/no-explicit-any'         : 'off',
+                'unicorn/prevent-abbreviationsy'             : 'off',
                 '@typescript-eslint/no-unused-vars'          : [
                     'error',
                     {

@@ -6,7 +6,7 @@ import { Schema_Control_Status } from '@big/validators';
 
 import Listing from '@backoffice/components/listing/listing';
 import { formatDate } from '@backoffice/lib/utils';
-import { controlesData } from '@backoffice/tmp/dataControles';
+import { controlesData } from '@backoffice/tmp/data-controles';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTableColumnHeader } from './components/data-table-column-header';
@@ -20,10 +20,8 @@ async function getClientControls({
     siteId: string;
     pageIndex: number;
     pageSize: number;
-    }): Promise<IResponseRO<CONTROL>> {
-    console.log({    siteId,
-    pageIndex,
-    pageSize,})
+}): Promise<IResponseRO<CONTROL>> {
+    console.log({ siteId, pageIndex, pageSize });
     /*  const response = await fetch(
     `${URL_BASE}/api/controls/${siteId}?pageIndex=${pageIndex}&pageSize=${pageSize}`
   );
@@ -146,13 +144,14 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                 Détails
             </div>
         ),
-        cell: ({ row, table }) => {
+        cell: ({ row, _table }) => {
             const rawPhotos =
                 row.original?.Photos ||
                 row.original.ResultCont === Schema_Control_Status.enum.NC;
 
             if (rawPhotos) {
-                const tableMeta = table.options.meta;
+                //TODO: Activate it
+               /*  const tableMeta = table.options.meta; */
                 return (
                     <div className="flex justify-center items-center">
                         <Button

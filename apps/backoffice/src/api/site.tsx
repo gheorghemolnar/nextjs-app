@@ -40,7 +40,7 @@ export const useCreateSite = () => {
         onSuccess: async () => {
             await successHandler({
                 title       : 'Site créé',
-                description : "Le site a bien été créé",
+                description : 'Le site a bien été créé',
                 queryKey    : ['sites'],
             });
         },

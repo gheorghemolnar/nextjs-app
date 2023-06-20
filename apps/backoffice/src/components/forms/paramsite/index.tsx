@@ -18,6 +18,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { defaultValues, formSchema, FormValues } from './helper';
 
+/* eslint-disable unicorn/prevent-abbreviations */
 export function ParamSiteForm() {
     // const navigate = useNavigate();
     const { mutateAsync: createSite, isLoading } = useCreateSite();
@@ -31,8 +32,8 @@ export function ParamSiteForm() {
         const payload: SITE_CREATE = {
             ...data,
             idsociete : Number(data.idsociete),
-            ordreaff : Number(data.ordreaff),
-            creaqui  : 'TODO',
+            ordreaff  : Number(data.ordreaff),
+            creaqui   : 'TODO',
         };
 
         const { data: site } = await createSite(payload);
@@ -91,10 +92,7 @@ export function ParamSiteForm() {
                         <FormItem>
                             <FormLabel>Libellé site</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Libellé site"
-                                    {...field}
-                                />
+                                <Input placeholder="Libellé site" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
