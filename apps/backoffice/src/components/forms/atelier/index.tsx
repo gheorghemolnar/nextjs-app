@@ -30,8 +30,8 @@ export function AtelierForm() {
     async function onSubmit(data: FormValues) {
         const payload: ATELIER_CREATE = {
             ...data,
-            ordreaff : Number(data.ordreaff),
-            creaqui  : 'TODO',
+            ordreAff : Number(data.ordreAff),
+            creaQui  : 'TODO',
         };
 
         const { data: atelier } = await createAtelier(payload);
@@ -51,7 +51,7 @@ export function AtelierForm() {
             >
                 <FormField
                     control={control}
-                    name="codeatelier"
+                    name="codeAtelier"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Code atelier</FormLabel>
@@ -68,7 +68,7 @@ export function AtelierForm() {
                 />
                 <FormField
                     control={control}
-                    name="libatelier"
+                    name="libAtelier"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Libellé atelier</FormLabel>
@@ -84,7 +84,7 @@ export function AtelierForm() {
                 />
                 <FormField
                     control={control}
-                    name="ordreaff"
+                    name="ordreAff"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Ordre affichage</FormLabel>

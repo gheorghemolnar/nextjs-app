@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import ControlsListing from './components/listing/controlesListing';
 import MainLayout from './layouts/MainLayout';
+import Ateliers from './pages/Ateliers/Ateliers';
 import Controles from './pages/Controles/Controles';
 import ErrorPage from './pages/ErrorPage';
 import NoMatch from './pages/NoMatch';
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
                 //loader: controlesLoader,
             },
             {
-                path    : 'params/utilisateurs',
+                path    : 'params/ateliers',
+                element : <Ateliers />,
+            },
+            {
+                path    : 'params/secteurs',
                 element : <Utilisateurs />,
             },
             {

@@ -6,13 +6,13 @@ import { Schema_Atelier_RO } from '@big/validators';
 
 export const atelierREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
-        const response = await client<IResponseRO<ATELIER[]>>({
+        const response = await client<ATELIER[]>({
             method : 'GET',
             url    : '/ateliers',
         });
 
         //Check if the response is valid
-        z.array(Schema_Atelier_RO).parse(response.data.data);
+        z.array(Schema_Atelier_RO).parse(response.data);
 
         return response.data;
     };

@@ -17,8 +17,7 @@ export const useListAtelier = () => {
     });
 
     return {
-        data  : data?.data ?? [],
-        count : data?.numberOfRecords ?? 0,
+        data: data ?? [],
         isLoading,
         refetch,
         isError,

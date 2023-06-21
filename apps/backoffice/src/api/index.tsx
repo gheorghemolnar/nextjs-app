@@ -17,11 +17,12 @@ export const client = () =>
     //We make it as a function to be able to pass the Token when authentication is done
     CLIENT_API({
         host:
-            BACKEND_API_URL.length > 0
+            BACKEND_API_URL?.length > 0
                 ? (BACKEND_API_URL as `https://${string}`)
-                : (SCHEME === 'https'
+                : // eslint-disable-next-line unicorn/no-nested-ternary
+                SCHEME === 'https'
                 ? `${SCHEME}://${URL}`
-                : `${SCHEME}://${URL}:${PORT}`),
+                : `${SCHEME}://${URL}:${PORT}`,
     });
 
 export const errorHandler = (error: unknown) => {
