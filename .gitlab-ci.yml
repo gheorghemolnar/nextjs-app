@@ -21,8 +21,8 @@ web_build:
     - echo "## Build"
     - npm install -g pnpm
     - pnpm install
-    - pnpm run build
     - cp $BUILD_DIR/../.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
+    - pnpm run build
     - mkdir build
     - export MYPWD=$PWD
     - test -e $BUILD_DIR || mkdir $BUILD_DIR
