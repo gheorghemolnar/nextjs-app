@@ -14,6 +14,19 @@ stages:
   - release
   - deploy
 
+
+web_build:
+  image: node:18-alpine
+  script:
+    - echo "## Build"
+    - npm install -g pnpm
+    - pnpm run build
+    - mkdir build
+    - export MYPWD=$PWD
+    - test -e $BUILD_DIR || mkdir $BUILD_DIR
+    - cd $BUILD_DIR
+    - tar -cz --exclude="build" --exclude=".git*" -f ${MYPWD}/build/${APPLICATION_NAME}.tgz .
+
 #######################################
 # Deploy Jobs
 #######################################
