@@ -21,7 +21,7 @@ web_build:
     - echo "## Build"
     - npm install -g pnpm
     - pnpm install
-    - cp apps/backoffice/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env 
+    - cp apps/backoffice/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - pnpm run build
     - mkdir build
     - export MYPWD=$PWD
