@@ -20,6 +20,7 @@ web_build:
   script:
     - echo "## Build"
     - npm install -g pnpm
+    - pnpm install
     - pnpm run build
     - mkdir build
     - export MYPWD=$PWD
