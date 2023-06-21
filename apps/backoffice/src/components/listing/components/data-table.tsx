@@ -1,23 +1,6 @@
 import React from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import {
-    ColumnDef,
-    ColumnFiltersState,
-    PaginationState,
-    SortingState,
-    VisibilityState,
-    flexRender,
-    getCoreRowModel,
-    getFacetedRowModel,
-    getFacetedUniqueValues,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-} from '@tanstack/react-table';
 
 import { IResponseRO } from '@big/types';
-import { formatDate } from '@backoffice/lib/utils';
 import { Button } from '@big/ui';
 /* import { ControlDetails } from "@big/ui/rti/controlDetails"; */
 import { Skeleton } from '@big/ui';
@@ -30,9 +13,28 @@ import {
     TableRow,
 } from '@big/ui';
 
+import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
+/* import { formatDate } from '@backoffice/lib/utils'; */
+import * as Dialog from '@radix-ui/react-dialog';
+import {
+    ColumnDef,
+    ColumnFiltersState,
+    flexRender,
+    getCoreRowModel,
+    getFacetedRowModel,
+    getFacetedUniqueValues,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    PaginationState,
+    SortingState,
+    useReactTable,
+    VisibilityState,
+} from '@tanstack/react-table';
+
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableToolbar } from './data-table-toolbar';
-import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
+
 import './styles.css';
 /* import ModalControl from "@/components/modals/modalControl"; */
 
@@ -40,7 +42,7 @@ const pageIndexDefault = 0;
 const pageSizeDefault = 20;
 const pageCountDefault = -1;
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProperties<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     options: { statuses: TABLE_CONTROL_STATUS[] };
     getData: <T>(options: {
@@ -53,10 +55,10 @@ interface DataTableProps<TData, TValue> {
 
 export function DataTable<TData, TValue>({
     columns,
-    siteId,
     options,
-    getData,
-}: DataTableProps<TData, TValue>) {
+}: /*     siteId,
+    getData, */
+DataTableProperties<TData, TValue>) {
     /** Modal */
     const [open, onOpenDialog] = React.useState(false);
     const [selectedDialogRowData, setSelectedDialogRowData] =
@@ -64,12 +66,12 @@ export function DataTable<TData, TValue>({
     /** Modal */
 
     /**  Pagination*/
-    const [dataFetched, setDataFetched] = React.useState<IResponseRO<TData>>();
+    const [dataFetched, _setDataFetched] = React.useState<IResponseRO<TData>>();
 
     const [{ pageIndex, pageSize }, setPagination] =
         React.useState<PaginationState>({
-            pageIndex: pageIndexDefault,
-            pageSize: pageSizeDefault,
+            pageIndex : pageIndexDefault,
+            pageSize  : pageSizeDefault,
         });
 
     /*
@@ -89,7 +91,8 @@ export function DataTable<TData, TValue>({
     React.useEffect(() => {
         setIsLoading(true);
 
-        const fetchData = async () => {
+        /* TODO: !!! TO REWORK !!!
+         const fetchData = async () => {
             try {
                 const data = await getData<TData>({
                     siteId,
@@ -99,12 +102,13 @@ export function DataTable<TData, TValue>({
 
                 setDataFetched(data);
             } catch (error) {
-                console.log('Fetching Data ERROR: ', error);
+                console.log('Fetching Data ERROR:', error);
             } finally {
                 setIsLoading(false);
             }
         };
-        fetchData();
+        fetchData(); 
+    */
     }, [pageIndex, pageSize]);
 
     const pageCount = dataFetched?.numberOfRecords
@@ -128,31 +132,31 @@ export function DataTable<TData, TValue>({
                 onOpenDialog(true);
             },
         },
-        data: dataFetched?.data || [],
+        data      : dataFetched?.data || [],
         columns,
-        pageCount: pageCount ?? pageCountDefault,
-        state: {
+        pageCount : pageCount ?? pageCountDefault,
+        state     : {
             sorting,
             columnVisibility,
             rowSelection,
             columnFilters,
             pagination,
         },
-        enableRowSelection: true,
-        onRowSelectionChange: setRowSelection,
-        onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
-        onColumnVisibilityChange: setColumnVisibility,
-        getCoreRowModel: getCoreRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFacetedRowModel: getFacetedRowModel(),
-        getFacetedUniqueValues: getFacetedUniqueValues(),
+        enableRowSelection       : true,
+        onRowSelectionChange     : setRowSelection,
+        onSortingChange          : setSorting,
+        onColumnFiltersChange    : setColumnFilters,
+        onColumnVisibilityChange : setColumnVisibility,
+        getCoreRowModel          : getCoreRowModel(),
+        getFilteredRowModel      : getFilteredRowModel(),
+        getPaginationRowModel    : getPaginationRowModel(),
+        getSortedRowModel        : getSortedRowModel(),
+        getFacetedRowModel       : getFacetedRowModel(),
+        getFacetedUniqueValues   : getFacetedUniqueValues(),
 
         // Pagination
-        manualPagination: true,
-        onPaginationChange: setPagination,
+        manualPagination   : true,
+        onPaginationChange : setPagination,
     });
 
     return (

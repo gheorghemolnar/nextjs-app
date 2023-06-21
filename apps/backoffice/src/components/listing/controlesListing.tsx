@@ -151,7 +151,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
 
             if (rawPhotos) {
                 //TODO: Activate it
-               /*  const tableMeta = table.options.meta; */
+                /*  const tableMeta = table.options.meta; */
                 return (
                     <div className="flex justify-center items-center">
                         <Button

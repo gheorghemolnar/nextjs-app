@@ -40,7 +40,6 @@
 //     );
 // }
 
-
 export default function ShouldDeleteMe() {
-    return <div>EMPTY</div>
+    return <div>EMPTY</div>;
 }

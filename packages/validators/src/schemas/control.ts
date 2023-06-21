@@ -2,7 +2,7 @@ import z from 'zod';
 
 import { Schema_Photo_RO } from './photo';
 
-export const Schema_Control_Status = z.enum(['C','NC', 'NV']);
+export const Schema_Control_Status = z.enum(['C', 'NC', 'NV']);
 
 export const Schema_Control_RO = z.object({
     CodeAtelier : z.string(),

@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@big/ui';
 
-import { CONTROL_TYPES, getControles,SECTEUR } from '@backoffice/lib/data';
+import { CONTROL_TYPES, getControles, SECTEUR } from '@backoffice/lib/data';
 import { Example1, Overview } from '@backoffice/tmp/overview';
 
 function Controles() {
@@ -19,7 +19,8 @@ function Controles() {
 
     return (
         <div className="grid grid-cols-1 gap-2 m-4">
-            Mes Contrôles - {`${parameters?.controleId}`.toUpperCase()} - SECTEURS
+            Mes Contrôles - {`${parameters?.controleId}`.toUpperCase()} -
+            SECTEURS
             <div className="flex flex-column gap-4 m-2">
                 {secteurs.map(
                     ({ codeSecteur, name, nc, total, comm }, index) => {

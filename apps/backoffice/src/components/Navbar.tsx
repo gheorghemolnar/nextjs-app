@@ -19,7 +19,10 @@ const Navbar = (properties: Properties) => {
         >
             <div className="font-bold text-lg">Admin Panel</div>
             <div className="flex-grow"></div>
-            <button className="md:hidden" onClick={() => properties.onMenuButtonClick()}>
+            <button
+                className="md:hidden"
+                onClick={() => properties.onMenuButtonClick()}
+            >
                 <MenuIcon className="h-6 w-6" />
             </button>
         </nav>

@@ -37,7 +37,9 @@ const MainLayout = () => {
             />
             <div className="">
                 <Navbar
-                    onMenuButtonClick={() => setShowSidebar((previous) => !previous)}
+                    onMenuButtonClick={() =>
+                        setShowSidebar((previous) => !previous)
+                    }
                 />
                 <Outlet />
             </div>

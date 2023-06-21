@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 
-import { CONTROL, CONTROL_STATUS,IResponseRO } from '@big/types';
+import { CONTROL, CONTROL_STATUS, IResponseRO } from '@big/types';
 
 import { ColumnDef } from '@tanstack/react-table';
 
