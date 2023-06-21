@@ -25,6 +25,8 @@ web_build:
     - cp apps/backoffice/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - pnpm run build
     - export MYPWD=$PWD
+    - echo $PWD
+    - pwd
     - test -e $BUILD_DIR || mkdir $BUILD_DIR
     - cd $BUILD_DIR
     - tar -cz --exclude="build" --exclude=".git*" -f ${MYPWD}/build/${APPLICATION_NAME}.tgz .
