@@ -22,6 +22,7 @@ web_build:
     - npm install -g pnpm
     - pnpm install
     - pnpm run build
+    - cp .env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - mkdir build
     - export MYPWD=$PWD
     - test -e $BUILD_DIR || mkdir $BUILD_DIR
