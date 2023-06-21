@@ -21,6 +21,8 @@ module.exports = {
                 '3xl': '1600px',
             },
             colors: {
+                //brand         : "#dc0b1c",
+                brand         : 'hsl(355 90% 45%)',
                 // TODO: Temporary
                 brand1main    : '#f5f7fb',
                 brand1sidebar : '#89B5B8',

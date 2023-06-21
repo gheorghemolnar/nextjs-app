@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
-import { useNavigate,useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { AccordionDemo } from '@backoffice/components/menu';
 
@@ -24,7 +24,7 @@ const Sidebar = ({
     shown,
     setCollapsed,
 }: Properties) => {
-    const Icon = collapsed ? ChevronsLeftIcon : ChevronsRightIcon;
+    const Icon = collapsed ? ChevronsRightIcon : ChevronsLeftIcon;
 
     const [URLSearchParameters] = useSearchParams();
 
@@ -73,7 +73,7 @@ const Sidebar = ({
                         </div>
                     )}
                     <button
-                        className="grid place-content-center hover:bg-indigo-800 rounded-full opacity-0 md:opacity-100"
+                        className="grid place-content-center hover:bg-brand rounded-full opacity-0 md:opacity-100"
                         onClick={() => setCollapsed(!collapsed)}
                     >
                         <Icon className="w-5 h-5" />
