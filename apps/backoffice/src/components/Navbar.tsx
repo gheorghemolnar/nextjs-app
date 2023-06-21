@@ -14,7 +14,7 @@ const Navbar = (properties: Properties) => {
                 'bg-white text-zinc-500' : true, // colors
                 'flex items-center'      : true, // layout
                 'sm:hidden w-screen md:w-full sticky z-10 px-4 shadow-sm h-[73px] top-0 ':
-                    true, //positioning & styling
+                    true //positioning & styling
             })}
         >
             <div className="font-bold text-lg">Admin Panel</div>

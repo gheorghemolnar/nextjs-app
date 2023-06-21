@@ -10,7 +10,7 @@ export const Schema_Atelier_RO = z.object({
     modifQuand  : z.string().nullable(),
     modifQui    : z.string().nullable(),
     annuQuand   : z.string().nullable(),
-    annuQui     : z.string().nullable(),
+    annuQui     : z.string().nullable()
 });
 
 export const Schema_Atelier_Create_DTO = Schema_Atelier_RO.partial({
@@ -19,9 +19,9 @@ export const Schema_Atelier_Create_DTO = Schema_Atelier_RO.partial({
     creaQuand  : true,
     modifQuand : true,
     modifQui   : true,
-    ordreaff   : true,
+    ordreaff   : true
 }).omit({ idAtelier: true });
 
 export const Schema_Atelier_Edit_DTO = Schema_Atelier_RO.partial().extend({
-    idAtelier: z.number(),
+    idAtelier: z.number()
 });

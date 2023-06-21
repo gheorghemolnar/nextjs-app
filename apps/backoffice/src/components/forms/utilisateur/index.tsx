@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from '@big/forms';
 import { UTILISATEUR_CREATE } from '@big/types';
 import {
@@ -18,7 +18,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue,
+    SelectValue
 } from '@big/ui';
 
 import { useCreateUtilisateur } from '@backoffice/api/utilisateur';
@@ -33,7 +33,7 @@ export function UtilisateurForm() {
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues,
+        defaultValues
     });
 
     async function onSubmit(data: FormValues) {
@@ -41,7 +41,7 @@ export function UtilisateurForm() {
             ...data,
             idprofil  : Number(data.idprofil),
             matricule : Number(data.matricule),
-            creaqui   : 'TODO',
+            creaqui   : 'TODO'
         };
 
         const { data: site } = await createUtilisateur(payload);

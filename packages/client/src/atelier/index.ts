@@ -8,7 +8,7 @@ export const atelierREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<ATELIER[]>({
             method : 'GET',
-            url    : '/ateliers',
+            url    : '/ateliers'
         });
 
         //Check if the response is valid
@@ -21,7 +21,7 @@ export const atelierREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<ATELIER>>({
             method : 'POST',
             url    : '/ateliers',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -32,6 +32,6 @@ export const atelierREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

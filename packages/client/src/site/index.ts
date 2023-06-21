@@ -8,7 +8,7 @@ export const siteREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<SITE[]>>({
             method : 'GET',
-            url    : '/sites',
+            url    : '/sites'
         });
 
         //Check if the response is valid
@@ -21,7 +21,7 @@ export const siteREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<SITE>>({
             method : 'POST',
             url    : '/sites',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -32,6 +32,6 @@ export const siteREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

@@ -6,58 +6,58 @@ import {
     PieChart,
     ResponsiveContainer,
     XAxis,
-    YAxis,
+    YAxis
 } from 'recharts';
 
 const data1 = [
     {
         name  : 'Jan',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Fév',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Mar',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Avr',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Mai',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Juin',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Juil',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Août',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Sep',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Oct',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Nov',
-        total : Math.floor(Math.random() * 500) + 10,
+        total : Math.floor(Math.random() * 500) + 10
     },
     {
         name  : 'Déc',
-        total : Math.floor(Math.random() * 500) + 10,
-    },
+        total : Math.floor(Math.random() * 500) + 10
+    }
 ];
 
 export function Overview() {
@@ -88,7 +88,7 @@ const data2 = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
     { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
+    { name: 'Group D', value: 200 }
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 export function Example1() {

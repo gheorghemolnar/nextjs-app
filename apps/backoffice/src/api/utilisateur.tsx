@@ -13,7 +13,7 @@ export const useListUtilisateur = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -22,7 +22,7 @@ export const useListUtilisateur = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -41,9 +41,9 @@ export const useCreateUtilisateur = () => {
             await successHandler({
                 title       : 'Utilisateur créé',
                 description : "L'utilisateur a bien été créé",
-                queryKey    : ['utilisateurs'],
+                queryKey    : ['utilisateurs']
             });
-        },
+        }
     });
 
     return {
@@ -52,6 +52,6 @@ export const useCreateUtilisateur = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

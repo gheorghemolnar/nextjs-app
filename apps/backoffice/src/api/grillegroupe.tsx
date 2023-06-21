@@ -13,7 +13,7 @@ export const useListGrillesGroupe = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -22,7 +22,7 @@ export const useListGrillesGroupe = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -41,9 +41,9 @@ export const useCreateGrilleGroupe = () => {
             await successHandler({
                 title       : 'Grille groupe créée',
                 description : 'La grille groupe a bien été créée',
-                queryKey    : ['grillesgroupe'],
+                queryKey    : ['grillesgroupe']
             });
-        },
+        }
     });
 
     return {
@@ -52,6 +52,6 @@ export const useCreateGrilleGroupe = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

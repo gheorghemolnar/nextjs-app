@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from '@big/forms';
 import { GRILLE_GROUPE_CREATE } from '@big/types';
 import { Button, Input } from '@big/ui';
@@ -17,7 +17,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue,
+    SelectValue
 } from '@big/ui';
 
 import { useCreateGrilleGroupe } from '@backoffice/api/grillegroupe';
@@ -32,13 +32,13 @@ export function GrilleGroupeForm() {
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues,
+        defaultValues
     });
 
     async function onSubmit(data: FormValues) {
         const payload: GRILLE_GROUPE_CREATE = {
             ...data,
-            creaqui: 'TODO',
+            creaqui: 'TODO'
         };
 
         const { data: grillegroupe } = await createGrilleGroupe(payload);

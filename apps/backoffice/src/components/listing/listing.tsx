@@ -13,7 +13,7 @@ type ListingProperties = {
     getData: <T>({
         siteId,
         pageIndex,
-        pageSize,
+        pageSize
     }: {
         siteId: string;
         pageIndex: number;
@@ -32,7 +32,7 @@ export default function Listing({
     columns,
     options,
     getData,
-    siteId,
+    siteId
 }: ListingProperties) {
     return (
         <>

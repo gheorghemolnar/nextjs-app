@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Societe_Create_DTO,
     Schema_Societe_Edit_DTO,
-    Schema_Societe_RO,
+    Schema_Societe_RO
 } from '@big/validators';
 
 export type SOCIETE = z.infer<typeof Schema_Societe_RO>;

@@ -4,6 +4,6 @@ module.exports = {
     presets : [sharedConfig],
     content : [
         //include src files
-        './src/**/*.{js,ts,jsx,tsx}',
-    ],
+        './src/**/*.{js,ts,jsx,tsx}'
+    ]
 };

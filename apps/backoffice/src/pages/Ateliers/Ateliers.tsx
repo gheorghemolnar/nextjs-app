@@ -9,7 +9,7 @@ import {
     flexRender,
     getCoreRowModel,
     PaginationState,
-    useReactTable,
+    useReactTable
 } from '@tanstack/react-table';
 
 export default function Ateliers() {
@@ -21,55 +21,55 @@ export default function Ateliers() {
             {
                 accessorKey : 'codeAtelier',
                 header      : 'Code',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'libAtelier',
                 header      : 'Libellé',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'ordreAff',
                 header      : 'Order Aff',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'creaQuand',
                 header      : 'Création',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'creaQui',
                 header      : 'Auteur',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'modifQuand',
                 header      : 'Modification',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'modifQui',
                 header      : 'Par',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'annuQuand',
                 header      : 'Annulation',
-                footer      : (properties) => properties.column.id,
+                footer      : (properties) => properties.column.id
             },
             {
                 accessorKey : 'annuQui',
                 header      : 'Par',
-                footer      : (properties) => properties.column.id,
-            },
+                footer      : (properties) => properties.column.id
+            }
         ],
-        [],
+        []
     );
     const [{ pageIndex, pageSize }, setPagination] =
         React.useState<PaginationState>({
             pageIndex : 0,
-            pageSize  : 10,
+            pageSize  : 10
         });
 
     const defaultData = React.useMemo(() => [], []);
@@ -77,9 +77,9 @@ export default function Ateliers() {
     const pagination = React.useMemo(
         () => ({
             pageIndex,
-            pageSize,
+            pageSize
         }),
-        [pageIndex, pageSize],
+        [pageIndex, pageSize]
     );
 
     const table = useReactTable({
@@ -88,13 +88,13 @@ export default function Ateliers() {
         //pageCount : dataQuery.?pageCount ?? -1,
         pageCount : -1,
         state     : {
-            pagination,
+            pagination
         },
         onPaginationChange : setPagination,
         getCoreRowModel    : getCoreRowModel(),
         manualPagination   : true,
         // getPaginationRowModel: getPaginationRowModel(), // If only doing manual pagination, you don't need this
-        debugTable         : true,
+        debugTable         : true
     });
 
     /*
@@ -134,7 +134,7 @@ export default function Ateliers() {
                                                             header.column
                                                                 .columnDef
                                                                 .header,
-                                                            header.getContext(),
+                                                            header.getContext()
                                                         )}
                                                     </div>
                                                 )}
@@ -154,7 +154,7 @@ export default function Ateliers() {
                                                     {flexRender(
                                                         cell.column.columnDef
                                                             .cell,
-                                                        cell.getContext(),
+                                                        cell.getContext()
                                                     )}
                                                 </td>
                                             );

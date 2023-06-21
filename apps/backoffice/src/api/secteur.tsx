@@ -13,7 +13,7 @@ export const useListSecteur = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -22,7 +22,7 @@ export const useListSecteur = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -41,9 +41,9 @@ export const useCreateSecteur = () => {
             await successHandler({
                 title       : 'Secteur créé',
                 description : 'Le secteur a bien été créé',
-                queryKey    : ['secteurs'],
+                queryKey    : ['secteurs']
             });
-        },
+        }
     });
 
     return {
@@ -52,6 +52,6 @@ export const useCreateSecteur = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

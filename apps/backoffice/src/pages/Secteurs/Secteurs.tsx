@@ -19,27 +19,27 @@ const mapping: Mapping = {
                 name  : "Chaine d'abattage",
                 nc    : 3,
                 total : 120,
-                comm  : '+20.1% par rapport au dernièr mois',
+                comm  : '+20.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Rouge',
                 nc    : 1,
                 total : 420,
-                comm  : '+6.1% par rapport au dernièr mois',
+                comm  : '+6.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Blanc',
                 nc    : 4,
                 total : 620,
-                comm  : '+19.1% par rapport au dernièr mois',
+                comm  : '+19.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Mise en quartier 1/4',
                 nc    : 1,
                 total : 187,
-                comm  : '+0.1% par rapport au dernièr mois',
-            },
-        ],
+                comm  : '+0.1% par rapport au dernièr mois'
+            }
+        ]
     },
     '2': {
         name     : '2ème transformation Boeuf',
@@ -48,27 +48,27 @@ const mapping: Mapping = {
                 name  : "Chaine d'abattage",
                 nc    : 5,
                 total : 350,
-                comm  : '+20.1% par rapport au dernièr mois',
+                comm  : '+20.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Rouge',
                 nc    : 1,
                 total : 110,
-                comm  : '+6.1% par rapport au dernièr mois',
+                comm  : '+6.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Blanc',
                 nc    : 14,
                 total : 820,
-                comm  : '+19.1% par rapport au dernièr mois',
+                comm  : '+19.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Mise en quartier 1/4',
                 nc    : 0,
                 total : 287,
-                comm  : '+0.1% par rapport au dernièr mois',
-            },
-        ],
+                comm  : '+0.1% par rapport au dernièr mois'
+            }
+        ]
     },
     '3': {
         name     : '1ère transformation Porc',
@@ -77,27 +77,27 @@ const mapping: Mapping = {
                 name  : "Chaine d'abattage",
                 nc    : 3,
                 total : 120,
-                comm  : '+20.1% par rapport au dernièr mois',
+                comm  : '+20.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Rouge',
                 nc    : 1,
                 total : 420,
-                comm  : '+6.1% par rapport au dernièr mois',
+                comm  : '+6.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Blanc',
                 nc    : 4,
                 total : 620,
-                comm  : '+19.1% par rapport au dernièr mois',
+                comm  : '+19.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Mise en quartier 1/4',
                 nc    : 1,
                 total : 187,
-                comm  : '+0.1% par rapport au dernièr mois',
-            },
-        ],
+                comm  : '+0.1% par rapport au dernièr mois'
+            }
+        ]
     },
     '4': {
         name     : '2ème transformation Porc',
@@ -106,28 +106,28 @@ const mapping: Mapping = {
                 name  : "Chaine d'abattage",
                 nc    : 5,
                 total : 350,
-                comm  : '+20.1% par rapport au dernièr mois',
+                comm  : '+20.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Rouge',
                 nc    : 1,
                 total : 110,
-                comm  : '+6.1% par rapport au dernièr mois',
+                comm  : '+6.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Abat Blanc',
                 nc    : 14,
                 total : 820,
-                comm  : '+19.1% par rapport au dernièr mois',
+                comm  : '+19.1% par rapport au dernièr mois'
             },
             {
                 name  : 'Mise en quartier 1/4',
                 nc    : 0,
                 total : 287,
-                comm  : '+0.1% par rapport au dernièr mois',
-            },
-        ],
-    },
+                comm  : '+0.1% par rapport au dernièr mois'
+            }
+        ]
+    }
 };
 
 export default function Secteur() {
@@ -177,7 +177,7 @@ export default function Secteur() {
                                     </Card>
                                 </Link>
                             );
-                        },
+                        }
                     )}
             </div>
         </div>

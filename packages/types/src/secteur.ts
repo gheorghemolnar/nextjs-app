@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Secteur_Create_DTO,
     Schema_Secteur_Edit_DTO,
-    Schema_Secteur_RO,
+    Schema_Secteur_RO
 } from '@big/validators';
 
 export type SECTEUR = z.infer<typeof Schema_Secteur_RO>;

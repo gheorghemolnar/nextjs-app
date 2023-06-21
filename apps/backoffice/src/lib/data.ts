@@ -21,41 +21,41 @@ export const controles: CONTROL_TYPE = {
                 nc          : 9,
                 total       : 120,
                 comm        : '+20.1% par rapport au dernièr mois',
-                codeSecteur : '1',
+                codeSecteur : '1'
             },
             {
                 name        : '2ème transformation Boeuf',
                 nc          : 5,
                 total       : 420,
                 comm        : '+6.1% par rapport au dernièr mois',
-                codeSecteur : '2',
+                codeSecteur : '2'
             },
             {
                 name        : '1ère transformation Porc',
                 nc          : 13,
                 total       : 620,
                 comm        : '+19.1% par rapport au dernièr mois',
-                codeSecteur : '3',
+                codeSecteur : '3'
             },
             {
                 name        : '2ème transformation Porc',
                 nc          : 13,
                 total       : 620,
                 comm        : '+19.1% par rapport au dernièr mois',
-                codeSecteur : '4',
+                codeSecteur : '4'
             },
             {
                 name        : '3ème transformation',
                 nc          : 0,
                 total       : 187,
                 comm        : '+0.1% par rapport au dernièr mois',
-                codeSecteur : '5',
-            },
-        ],
+                codeSecteur : '5'
+            }
+        ]
     },
     netoyage  : {},
     sanitaire : {},
-    reception : {},
+    reception : {}
 };
 
 export function sleep(n = 500) {

@@ -14,7 +14,7 @@ type Host = `https://${string}` | `http://${string}`;
 
 export const CLIENT_API = ({
     host,
-    timeout = DEFAULT_TIMEOUT,
+    timeout = DEFAULT_TIMEOUT
 }: {
     host: Host;
     timeout?: number;
@@ -46,6 +46,6 @@ export const CLIENT_API = ({
         paramsites,
         profils,
         secteurs,
-        utilisateurs,
+        utilisateurs
     };
 };

@@ -8,7 +8,7 @@ export const paramsiteREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<PARAMSITE[]>>({
             method : 'GET',
-            url    : '/paramsites',
+            url    : '/paramsites'
         });
 
         //Check if the response is valid
@@ -21,7 +21,7 @@ export const paramsiteREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<PARAMSITE>>({
             method : 'POST',
             url    : '/paramsites',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -32,6 +32,6 @@ export const paramsiteREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

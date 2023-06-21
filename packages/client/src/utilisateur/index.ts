@@ -4,7 +4,7 @@ import z from 'zod';
 import {
     IResponseRO,
     type UTILISATEUR,
-    type UTILISATEUR_CREATE,
+    type UTILISATEUR_CREATE
 } from '@big/types';
 import { Schema_Utilisateur_RO } from '@big/validators';
 
@@ -12,7 +12,7 @@ export const utilisateurREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<UTILISATEUR[]>>({
             method : 'GET',
-            url    : '/utilisateurs',
+            url    : '/utilisateurs'
         });
 
         //Check if the response is valid
@@ -25,7 +25,7 @@ export const utilisateurREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<UTILISATEUR>>({
             method : 'POST',
             url    : '/utilisateurs',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -36,6 +36,6 @@ export const utilisateurREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

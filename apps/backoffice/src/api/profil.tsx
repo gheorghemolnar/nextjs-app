@@ -13,7 +13,7 @@ export const useListProfil = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -22,7 +22,7 @@ export const useListProfil = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -41,9 +41,9 @@ export const useCreateProfil = () => {
             await successHandler({
                 title       : 'Profil créé',
                 description : 'Le profil a bien été créé',
-                queryKey    : ['profils'],
+                queryKey    : ['profils']
             });
-        },
+        }
     });
 
     return {
@@ -52,6 +52,6 @@ export const useCreateProfil = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

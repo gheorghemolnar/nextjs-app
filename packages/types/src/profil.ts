@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Profil_Create_DTO,
     Schema_Profil_Edit_DTO,
-    Schema_Profil_RO,
+    Schema_Profil_RO
 } from '@big/validators';
 
 export type PROFIL = z.infer<typeof Schema_Profil_RO>;

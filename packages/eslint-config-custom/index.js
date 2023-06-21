@@ -3,15 +3,15 @@ module.exports = {
         browser  : true,
         commonjs : true,
         es2022   : true,
-        node     : true,
+        node     : true
     },
     extends       : ['turbo', 'prettier', 'eslint:recommended'],
     parserOptions : {
         ecmaFeatures: {
-            jsx: true,
+            jsx: true
         },
         ecmaVersion : 2022,
-        sourceType  : 'module',
+        sourceType  : 'module'
     },
     overrides: [
         {
@@ -23,21 +23,21 @@ module.exports = {
                         align: {
                             afterColon  : true,
                             beforeColon : true,
-                            on          : 'colon',
+                            on          : 'colon'
                         },
                         multiLine: {
                             afterColon  : true,
-                            beforeColon : false,
-                        },
-                    },
-                ],
-            },
+                            beforeColon : false
+                        }
+                    }
+                ]
+            }
         },
         {
             extends: [
                 'plugin:@typescript-eslint/recommended',
                 'plugin:@typescript-eslint/recommended-requiring-type-checking',
-                'plugin:unicorn/recommended',
+                'plugin:unicorn/recommended'
             ],
             files         : ['*.ts', '*.tsx', '*.test.ts', '*.test.tsx', '*.d.ts'],
             parser        : '@typescript-eslint/parser',
@@ -45,9 +45,9 @@ module.exports = {
                 project: [
                     'apps/*/tsconfig.json',
                     'packages/*/tsconfig.json',
-                    'tsconfig.json',
+                    'tsconfig.json'
                 ],
-                sourceType: 'module',
+                sourceType: 'module'
             },
             rules: {
                 '@typescript-eslint/require-await'           : 'off',
@@ -63,15 +63,15 @@ module.exports = {
                     {
                         argsIgnorePattern         : '^_',
                         varsIgnorePattern         : '^_',
-                        caughtErrorsIgnorePattern : '^_',
-                    },
+                        caughtErrorsIgnorePattern : '^_'
+                    }
                 ],
                 '@typescript-eslint/restrict-template-expressions' : 'off',
                 '@typescript-eslint/no-misused-promises'           : [
                     'error',
                     {
-                        checksVoidReturn: false,
-                    },
+                        checksVoidReturn: false
+                    }
                 ],
                 'key-spacing': [
                     'error',
@@ -79,13 +79,13 @@ module.exports = {
                         align: {
                             afterColon  : true,
                             beforeColon : true,
-                            on          : 'colon',
+                            on          : 'colon'
                         },
                         multiLine: {
                             afterColon  : true,
-                            beforeColon : false,
-                        },
-                    },
+                            beforeColon : false
+                        }
+                    }
                 ],
                 'simple-import-sort/imports': [
                     'error',
@@ -94,7 +94,7 @@ module.exports = {
                             // Node.js builtins. You could also generate this regex if you use a `.js` config.
                             // For example: `^(${require("module").builtinModules.join("|")})(/|$)`
                             [
-                                '^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)',
+                                '^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)'
                             ],
                             // Packages
                             ['^\\w'],
@@ -109,32 +109,32 @@ module.exports = {
                             // Other relative imports. Put same-folder imports and `.` last.
                             ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
                             // Style imports.
-                            ['^.+\\.s?css$'],
-                        ],
-                    },
+                            ['^.+\\.s?css$']
+                        ]
+                    }
                 ],
                 'unicorn/no-null'       : 'off',
                 'unicorn/filename-case' : [
                     'error',
                     {
                         case   : 'kebabCase',
-                        ignore : ['.tsx$'],
-                    },
-                ],
-            },
+                        ignore : ['.tsx$']
+                    }
+                ]
+            }
         },
         {
             extends: [
                 'plugin:jsonc/recommended-with-jsonc',
-                'plugin:jsonc/prettier', // turn off all rules that are unnecessary or might conflict with Prettier
+                'plugin:jsonc/prettier' // turn off all rules that are unnecessary or might conflict with Prettier
             ],
             files         : ['*.json', '*.jsonc', '*.json5'],
             parser        : 'jsonc-eslint-parser',
             parserOptions : {},
             rules         : {
-                'jsonc/sort-keys': ['error', 'asc'],
-            },
-        },
+                'jsonc/sort-keys': ['error', 'asc']
+            }
+        }
     ],
-    plugins: ['no-only-tests', 'simple-import-sort'],
+    plugins: ['no-only-tests', 'simple-import-sort']
 };

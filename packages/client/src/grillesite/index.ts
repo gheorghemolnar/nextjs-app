@@ -4,7 +4,7 @@ import z from 'zod';
 import {
     type GRILLE_SITE,
     type GRILLE_SITE_CREATE,
-    IResponseRO,
+    IResponseRO
 } from '@big/types';
 import { Schema_Grille_Site_RO } from '@big/validators';
 
@@ -12,7 +12,7 @@ export const grillegroupeREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<GRILLE_SITE[]>>({
             method : 'GET',
-            url    : '/grillessite',
+            url    : '/grillessite'
         });
 
         //Check if the response is valid
@@ -25,7 +25,7 @@ export const grillegroupeREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<GRILLE_SITE>>({
             method : 'POST',
             url    : '/grillessite',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -36,6 +36,6 @@ export const grillegroupeREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

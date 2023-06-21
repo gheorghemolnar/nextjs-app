@@ -8,7 +8,7 @@ export const profilREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<PROFIL[]>>({
             method : 'GET',
-            url    : '/profils',
+            url    : '/profils'
         });
 
         //Check if the response is valid
@@ -21,7 +21,7 @@ export const profilREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<PROFIL>>({
             method : 'POST',
             url    : '/profils',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -32,6 +32,6 @@ export const profilREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

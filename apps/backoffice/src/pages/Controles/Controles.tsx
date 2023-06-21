@@ -14,7 +14,7 @@ function Controles() {
 
     console.log(
         '🚀 ~ file: Controles.tsx:14 ~ Controles ~ secteurs:',
-        secteurs,
+        secteurs
     );
 
     return (
@@ -53,7 +53,7 @@ function Controles() {
                                 </Card>
                             </Link>
                         );
-                    },
+                    }
                 )}
             </div>
             <div className="flex flex-row">

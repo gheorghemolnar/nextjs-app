@@ -1,6 +1,6 @@
 import {
     MoreHorizontal,
-    Pen,
+    Pen
     /* ,Copy, Star, Tags, Trash */
 } from 'lucide-react';
 
@@ -16,7 +16,7 @@ import {
     DropdownMenuSub,
     DropdownMenuSubContent,
     DropdownMenuSubTrigger, */
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from '@big/ui';
 
 import { Row } from '@tanstack/react-table';
@@ -26,7 +26,7 @@ interface DataTableRowActionsProperties<TData> {
 }
 
 export function DataTableRowActions<TData>({
-    row,
+    row
 }: DataTableRowActionsProperties<TData>) {
     try {
         // TODO: USED TO CHECK IF DATA is VALID: some issues with data formatting: 1 timestamp, then string

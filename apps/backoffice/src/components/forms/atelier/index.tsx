@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from '@big/forms';
 import { ATELIER_CREATE } from '@big/types';
 import { Button, Input } from '@big/ui';
@@ -24,14 +24,14 @@ export function AtelierForm() {
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues,
+        defaultValues
     });
 
     async function onSubmit(data: FormValues) {
         const payload: ATELIER_CREATE = {
             ...data,
             ordreAff : Number(data.ordreAff),
-            creaQui  : 'TODO',
+            creaQui  : 'TODO'
         };
 
         const { data: atelier } = await createAtelier(payload);

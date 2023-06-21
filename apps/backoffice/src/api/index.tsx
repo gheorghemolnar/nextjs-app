@@ -22,7 +22,7 @@ export const client = () =>
                 : // eslint-disable-next-line unicorn/no-nested-ternary
                 SCHEME === 'https'
                 ? `${SCHEME}://${URL}`
-                : `${SCHEME}://${URL}:${PORT}`,
+                : `${SCHEME}://${URL}:${PORT}`
     });
 
 export const errorHandler = (error: unknown) => {
@@ -30,7 +30,7 @@ export const errorHandler = (error: unknown) => {
         toast({
             title       : 'Les données envoyées sont invalides',
             description : fromZodError(error).message,
-            variant     : 'destructive',
+            variant     : 'destructive'
         });
         return;
     }
@@ -39,7 +39,7 @@ export const errorHandler = (error: unknown) => {
         toast({
             title       : `Une erreur est survenue: ${castedError.response?.status}`,
             description : castedError.response?.data.errorMessage,
-            variant     : 'destructive',
+            variant     : 'destructive'
         });
         if (castedError.response?.status === HttpStatusCode.Unauthorized) {
             //TODO: redirect to login
@@ -50,7 +50,7 @@ export const errorHandler = (error: unknown) => {
         toast({
             title       : 'Une erreur est survenue',
             description : error.message,
-            variant     : 'destructive',
+            variant     : 'destructive'
         });
         return;
     }
@@ -58,14 +58,14 @@ export const errorHandler = (error: unknown) => {
     toast({
         title       : 'Une erreur est survenue',
         description : 'Impossible de récupérer vos informations',
-        variant     : 'destructive',
+        variant     : 'destructive'
     });
 };
 
 export const successHandler = async ({
     title = 'Opération réussie',
     description = 'Les données ont été mises à jour',
-    queryKey,
+    queryKey
 }: {
     title: string;
     description: string;
@@ -74,7 +74,7 @@ export const successHandler = async ({
     toast({
         title,
         description,
-        variant: 'success',
+        variant: 'success'
     });
     if (!queryKey) return;
     await queryClient.invalidateQueries(queryKey);

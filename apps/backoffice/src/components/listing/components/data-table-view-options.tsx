@@ -6,7 +6,7 @@ import {
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
+    DropdownMenuSeparator
 } from '@big/ui';
 
 import { Table } from '@tanstack/react-table';
@@ -16,7 +16,7 @@ interface DataTableViewOptionsProperties<TData> {
 }
 
 export function DataTableViewOptions<TData>({
-    table,
+    table
 }: DataTableViewOptionsProperties<TData>) {
     return (
         <DropdownMenu>
@@ -38,7 +38,7 @@ export function DataTableViewOptions<TData>({
                     .filter(
                         (column) =>
                             column.accessorFn !== undefined &&
-                            column.getCanHide(),
+                            column.getCanHide()
                     )
                     .map((column) => {
                         return (

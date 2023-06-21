@@ -13,7 +13,7 @@ export const useListAtelier = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -21,7 +21,7 @@ export const useListAtelier = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -40,9 +40,9 @@ export const useCreateAtelier = () => {
             await successHandler({
                 title       : 'Atelier créé',
                 description : "L'atelier a bien été créé",
-                queryKey    : ['ateliers'],
+                queryKey    : ['ateliers']
             });
-        },
+        }
     });
 
     return {
@@ -51,6 +51,6 @@ export const useCreateAtelier = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

@@ -6,7 +6,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from '@big/ui';
 
 import { Column } from '@tanstack/react-table';
@@ -20,7 +20,7 @@ interface DataTableColumnHeaderProperties<TData, TValue>
 export function DataTableColumnHeader<TData, TValue>({
     column,
     title,
-    className,
+    className
 }: DataTableColumnHeaderProperties<TData, TValue>) {
     if (!column.getCanSort()) {
         return <div className={cn(className)}>{title}</div>;

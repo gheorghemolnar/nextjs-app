@@ -10,7 +10,7 @@ import {
     TableCell,
     TableHead,
     TableHeader,
-    TableRow,
+    TableRow
 } from '@big/ui';
 
 import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
@@ -29,7 +29,7 @@ import {
     PaginationState,
     SortingState,
     useReactTable,
-    VisibilityState,
+    VisibilityState
 } from '@tanstack/react-table';
 
 import { DataTablePagination } from './data-table-pagination';
@@ -55,7 +55,7 @@ interface DataTableProperties<TData, TValue> {
 
 export function DataTable<TData, TValue>({
     columns,
-    options,
+    options
 }: /*     siteId,
     getData, */
 DataTableProperties<TData, TValue>) {
@@ -71,7 +71,7 @@ DataTableProperties<TData, TValue>) {
     const [{ pageIndex, pageSize }, setPagination] =
         React.useState<PaginationState>({
             pageIndex : pageIndexDefault,
-            pageSize  : pageSizeDefault,
+            pageSize  : pageSizeDefault
         });
 
     /*
@@ -84,7 +84,7 @@ DataTableProperties<TData, TValue>) {
     const pagination = React.useMemo(() => {
         return {
             pageIndex,
-            pageSize,
+            pageSize
         };
     }, [pageIndex, pageSize]);
 
@@ -130,7 +130,7 @@ DataTableProperties<TData, TValue>) {
             setSelectedDialogRowData,
             showModal: () => {
                 onOpenDialog(true);
-            },
+            }
         },
         data      : dataFetched?.data || [],
         columns,
@@ -140,7 +140,7 @@ DataTableProperties<TData, TValue>) {
             columnVisibility,
             rowSelection,
             columnFilters,
-            pagination,
+            pagination
         },
         enableRowSelection       : true,
         onRowSelectionChange     : setRowSelection,
@@ -156,7 +156,7 @@ DataTableProperties<TData, TValue>) {
 
         // Pagination
         manualPagination   : true,
-        onPaginationChange : setPagination,
+        onPaginationChange : setPagination
     });
 
     return (
@@ -212,7 +212,7 @@ DataTableProperties<TData, TValue>) {
                                                 : flexRender(
                                                       header.column.columnDef
                                                           .header,
-                                                      header.getContext(),
+                                                      header.getContext()
                                                   )}
                                         </TableHead>
                                     );
@@ -233,7 +233,7 @@ DataTableProperties<TData, TValue>) {
                                         <TableCell key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
-                                                cell.getContext(),
+                                                cell.getContext()
                                             )}
                                         </TableCell>
                                     ))}

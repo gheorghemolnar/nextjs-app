@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Control_Edit_DTO,
     Schema_Control_RO,
-    Schema_Control_Status,
+    Schema_Control_Status
 } from '@big/validators';
 
 export type CONTROL = z.infer<typeof Schema_Control_RO>;

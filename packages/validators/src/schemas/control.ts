@@ -24,9 +24,9 @@ export const Schema_Control_RO = z.object({
     LibSecteur  : z.string(),
     Photos      : Schema_Photo_RO.nullable().optional(),
     ResultCont  : Schema_Control_Status,
-    TypeGrille  : z.string(),
+    TypeGrille  : z.string()
 });
 
 export const Schema_Control_Edit_DTO = Schema_Control_RO.partial().extend({
-    id: z.number(),
+    id: z.number()
 });

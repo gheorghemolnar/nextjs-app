@@ -9,7 +9,7 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-    CommandSeparator,
+    CommandSeparator
 } from '@big/ui';
 import { Popover, PopoverContent, PopoverTrigger, Separator } from '@big/ui';
 
@@ -28,7 +28,7 @@ interface DataTableFacetedFilter<TData, TValue> {
 export function DataTableFacetedFilter<TData, TValue>({
     column,
     title,
-    options,
+    options
 }: DataTableFacetedFilter<TData, TValue>) {
     const facets = column?.getFacetedUniqueValues();
     const selectedValues = new Set(column?.getFilterValue() as string[]);
@@ -66,7 +66,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                                 ) : (
                                     options
                                         .filter((option) =>
-                                            selectedValues.has(option.value),
+                                            selectedValues.has(option.value)
                                         )
                                         .map((option) => (
                                             <Badge
@@ -91,7 +91,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                         <CommandGroup>
                             {options.map((option) => {
                                 const isSelected = selectedValues.has(
-                                    option.value,
+                                    option.value
                                 );
                                 return (
                                     <CommandItem
@@ -99,20 +99,20 @@ export function DataTableFacetedFilter<TData, TValue>({
                                         onSelect={() => {
                                             if (isSelected) {
                                                 selectedValues.delete(
-                                                    option.value,
+                                                    option.value
                                                 );
                                             } else {
                                                 selectedValues.add(
-                                                    option.value,
+                                                    option.value
                                                 );
                                             }
                                             const filterValues = [
-                                                ...selectedValues,
+                                                ...selectedValues
                                             ];
                                             column?.setFilterValue(
                                                 filterValues.length > 0
                                                     ? filterValues
-                                                    : undefined,
+                                                    : undefined
                                             );
                                         }}
                                     >
@@ -121,7 +121,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                                                 'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
                                                 isSelected
                                                     ? 'bg-primary text-primary-foreground'
-                                                    : 'opacity-50 [&_svg]:invisible',
+                                                    : 'opacity-50 [&_svg]:invisible'
                                             )}
                                         >
                                             <Check className={cn('h-4 w-4')} />

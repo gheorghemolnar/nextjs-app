@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Site_Create_DTO,
     Schema_Site_Edit_DTO,
-    Schema_Site_RO,
+    Schema_Site_RO
 } from '@big/validators';
 
 export type SITE = z.infer<typeof Schema_Site_RO>;

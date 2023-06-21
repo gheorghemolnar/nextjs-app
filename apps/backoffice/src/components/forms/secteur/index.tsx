@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from '@big/forms';
 import { SECTEUR_CREATE } from '@big/types';
 import { Button, Input } from '@big/ui';
@@ -24,14 +24,14 @@ export function SecteurForm() {
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues,
+        defaultValues
     });
 
     async function onSubmit(data: FormValues) {
         const payload: SECTEUR_CREATE = {
             ...data,
             ordreaff : Number(data.ordreaff),
-            creaqui  : 'TODO',
+            creaqui  : 'TODO'
         };
 
         const { data: secteur } = await createSecteur(payload);

@@ -22,7 +22,7 @@ const Sidebar = ({
     collapsed,
     //  navItems = defaultNavItems,
     shown,
-    setCollapsed,
+    setCollapsed
 }: Properties) => {
     const Icon = collapsed ? ChevronsRightIcon : ChevronsLeftIcon;
 
@@ -45,13 +45,13 @@ const Sidebar = ({
                 'transition-all duration-300 ease-in-out' : true,
                 'w-[300px]'                               : !collapsed,
                 'w-16'                                    : collapsed,
-                '-translate-x-full'                       : !shown,
+                '-translate-x-full'                       : !shown
             })}
         >
             <div
                 className={clsx({
                     'flex flex-col justify-between h-screen sticky inset-0 w-full':
-                        true,
+                        true
                 })}
             >
                 {/* logo and collapse button */}
@@ -60,7 +60,7 @@ const Sidebar = ({
                         //"flex items-center border-b border-b-indigo-800 transition-none":
                         'flex items-center transition-none' : true,
                         'p-4 justify-between'               : !collapsed,
-                        'py-4 justify-center'               : collapsed,
+                        'py-4 justify-center'               : collapsed
                     })}
                 >
                     {!collapsed && (
@@ -111,7 +111,7 @@ const Sidebar = ({
                 </nav>
                 <div
                     className={clsx({
-                        'grid place-content-stretch p-4 ': true,
+                        'grid place-content-stretch p-4 ': true
                     })}
                 >
                     <div className="flex gap-4 h-11 overflow-hidden">

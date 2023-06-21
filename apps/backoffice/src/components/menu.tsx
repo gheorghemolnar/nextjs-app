@@ -15,7 +15,7 @@ import {
     ShieldIcon,
     SmartphoneNfcIcon,
     SparkleIcon,
-    UsersIcon,
+    UsersIcon
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,7 @@ import {
     CollapsibleTrigger,
     HoverCard,
     HoverCardContent,
-    HoverCardTrigger,
+    HoverCardTrigger
 } from '@big/ui';
 
 interface MenuSecItem {
@@ -60,26 +60,26 @@ const mesCommunications: MenuItem[] = [
                 link  : '/communication/pst-groupe',
                 badge : {
                     text  : '',
-                    count : 3,
+                    count : 3
                 },
-                icon: <NfcIcon className="mr-2 h-4 w-4" />,
+                icon: <NfcIcon className="mr-2 h-4 w-4" />
             },
             {
                 name  : 'Communication PST Site',
                 link  : '/communication/pst-site',
                 badge : {
                     text  : '',
-                    count : 8,
+                    count : 8
                 },
-                icon: <SmartphoneNfcIcon className="mr-2 h-4 w-4" />,
+                icon: <SmartphoneNfcIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Communication Atelier',
                 link : '/communication/atelier',
-                icon : <NfcIcon className="mr-2 h-4 w-4" />,
-            },
-        ],
-    },
+                icon : <NfcIcon className="mr-2 h-4 w-4" />
+            }
+        ]
+    }
 ];
 
 const mesRessourcesHumaine: MenuItem[] = [
@@ -92,9 +92,9 @@ const mesRessourcesHumaine: MenuItem[] = [
                 link  : '/rh/accueil',
                 badge : {
                     text  : '',
-                    count : 7,
+                    count : 7
                 },
-                icon: <UsersIcon className="mr-2 h-4 w-4" />,
+                icon: <UsersIcon className="mr-2 h-4 w-4" />
             },
             /*
       {
@@ -110,20 +110,20 @@ const mesRessourcesHumaine: MenuItem[] = [
             {
                 name : 'Fiche de poste',
                 link : '/rh/fiche-poste',
-                icon : <FileTextIcon className="mr-2 h-4 w-4" />,
+                icon : <FileTextIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Consultation module / CP',
                 link : '/rh/consultation-modulation-cp',
-                icon : <BookOpen className="mr-2 h-4 w-4" />,
+                icon : <BookOpen className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Indicateurs RH',
                 link : '/rh/indicateurs-rh',
-                icon : <BarChart2Icon className="mr-2 h-4 w-4" />,
-            },
-        ],
-    },
+                icon : <BarChart2Icon className="mr-2 h-4 w-4" />
+            }
+        ]
+    }
 ];
 
 const mesDocuments: MenuItem[] = [
@@ -136,26 +136,26 @@ const mesDocuments: MenuItem[] = [
                 link  : '/mes-docs/cahiers-de-charges',
                 badge : {
                     text  : '',
-                    count : 7,
+                    count : 7
                 },
-                icon: <BookOpen className="mr-2 h-4 w-4" />,
+                icon: <BookOpen className="mr-2 h-4 w-4" />
             },
             {
                 name  : 'Fiches techniques',
                 link  : '/mes-docs/fiches-techniques',
                 badge : {
                     text  : 'New',
-                    count : 25,
+                    count : 25
                 },
-                icon: <FileDigitIcon className="mr-2 h-4 w-4" />,
+                icon: <FileDigitIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Planning Visites / Audits',
                 link : '/mes-docs/planning-visites-audits',
-                icon : <BookOpenCheckIcon className="mr-2 h-4 w-4" />,
-            },
-        ],
-    },
+                icon : <BookOpenCheckIcon className="mr-2 h-4 w-4" />
+            }
+        ]
+    }
 ];
 
 const mesControles: MenuItem[] = [
@@ -168,31 +168,31 @@ const mesControles: MenuItem[] = [
                 link  : '/controles/matiere',
                 badge : {
                     text  : '',
-                    count : 43,
+                    count : 43
                 },
-                icon: <LayersIcon className="mr-2 h-4 w-4" />,
+                icon: <LayersIcon className="mr-2 h-4 w-4" />
             },
             {
                 name  : 'Nettoyage',
                 link  : '/controles/nettoyage',
                 badge : {
                     text  : '',
-                    count : 15,
+                    count : 15
                 },
-                icon: <SparkleIcon className="mr-2 h-4 w-4" />,
+                icon: <SparkleIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Sécurité',
                 link : '/controles/securite',
-                icon : <ShieldIcon className="mr-2 h-4 w-4" />,
+                icon : <ShieldIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Réception',
                 link : '/controles/reception',
-                icon : <ConciergeBellIcon className="mr-2 h-4 w-4" />,
-            },
-        ],
-    },
+                icon : <ConciergeBellIcon className="mr-2 h-4 w-4" />
+            }
+        ]
+    }
 ];
 
 const administration: MenuItem[] = [
@@ -203,45 +203,45 @@ const administration: MenuItem[] = [
             {
                 name : 'Ateliers',
                 link : '/params/ateliers',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />,
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Utilisateurs',
                 link : '/params/utilisateurs',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />,
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name  : 'Secteurs',
                 link  : '/params/secteurs',
                 badge : {
                     text  : '',
-                    count : 7,
+                    count : 7
                 },
-                icon: <LayoutGrid className="mr-2 h-4 w-4" />,
+                icon: <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Profils',
                 link : '/params/profils',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />,
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Param Sites',
                 link : '/params/paramssite',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />,
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Grilles groupe',
                 link : '/params/grillesgroupe',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />,
-            },
-        ],
-    },
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
+            }
+        ]
+    }
 ];
 
 function generateMenu(
     collapsed: boolean,
     prefix: string,
-    menuItems: MenuItem[],
+    menuItems: MenuItem[]
 ): ReactNode[] {
     const menu = menuItems.map((section: MenuItem, index: number) => {
         return (
@@ -262,7 +262,7 @@ function generateMenu(
                                             section.items.map(
                                                 (
                                                     item: MenuSecItem,
-                                                    indexSec: number,
+                                                    indexSec: number
                                                 ) => {
                                                     return (
                                                         <Link
@@ -276,7 +276,7 @@ function generateMenu(
                                                             {item.name}
                                                         </Link>
                                                     );
-                                                },
+                                                }
                                             )}
                                     </HoverCardContent>
                                 </HoverCard>
@@ -308,7 +308,7 @@ function generateMenu(
                                             {item.name}
                                         </Link>
                                     );
-                                },
+                                }
                             )}
                     </CollapsibleContent>
                 )}
@@ -329,7 +329,7 @@ export function AccordionDemo({ collapsed }: Properties) {
             className={clsx({
                 'my-2 flex flex-col gap-2' : true,
                 'items-stretch'            : !collapsed,
-                'items-center'             : collapsed,
+                'items-center'             : collapsed
             })}
             //className="grid grid-cols-1 gap-y-1"
         >

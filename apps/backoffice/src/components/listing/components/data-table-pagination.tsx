@@ -2,7 +2,7 @@ import {
     ChevronLeft,
     ChevronRight,
     ChevronsLeft,
-    ChevronsRight,
+    ChevronsRight
 } from 'lucide-react';
 
 import { Button } from '@big/ui';
@@ -11,7 +11,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue,
+    SelectValue
 } from '@big/ui';
 
 import { Table } from '@tanstack/react-table';
@@ -21,7 +21,7 @@ interface DataTablePaginationProperties<TData> {
 }
 
 export function DataTablePagination<TData>({
-    table,
+    table
 }: DataTablePaginationProperties<TData>) {
     return (
         <div className="flex items-center justify-between px-2">

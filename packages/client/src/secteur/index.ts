@@ -8,7 +8,7 @@ export const secteurREST = ({ client }: { client: AxiosInstance }) => {
     const getAll = async () => {
         const response = await client<IResponseRO<SECTEUR[]>>({
             method : 'GET',
-            url    : '/secteurs',
+            url    : '/secteurs'
         });
 
         //Check if the response is valid
@@ -21,7 +21,7 @@ export const secteurREST = ({ client }: { client: AxiosInstance }) => {
         const response = await client<IResponseRO<SECTEUR>>({
             method : 'POST',
             url    : '/secteurs',
-            data   : dto,
+            data   : dto
         });
 
         //Check if the response is valid
@@ -32,6 +32,6 @@ export const secteurREST = ({ client }: { client: AxiosInstance }) => {
 
     return {
         getAll,
-        create,
+        create
     };
 };

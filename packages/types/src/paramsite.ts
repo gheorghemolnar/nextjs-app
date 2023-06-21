@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Paramsite_Create_DTO,
     Schema_Paramsite_Edit_DTO,
-    Schema_Paramsite_RO,
+    Schema_Paramsite_RO
 } from '@big/validators';
 
 export type PARAMSITE = z.infer<typeof Schema_Paramsite_RO>;

@@ -15,7 +15,7 @@ module.exports = {
                 .filter(async (file) => await !eslint.isPathIgnored(file))
                 .map((f) => `"${f}"`)
                 .join(' ')}`,
-            `git add ${escapedFileNames}`,
+            `git add ${escapedFileNames}`
         ];
     },
     '**/*.{md,mdx,css,html,yml,yaml,scss}': (filenames) => {
@@ -24,7 +24,7 @@ module.exports = {
             .join(' ');
         return [
             `prettier --with-node-modules --ignore-path .prettierignore --write ${escapedFileNames}`,
-            `git add ${escapedFileNames}`,
+            `git add ${escapedFileNames}`
         ];
     },
     '**/*.{json,jsonc}': (filenames) => {
@@ -36,9 +36,9 @@ module.exports = {
                 .filter(async (file) => await !eslint.isPathIgnored(file))
                 .map((f) => `"${f}"`)
                 .join(' ')}`,
-            `git add ${escapedFileNames}`,
+            `git add ${escapedFileNames}`
         ];
-    },
+    }
 };
 
 function escape(str) {

@@ -3,7 +3,7 @@ import z from 'zod';
 import {
     Schema_Grille_Groupe_Create_DTO,
     Schema_Grille_Groupe_Edit_DTO,
-    Schema_Grille_Groupe_RO,
+    Schema_Grille_Groupe_RO
 } from '@big/validators';
 
 export type GRILLE_GROUPE = z.infer<typeof Schema_Grille_Groupe_RO>;

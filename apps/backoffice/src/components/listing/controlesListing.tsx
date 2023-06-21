@@ -15,7 +15,7 @@ import { DataTableRowActions } from './components/data-table-row-actions';
 async function getClientControls({
     siteId,
     pageIndex,
-    pageSize,
+    pageSize
 }: {
     siteId: string;
     pageIndex: number;
@@ -37,14 +37,14 @@ export const statuses = [
         value : Schema_Control_Status.enum.C,
         label : 'Conforme',
         icon  : Check,
-        color : 'text-green-900',
+        color : 'text-green-900'
     },
     {
         value : Schema_Control_Status.enum.NC,
         label : 'NonConforme',
         icon  : XIcon,
-        color : 'text-red-900',
-    },
+        color : 'text-red-900'
+    }
 ];
 
 export const columns: ColumnDef<CONTROL, any>[] = [
@@ -61,7 +61,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                     <span className="max-w-[200px] truncate font-medium">{`${dt}`}</span>
                 </div>
             );
-        },
+        }
     },
     {
         accessorKey : 'LibSecteur',
@@ -76,7 +76,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                     </span>
                 </div>
             );
-        },
+        }
     },
     {
         accessorKey : 'LibAtelier',
@@ -91,7 +91,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                     </span>
                 </div>
             );
-        },
+        }
     },
     {
         accessorKey : 'LibCtrl',
@@ -106,7 +106,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                     </span>
                 </div>
             );
-        },
+        }
     },
     {
         accessorKey : 'ResultCont',
@@ -115,7 +115,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
         ),
         cell: ({ row }) => {
             const status = statuses.find(
-                (status) => status.value === row.getValue('ResultCont'),
+                (status) => status.value === row.getValue('ResultCont')
             );
 
             if (!status) {
@@ -135,7 +135,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
 
         filterFn: (row, id, value) => {
             return value.includes(row.getValue(id));
-        },
+        }
     },
     {
         id     : 'details',
@@ -170,7 +170,7 @@ export const columns: ColumnDef<CONTROL, any>[] = [
             }
 
             return '';
-        },
+        }
     },
     {
         accessorKey : 'CreaQui',
@@ -186,12 +186,12 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                     </span>
                 </div>
             );
-        },
+        }
     },
     {
         id   : 'actions',
-        cell : ({ row }) => <DataTableRowActions row={row} />,
-    },
+        cell : ({ row }) => <DataTableRowActions row={row} />
+    }
 ];
 
 export default function ControlsListing() {

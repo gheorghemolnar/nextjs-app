@@ -11,12 +11,12 @@ export const Schema_Grille_Site_RO = z.object({
     ordreaff      : z.number(),
     creaqui       : z.string(),
     modifqui      : z.string(),
-    annuqui       : z.string(),
+    annuqui       : z.string()
 });
 
 export const Schema_Grille_Site_Create_DTO = Schema_Grille_Site_RO.partial({
     modifqui : true,
-    annuqui  : true,
+    annuqui  : true
 }).omit({ id: true });
 
 export const Schema_Grille_Site_Edit_DTO =

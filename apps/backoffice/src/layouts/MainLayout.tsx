@@ -27,7 +27,7 @@ const MainLayout = () => {
                 'grid-cols-sidebar'            : !collapsed,
                 'grid-cols-sidebar-collapsed'  : collapsed,
                 'transition-[grid-template-columns] duration-300 ease-in-out':
-                    true,
+                    true
             })}
         >
             <Sidebar

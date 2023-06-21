@@ -10,13 +10,13 @@ export const Schema_Photo_RO = z.object({
             FicPhotoControle  : z.string(),
             IdPhotoControle   : z.number(),
             LibPhotoControle  : z.string(),
-            ModifQui          : z.string().optional(),
-        }),
-    ),
+            ModifQui          : z.string().optional()
+        })
+    )
 });
 
 export const photoControlSchema = z
     .object({
-        PhotoCtrl: z.array(Schema_Photo_RO),
+        PhotoCtrl: z.array(Schema_Photo_RO)
     })
     .nullable();

@@ -13,7 +13,7 @@ export const useListSite = () => {
         },
         onError: (error) => {
             errorHandler(error);
-        },
+        }
     });
 
     return {
@@ -22,7 +22,7 @@ export const useListSite = () => {
         isLoading,
         refetch,
         isError,
-        isSuccess,
+        isSuccess
     };
 };
 
@@ -41,9 +41,9 @@ export const useCreateSite = () => {
             await successHandler({
                 title       : 'Site créé',
                 description : 'Le site a bien été créé',
-                queryKey    : ['sites'],
+                queryKey    : ['sites']
             });
-        },
+        }
     });
 
     return {
@@ -52,6 +52,6 @@ export const useCreateSite = () => {
         isLoading,
         isSuccess,
         isError,
-        mutateAsync,
+        mutateAsync
     };
 };

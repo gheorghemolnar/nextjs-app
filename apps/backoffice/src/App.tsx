@@ -18,39 +18,39 @@ const router = createBrowserRouter([
         children     : [
             {
                 path    : '/',
-                element : <Welcome />,
+                element : <Welcome />
             },
             {
                 path    : 'controles/:controleId/secteur/:secteurId/liste',
-                element : <ControlsListing />,
+                element : <ControlsListing />
             },
             {
                 path    : 'controles/:controleId/secteur/:secteurId',
-                element : <Secteur />,
+                element : <Secteur />
             },
             {
                 path    : 'controles/:controleId/',
-                element : <Controles />,
+                element : <Controles />
                 //loader: controlesLoader,
             },
             {
                 path    : 'params/ateliers',
-                element : <Ateliers />,
+                element : <Ateliers />
             },
             {
                 path    : 'params/secteurs',
-                element : <Utilisateurs />,
+                element : <Utilisateurs />
             },
             {
                 path    : 'params/secteurs',
-                element : <Utilisateurs />,
+                element : <Utilisateurs />
             },
             {
                 path    : '*',
-                element : <NoMatch />,
-            },
-        ],
-    },
+                element : <NoMatch />
+            }
+        ]
+    }
 ]);
 
 /*

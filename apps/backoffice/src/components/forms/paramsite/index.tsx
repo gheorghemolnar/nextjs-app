@@ -8,7 +8,7 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from '@big/forms';
 import { SITE_CREATE } from '@big/types';
 import { Button, Input } from '@big/ui';
@@ -25,7 +25,7 @@ export function ParamSiteForm() {
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues,
+        defaultValues
     });
 
     async function onSubmit(data: FormValues) {
@@ -33,7 +33,7 @@ export function ParamSiteForm() {
             ...data,
             idsociete : Number(data.idsociete),
             ordreaff  : Number(data.ordreaff),
-            creaqui   : 'TODO',
+            creaqui   : 'TODO'
         };
 
         const { data: site } = await createSite(payload);

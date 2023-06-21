@@ -10,8 +10,8 @@ export const formSchema = z.object({
         .min(2, { message: 'Veuillez saisir le libellé.' })
         .max(50, { message: 'Le nom ne doit pas dépasser 50 charactères.' }),
     ordreAff: z.string().regex(/\d{1,10}/, {
-        message: 'Veuillez saisir une valeur numérique (max 10 chiffres)',
-    }),
+        message: 'Veuillez saisir une valeur numérique (max 10 chiffres)'
+    })
 });
 
 export type FormValues = z.infer<typeof formSchema>;
@@ -19,5 +19,5 @@ export type FormValues = z.infer<typeof formSchema>;
 export const defaultValues: FormValues = {
     codeAtelier : '',
     libAtelier  : '',
-    ordreAff    : '',
+    ordreAff    : ''
 };

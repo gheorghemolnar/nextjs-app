@@ -8,7 +8,7 @@ import {
     Tooltip,
     XAxis,
     YAxis,
-    ZAxis,
+    ZAxis
 } from 'recharts';
 
 const data01 = [
@@ -17,7 +17,7 @@ const data01 = [
     { x: 45, y: 100 },
     { x: 50, y: 400 },
     { x: 70, y: 150 },
-    { x: 100, y: 250 },
+    { x: 100, y: 250 }
 ];
 const data02 = [
     { x: 5, y: 40 },
@@ -25,7 +25,7 @@ const data02 = [
     { x: 45, y: 200 },
     { x: 50, y: 480 },
     { x: 70, y: 250 },
-    { x: 100, y: 350 },
+    { x: 100, y: 350 }
 ];
 const data03 = [
     { x: 10, y: 24 },
@@ -33,7 +33,7 @@ const data03 = [
     { x: 45, y: 190 },
     { x: 50, y: 380 },
     { x: 70, y: 210 },
-    { x: 100, y: 150 },
+    { x: 100, y: 150 }
 ];
 
 export default function Welcome() {
@@ -44,7 +44,7 @@ export default function Welcome() {
                     top    : 20,
                     right  : 20,
                     bottom : 20,
-                    left   : 20,
+                    left   : 20
                 }}
             >
                 <CartesianGrid />

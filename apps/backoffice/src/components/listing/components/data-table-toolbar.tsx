@@ -16,7 +16,7 @@ interface DataTableToolbarProperties<TData> {
 
 export function DataTableToolbar<TData>({
     table,
-    options: { statuses },
+    options: { statuses }
 }: DataTableToolbarProperties<TData>) {
     const isFiltered =
         table.getPreFilteredRowModel().rows.length >
