@@ -4,7 +4,7 @@ include:
 
 variables:
   DEPLOY_WHAT: front
-  SRC_DIR: apps/backoffice
+  SOURCE_DIR: apps/backoffice
   BUILD_DIR: apps/backoffice/dist
 #Keywords exemple : front/middle/back/all
 
@@ -23,7 +23,7 @@ web_build:
     - npm install -g pnpm
     - pnpm install
     - mkdir $BUILD_DIR
-    - cp $SRC_DIR.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
+    - cp $SOURCE_DIR/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - pnpm run build
     - export MYPWD=$PWD
     - echo $PWD
