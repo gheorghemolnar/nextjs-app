@@ -1,20 +1,26 @@
 import z from 'zod';
 
 export const Schema_Secteur_RO = z.object({
-    id          : z.number(),
-    codesecteur : z.string(),
-    libsecteur  : z.string(),
-    creaqui     : z.string(),
-    modifqui    : z.string(),
-    annuqui     : z.string(),
-    ordreaff    : z.number()
+    idSecteur   : z.number(),
+    codeSecteur : z.string(),
+    libSecteur  : z.string(),
+    ordreAff    : z.number(),
+    creaQuand   : z.string().nullable(),
+    creaQui     : z.string(),
+    modifQuand  : z.string().nullable(),
+    modifQui    : z.string().nullable(),
+    annuQuand   : z.string().nullable(),
+    annuQui     : z.string().nullable()
 });
 
 export const Schema_Secteur_Create_DTO = Schema_Secteur_RO.partial({
-    modifqui : true,
-    annuqui  : true,
-    ordreaff : true
-}).omit({ id: true });
+    annuQuand  : true,
+    annuQui    : true,
+    creaQuand  : true,
+    modifQuand : true,
+    modifQui   : true,
+    ordreaff   : true
+}).omit({ idSecteur: true });
 
 export const Schema_Secteur_Edit_DTO = Schema_Secteur_RO.partial().extend({
     id: z.number()
