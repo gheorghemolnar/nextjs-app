@@ -1,3 +1,4 @@
+import { QueryPaginationParameters } from '@big/client';
 import { SECTEUR_CREATE } from '@big/types';
 import { Schema_Secteur_Create_DTO } from '@big/validators';
 
@@ -5,11 +6,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { client, errorHandler, successHandler } from '.';
 
-export const useListSecteur = () => {
+export const useListSecteur = ({
+    pageIndex,
+    pageSize
+}: QueryPaginationParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['secteurs'],
+        queryKey : ['secteurs', { pageIndex, pageSize }],
         queryFn  : async () => {
-            return await client().secteurs.getAll();
+            return await client().secteurs.getAll({ pageIndex, pageSize });
         },
         onError: (error) => {
             errorHandler(error);
@@ -17,8 +21,7 @@ export const useListSecteur = () => {
     });
 
     return {
-        data  : data?.data ?? [],
-        count : data?.numberOfRecords ?? 0,
+        data: data ?? { data: [], totalCount: -1 },
         isLoading,
         refetch,
         isError,

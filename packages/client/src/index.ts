@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 
 import { DEFAULT_TIMEOUT } from '@big/validators';
 
@@ -11,6 +11,42 @@ import { siteREST } from './site';
 import { utilisateurREST } from './utilisateur';
 
 type Host = `https://${string}` | `http://${string}`;
+
+export const DEFAULT_PAGE_INDEX = 0;
+export const DEFAULT_PAGE_SIZE = 20;
+
+export interface QueryPaginationParameters {
+    pageIndex: number;
+    pageSize: number;
+}
+
+export enum ServerResponseHeaders {
+    totalCount = 'x-total-count',
+    serverErrorCode = 'x-error-code'
+}
+
+//TODO: !!! REWORK Typescript !!!
+export function getServerHeader<T>(
+    headers: AxiosResponseHeaders | RawAxiosResponseHeaders,
+    key: ServerResponseHeaders
+): T | void {
+    if (headers[key]) return Number(headers[key]) as T;
+
+    return;
+}
+
+export function objectToString<T>(object: T): string {
+    const parameters = new URLSearchParams();
+
+    for (const key in object) {
+        if (object[key] != null && object[key] !== 'undefined') {
+            const value = object[key];
+            parameters.append(key, String(value));
+        }
+    }
+
+    return parameters.toString();
+}
 
 export const CLIENT_API = ({
     host,
@@ -31,7 +67,9 @@ export const CLIENT_API = ({
     const url = `${host}`;
     const axiosClient = axios.create({ baseURL: url, timeout });
 
-    const ateliers = atelierREST({ client: axiosClient });
+    const ateliers = atelierREST<QueryPaginationParameters>({
+        client: axiosClient
+    });
     const sites = siteREST({ client: axiosClient });
     const grillesgroupe = grillegroupeREST({ client: axiosClient });
     const paramsites = paramsiteREST({ client: axiosClient });

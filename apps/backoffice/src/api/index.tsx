@@ -10,7 +10,7 @@ import { queryClient } from '@backoffice/providers/query-provider';
 
 const PORT = import.meta.env.VITE_PORT ?? 3000;
 const URL = import.meta.env.VITE_URL ?? 'localhost';
-const SCHEME = import.meta.env.NODE_ENV === 'production' ? 'https' : 'http';
+const SCHEME = import.meta.env.VITE_ENV === 'production' ? 'https' : 'http';
 const BACKEND_API_URL = import.meta.env.VITE_API_URL ?? '';
 
 export const client = () =>
