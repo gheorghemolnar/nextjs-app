@@ -1,6 +1,8 @@
 include:
   - project: 'commun/cicd-templates'
     file: 'static_web.yaml'
+    ref: 'main' 
+    # ou ref: 'v1.0.0'
 
 variables:
   DEPLOY_WHAT: front
