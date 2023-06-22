@@ -96,17 +96,6 @@ const mesRessourcesHumaine: MenuItem[] = [
                 },
                 icon: <UsersIcon className="mr-2 h-4 w-4" />
             },
-            /*
-      {
-        name: "Ré-accueil",
-        link: "/rh/re-accueil",
-        badge: {
-          text: "",
-          count: 17
-        },
-        icon: <UsersIcon />
-      }, 
-      */
             {
                 name : 'Fiche de poste',
                 link : '/rh/fiche-poste',
@@ -206,11 +195,6 @@ const administration: MenuItem[] = [
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
-                name : 'Utilisateurs',
-                link : '/params/utilisateurs',
-                icon : <LayoutGrid className="mr-2 h-4 w-4" />
-            },
-            {
                 name  : 'Secteurs',
                 link  : '/params/secteurs',
                 badge : {
@@ -218,6 +202,11 @@ const administration: MenuItem[] = [
                     count : 7
                 },
                 icon: <LayoutGrid className="mr-2 h-4 w-4" />
+            },
+            {
+                name : 'Utilisateurs',
+                link : '/params/utilisateurs',
+                icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Profils',
