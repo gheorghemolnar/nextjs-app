@@ -33,7 +33,7 @@ deploy:
   variables:
     PACKAGE_URL: $PACKAGE_URL
   trigger: 
-    project: "applications/demo/deploy"
+    project: "applications/projetrti/deploiement"
     # branch: v1.0.0
     strategy: depend
     forward:
