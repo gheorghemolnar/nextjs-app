@@ -19,7 +19,7 @@
     "packageManager": "pnpm@7.15.0",
     "private": true,
     "scripts": {
-        "build": "turbo run build",
+        "build": "dotenv -- turbo run build",
         "check:pkg-stability": "manypkg check",
         "check:pkg-versions": "manypkg exec ncu",
         "clean": "find . -name node_modules -o -name .turbo -o -name .next -o -name dist -type d -prune | xargs rm -rf",
