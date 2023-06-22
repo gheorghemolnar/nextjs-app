@@ -24,7 +24,7 @@ web_build:
     - npm install -g pnpm
     - pnpm install
     - cp $SOURCE_DIR/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
-    - VITE_API_URL=https://rtidev.bigard.local/ pnpm run build
+    - VITE_API_URL=https://rtidev.bigard.local pnpm run build
  
 #######################################
 # Deploy Jobs
