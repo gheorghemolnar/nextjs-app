@@ -19,18 +19,11 @@ stages:
 web_build:
   image: node:18-alpine
   script:
-    - echo "## Build"
     - npm install -g pnpm
     - pnpm install
-    - mkdir $BUILD_DIR
     - cp $SOURCE_DIR/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - pnpm run build
-    - export MYPWD=$PWD
-    - echo $PWD
-    - test -e $BUILD_DIR
-    - cd $BUILD_DIR
-    - tar -cz --exclude="build" --exclude=".git*" -f ${MYPWD}/build/${APPLICATION_NAME}.tgz .
-
+ 
 #######################################
 # Deploy Jobs
 #######################################
