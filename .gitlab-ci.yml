@@ -3,7 +3,8 @@ include:
     file: 'static_web.yaml'
 
 variables:
-  DEPLOY_WHAT: front 
+  DEPLOY_WHAT: front
+  SRC_DIR: apps/backoffice
   BUILD_DIR: apps/backoffice/dist
 #Keywords exemple : front/middle/back/all
 
@@ -22,12 +23,11 @@ web_build:
     - npm install -g pnpm
     - pnpm install
     - mkdir $BUILD_DIR
-    - cp apps/backoffice/.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
+    - cp $SRC_DIR.env.$DEPLOY_TARGET_ENVIRONMENT $BUILD_DIR/.env
     - pnpm run build
     - export MYPWD=$PWD
     - echo $PWD
-    - pwd
-    - test -e $BUILD_DIR || mkdir $BUILD_DIR
+    - test -e $BUILD_DIR
     - cd $BUILD_DIR
     - tar -cz --exclude="build" --exclude=".git*" -f ${MYPWD}/build/${APPLICATION_NAME}.tgz .
 
@@ -52,5 +52,4 @@ deploy:
     - if: $CI_COMMIT_BRANCH == "dev" && $DEPLOY_TARGET_ENVIRONMENT == "dev"
     - if: ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "$CI_DEFAULT_BRANCH" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev" )  && $CI_PIPELINE_SOURCE == 'merge_request_event'
 
-      
 
