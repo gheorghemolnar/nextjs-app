@@ -15,7 +15,6 @@ stages:
   - release
   - deploy
 
-
 web_build:
   image: node:18-alpine
   script:
