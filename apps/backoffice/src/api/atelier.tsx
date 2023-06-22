@@ -1,3 +1,4 @@
+import { QueryPaginationParameters } from '@big/client';
 import { ATELIER_CREATE } from '@big/types';
 import { Schema_Atelier_Create_DTO } from '@big/validators';
 
@@ -5,11 +6,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { client, errorHandler, successHandler } from '.';
 
-export const useListAtelier = () => {
+export const useListAtelier = ({
+    pageIndex,
+    pageSize
+}: QueryPaginationParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['ateliers'],
+        queryKey : ['ateliers', { pageIndex, pageSize }],
         queryFn  : async () => {
-            return await client().ateliers.getAll();
+            return await client().ateliers.getAll({ pageIndex, pageSize });
         },
         onError: (error) => {
             errorHandler(error);
@@ -17,7 +21,7 @@ export const useListAtelier = () => {
     });
 
     return {
-        data: data ?? [],
+        data: data ?? { data: [], totalCount: -1 },
         isLoading,
         refetch,
         isError,
