@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const displayReactQueryDevtools = () => {
-    if (import.meta.env.NODE_ENV === 'development') {
+    if (import.meta.env.VITE_ENV === 'development') {
         return <ReactQueryDevtools />;
     }
 };
