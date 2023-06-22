@@ -2,12 +2,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import ControlsListing from './components/listing/controlesListing';
 import MainLayout from './layouts/MainLayout';
-import Ateliers from './pages/Ateliers/Ateliers';
+import Ateliers from './pages/Ateliers';
 import Controles from './pages/Controles/Controles';
 import ErrorPage from './pages/ErrorPage';
 import NoMatch from './pages/NoMatch';
 import Utilisateurs from './pages/Params/Utilisateurs';
-import Secteur from './pages/Secteurs/Secteurs';
+import Secteur from './pages/Secteur/Secteur';
+import Secteurs from './pages/Secteurs';
 import Welcome from './tmp/welcome';
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path    : 'params/ateliers',
                 element : <Ateliers />
+            },
+            {
+                path    : 'params/secteurs',
+                element : <Secteurs />
             },
             {
                 path    : 'params/secteurs',

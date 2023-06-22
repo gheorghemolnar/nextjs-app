@@ -1,4 +1,6 @@
 export function formatDate(dateInput: string | Date) {
+    if (!dateInput) return '';
+
     const dateNew = new Date(dateInput);
 
     if (!dateNew) return '--';
