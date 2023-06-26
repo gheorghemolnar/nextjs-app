@@ -1,7 +1,8 @@
-import clsx from 'clsx';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+
+import { cn } from '@big/ui';
 
 import Breadcrumbs from '@backoffice/components/breadcrumb';
 
@@ -20,7 +21,7 @@ const MainLayout = () => {
 
     return (
         <div
-            className={clsx({
+            className={cn({
                 //"grid bg-zinc-100 text-black min-h-screen": true,
                 //"grid bg-[#D0E3D5] text-black min-h-screen": true,
                 //"grid bg-[#FBF9CB] text-black min-h-screen": true,
