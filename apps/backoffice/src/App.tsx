@@ -1,54 +1,108 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider
+} from 'react-router-dom';
 
-import ControlsListing from './components/listing/controlesListing';
+//import ControlsListing from './components/listing/controlesListing';
 import MainLayout from './layouts/MainLayout';
-import Ateliers from './pages/Ateliers';
-import Controles from './pages/Controles/Controles';
+//import Ateliers from './pages/Ateliers';
+import Controles from './pages/Controles';
 import ErrorPage from './pages/ErrorPage';
-import NoMatch from './pages/NoMatch';
-import Utilisateurs from './pages/Params/Utilisateurs';
-import Secteur from './pages/Secteur/Secteur';
-import Secteurs from './pages/Secteurs';
+// import NoMatch from './pages/NoMatch';
+//import Utilisateurs from './pages/Params/Utilisateurs';
+import Secteur from './pages/Secteur';
+//import Secteurs from './pages/Secteurs';
 import Welcome from './tmp/welcome';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
+            <Route index element={<Welcome />} />
+            <Route path="controles/:typeControle" element={<Controles />}>
+                <Route path="secteurs/:secteurId" element={<Secteur />} />
+            </Route>
+        </Route>
+    )
+    /*    
     {
-        path         : '/',
         element      : <MainLayout />,
         errorElement : <ErrorPage />,
+        path         : '/',
         children     : [
             {
-                path    : '/',
-                element : <Welcome />
+                index   : true,
+                element : <Welcome />,
             },
             {
-                path    : 'controles/:controleId/secteur/:secteurId/liste',
-                element : <ControlsListing />
+                path     : 'controles/:typeControle',
+                element  : <Controles />,
+                children : [
+
+                    {
+                        index   : true,
+                        element : <div>LeagueStandings</div>,
+                    },
+
+                    {
+                        path    : "secteurs/:secteurId",
+                        element : <div>TEST TEST TESST</div>//<Secteur />,
+                    }
+                ],
             },
             {
-                path    : 'controles/:controleId/secteur/:secteurId',
-                element : <Secteur />
+                path    : 'controles/:typeControle/secteur/:secteurId/liste',
+                element : <ControlsListing />,
+            }, 
+            {
+                path    : 'controles/:typeControle/secteur/:secteurId',
+                element : <Secteur />,
             },
             {
-                path    : 'controles/:controleId/',
-                element : <Controles />
-                //loader: controlesLoader,
+                path     : '/controles',
+                element  : <div>CONTROLES LIST </div>,
+                children : [
+                    {
+                        path    : 'secteurs/:secteurId',
+                        element : <Secteur />,
+                    },
+                    {
+                        path    : ':typeControle',
+                        element : <Controles />,
+                        
+                         children: [{
+                                path    : 'secteurs/:secteurId',
+                                element : <Secteur />,
+            
+                            },
+                        ]
+                    },
+                ]
+            },
+             {
+                path     : 'controles/:typeControle',
+                element  : <Controles />,
+                //handle   : ({ crumb: (data: any) => { console.log("DATA>", data); return <Link to="controles/:typeControle">Controles</Link> } }),
+                children : [{
+                        path    : 'secteurs/:secteurId',
+                        element : <Secteur />,
+    
+                    },
+                ]
+            },
+
+            {
+                path    : '/params/ateliers',
+                element : <Ateliers />,
             },
             {
-                path    : 'params/ateliers',
-                element : <Ateliers />
+                path    : '/params/secteurs',
+                element : <Secteurs />,
             },
             {
-                path    : 'params/secteurs',
-                element : <Secteurs />
-            },
-            {
-                path    : 'params/secteurs',
-                element : <Utilisateurs />
-            },
-            {
-                path    : 'params/secteurs',
-                element : <Utilisateurs />
+                path    : '/params/utilisateurs',
+                element : <Utilisateurs />,
             },
             {
                 path    : '*',
@@ -56,7 +110,8 @@ const router = createBrowserRouter([
             }
         ]
     }
-]);
+*/
+);
 
 /*
 function App() {

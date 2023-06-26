@@ -154,7 +154,7 @@ const mesControles: MenuItem[] = [
         items : [
             {
                 name  : 'Matière',
-                link  : '/controles/matiere',
+                link  : '/controles/m',
                 badge : {
                     text  : '',
                     count : 43
@@ -163,7 +163,7 @@ const mesControles: MenuItem[] = [
             },
             {
                 name  : 'Nettoyage',
-                link  : '/controles/nettoyage',
+                link  : '/controles/n',
                 badge : {
                     text  : '',
                     count : 15
@@ -172,12 +172,12 @@ const mesControles: MenuItem[] = [
             },
             {
                 name : 'Sécurité',
-                link : '/controles/securite',
+                link : '/controles/s',
                 icon : <ShieldIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Réception',
-                link : '/controles/reception',
+                link : '/controles/r',
                 icon : <ConciergeBellIcon className="mr-2 h-4 w-4" />
             }
         ]
