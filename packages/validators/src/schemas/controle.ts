@@ -2,9 +2,9 @@ import z from 'zod';
 
 import { Schema_Photo_RO } from './photo';
 
-export const Schema_Control_Status = z.enum(['C', 'NC', 'NV']);
+export const Schema_Controle_Status = z.enum(['C', 'NC', 'NV']);
 
-export const Schema_Control_RO = z.object({
+export const Schema_Controle_RO = z.object({
     CodeAtelier : z.string(),
     CodeCont    : z.string(),
     CodeSecteur : z.string(),
@@ -23,10 +23,10 @@ export const Schema_Control_RO = z.object({
     LibCtrl     : z.string(),
     LibSecteur  : z.string(),
     Photos      : Schema_Photo_RO.nullable().optional(),
-    ResultCont  : Schema_Control_Status,
+    ResultCont  : Schema_Controle_Status,
     TypeGrille  : z.string()
 });
 
-export const Schema_Control_Edit_DTO = Schema_Control_RO.partial().extend({
+export const Schema_Controle_Edit_DTO = Schema_Controle_RO.partial().extend({
     id: z.number()
 });

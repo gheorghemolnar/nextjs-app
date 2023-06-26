@@ -1,19 +1,19 @@
-import { QueryPaginationParameters } from '@big/types';
-import { ATELIER_CREATE } from '@big/types';
-import { Schema_Atelier_Create_DTO } from '@big/validators';
+import { QueryPaginationParameters } from '@big/client';
+import { CONTROLE_EDIT } from '@big/types';
+import { Schema_Controle_Edit_DTO } from '@big/validators';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { client, errorHandler, successHandler } from '.';
 
-export const useListAtelier = ({
+export const useListControle = ({
     pageIndex,
     pageSize
 }: QueryPaginationParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['ateliers', { pageIndex, pageSize }],
+        queryKey : ['controles', { pageIndex, pageSize }],
         queryFn  : async () => {
-            return await client().ateliers.getAll({ pageIndex, pageSize });
+            return await client().controles.getAll({ pageIndex, pageSize });
         },
         onError: (error) => {
             errorHandler(error);
@@ -29,22 +29,22 @@ export const useListAtelier = ({
     };
 };
 
-export const useCreateAtelier = () => {
+export const useEditControle = () => {
     const { data, isLoading, isSuccess, mutateAsync, isError } = useMutation({
-        mutationKey : ['createAtelier'],
-        mutationFn  : async (dto: ATELIER_CREATE) => {
+        mutationKey : ['createControle'],
+        mutationFn  : async (dto: CONTROLE_EDIT) => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            const parsedDto = Schema_Atelier_Create_DTO.parse(dto);
-            return await client().ateliers.create(parsedDto);
+            const parsedDto = Schema_Controle_Edit_DTO.parse(dto);
+            return await client().controles.edit(parsedDto);
         },
         onError: (error) => {
             errorHandler(error);
         },
         onSuccess: async () => {
             await successHandler({
-                title       : 'Atelier créé',
-                description : "L'atelier a bien été créé",
-                queryKey    : ['ateliers']
+                title       : 'Contrôle mis à jour',
+                description : "L'contrôle a bien été mis à jour",
+                queryKey    : ['controles']
             });
         }
     });

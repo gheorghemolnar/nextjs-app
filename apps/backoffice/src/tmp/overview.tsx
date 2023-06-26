@@ -93,8 +93,8 @@ const data2 = [
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 export function Example1() {
     return (
-        <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={800} height={400}>
+        <ResponsiveContainer width="100%" height={350}>
+            <PieChart width={800} height={350}>
                 <Pie
                     data={data2}
                     cx={120}

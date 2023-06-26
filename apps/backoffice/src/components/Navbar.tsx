@@ -1,5 +1,6 @@
-import clsx from 'clsx';
 import { MenuIcon } from 'lucide-react';
+
+import { cn } from '@big/ui';
 type Properties = {
     /**
      * Allows the parent component to modify the state when the
@@ -10,7 +11,7 @@ type Properties = {
 const Navbar = (properties: Properties) => {
     return (
         <nav
-            className={clsx({
+            className={cn({
                 'bg-white text-zinc-500' : true, // colors
                 'flex items-center'      : true, // layout
                 'sm:hidden w-screen md:w-full sticky z-10 px-4 shadow-sm h-[73px] top-0 ':

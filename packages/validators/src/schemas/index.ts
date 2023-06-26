@@ -1,5 +1,5 @@
 export * from './atelier';
-export * from './control';
+export * from './controle';
 export * from './grille-groupe';
 export * from './grille-site';
 export * from './paramsite';
@@ -7,4 +7,5 @@ export * from './profil';
 export * from './secteur';
 export * from './site';
 export * from './societe';
+export * from './statistique-controle';
 export * from './utilisateur';

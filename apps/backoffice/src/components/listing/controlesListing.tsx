@@ -1,18 +1,18 @@
 import { Check, XIcon } from 'lucide-react';
 
-import { CONTROL, IResponseRO } from '@big/types';
+import { CONTROLE } from '@big/types';
 import { Button, cn } from '@big/ui';
-import { Schema_Control_Status } from '@big/validators';
+import { Schema_Controle_Status } from '@big/validators';
 
-import Listing from '@backoffice/components/listing/listing';
 import { formatDate } from '@backoffice/lib/utils';
-import { controlesData } from '@backoffice/tmp/data-controles';
+/* import Listing from '@backoffice/components/listing/listing';
+import { controlesData } from '@backoffice/tmp/data-controles'; */
 import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTableColumnHeader } from './components/data-table-column-header';
 import { DataTableRowActions } from './components/data-table-row-actions';
 
-async function getClientControls({
+/* async function getClientControls({
     siteId,
     pageIndex,
     pageSize
@@ -20,34 +20,32 @@ async function getClientControls({
     siteId: string;
     pageIndex: number;
     pageSize: number;
-}): Promise<IResponseRO<CONTROL>> {
+}): Promise<IResponseRO<CONTROLE>> {
     console.log({ siteId, pageIndex, pageSize });
-    /*  const response = await fetch(
-    `${URL_BASE}/api/controls/${siteId}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-  );
-  const result: IResponseRO<CONTROL> = await response.json(); */
+    //  const response = await fetch(`${URL_BASE}/api/controls/${siteId}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
+  const result: IResponseRO<CONTROLE> = await response.json();
     const result = controlesData;
     console.log('🚀Result >', result);
 
     return result;
-}
+} */
 
 export const statuses = [
     {
-        value : Schema_Control_Status.enum.C,
+        value : Schema_Controle_Status.enum.C,
         label : 'Conforme',
         icon  : Check,
         color : 'text-green-900'
     },
     {
-        value : Schema_Control_Status.enum.NC,
+        value : Schema_Controle_Status.enum.NC,
         label : 'NonConforme',
         icon  : XIcon,
         color : 'text-red-900'
     }
 ];
 
-export const columns: ColumnDef<CONTROL, any>[] = [
+export const columns: ColumnDef<CONTROLE, any>[] = [
     {
         accessorKey : 'DaHeCont',
         header      : ({ column }) => (
@@ -144,10 +142,13 @@ export const columns: ColumnDef<CONTROL, any>[] = [
                 Détails
             </div>
         ),
-        cell: ({ row, _table }) => {
+        cell: ({
+            row
+            //, _table
+        }) => {
             const rawPhotos =
                 row.original?.Photos ||
-                row.original.ResultCont === Schema_Control_Status.enum.NC;
+                row.original.ResultCont === Schema_Controle_Status.enum.NC;
 
             if (rawPhotos) {
                 //TODO: Activate it
@@ -211,12 +212,15 @@ export default function ControlsListing() {
           </p>
           */}
                 </div>
+                {/*
+                // !!! TEMPORARY !!!
                 <Listing
                     siteId="01"
                     columns={columns}
                     options={{ statuses }}
                     getData={getClientControls}
                 />
+                */}
             </section>
         </>
     );

@@ -1,24 +1,22 @@
 import axios, { AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 
+import { QueryPaginationParameters } from '@big/types';
 import { DEFAULT_TIMEOUT } from '@big/validators';
 
 import { atelierREST } from './atelier';
+import { controleREST } from './controle';
 import { grillegroupeREST } from './grillegroupe';
 import { paramsiteREST } from './paramsite';
 import { profilREST } from './profil';
 import { secteurREST } from './secteur';
 import { siteREST } from './site';
+import { statistiqueControleREST } from './statistique-controle';
 import { utilisateurREST } from './utilisateur';
 
 type Host = `https://${string}` | `http://${string}`;
 
 export const DEFAULT_PAGE_INDEX = 0;
 export const DEFAULT_PAGE_SIZE = 20;
-
-export interface QueryPaginationParameters {
-    pageIndex: number;
-    pageSize: number;
-}
 
 export enum ServerResponseHeaders {
     totalCount = 'x-total-count',
@@ -70,20 +68,26 @@ export const CLIENT_API = ({
     const ateliers = atelierREST<QueryPaginationParameters>({
         client: axiosClient
     });
+    const controles = controleREST({ client: axiosClient });
     const sites = siteREST({ client: axiosClient });
     const grillesgroupe = grillegroupeREST({ client: axiosClient });
     const paramsites = paramsiteREST({ client: axiosClient });
     const profils = profilREST({ client: axiosClient });
     const secteurs = secteurREST({ client: axiosClient });
+    const statistiquesControles = statistiqueControleREST({
+        client: axiosClient
+    });
     const utilisateurs = utilisateurREST({ client: axiosClient });
 
     return {
         ateliers,
+        controles,
         sites,
         grillesgroupe,
         paramsites,
         profils,
         secteurs,
+        statistiquesControles,
         utilisateurs
     };
 };
