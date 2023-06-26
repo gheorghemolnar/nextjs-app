@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
+import Breadcrumbs from '@backoffice/components/breadcrumb';
+
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 
@@ -41,6 +43,7 @@ const MainLayout = () => {
                         setShowSidebar((previous) => !previous)
                     }
                 />
+                <Breadcrumbs />
                 <Outlet />
             </div>
         </div>
