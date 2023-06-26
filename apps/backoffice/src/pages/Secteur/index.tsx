@@ -1,22 +1,17 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@big/client';
 import { STATISTIQUE_CONTROLE_SECTEUR, STATS_TOTAUX } from '@big/types';
-import { Card, CardContent, CardHeader, CardTitle } from '@big/ui';
+import { Card, CardContent, CardHeader, CardTitle, cn } from '@big/ui';
 
 import { useListStatistiqueControleByGrilleSecteur } from '@backoffice/api/statistique-controle';
 import { extractStats } from '@backoffice/lib/utils';
 
 export default function Secteur() {
-    const parameters = useParams();
-    // const location = useLocation();
-    // const pages = location.pathname.split('/');
+    const { typeControle, secteurId = '', atelierId = '' } = useParams();
 
-    const { typeControle, secteurId } = parameters;
     const sectorName = '';
     let ateliers: STATISTIQUE_CONTROLE_SECTEUR[] = [];
-
-    console.log('🚀 Secteur >:', { typeControle, secteurId });
 
     if (typeControle && secteurId) {
         const {
@@ -40,12 +35,12 @@ export default function Secteur() {
         <div className="grid grid-cols-1 gap-2 m-4">
             Mes Contrôles - {`${typeControle}`.toUpperCase()} - {sectorName} -
             ATELIERS
-            <div className="flex flex-column gap-4 m-2">
+            <div className="flex flex-column flex-wrap gap-4 m-2">
                 {ateliers?.length &&
                     ateliers.map(
                         (
                             {
-                                atelier: { libAtelier },
+                                atelier: { libAtelier, codeAtelier },
                                 nombreControle,
                                 statistiques
                             },
@@ -54,8 +49,16 @@ export default function Secteur() {
                             const stats: STATS_TOTAUX =
                                 extractStats(statistiques);
                             return (
-                                <Link key={index} to={`liste`}>
-                                    <Card>
+                                <Link
+                                    key={index}
+                                    to={`ateliers/${codeAtelier}`}
+                                >
+                                    <Card
+                                        className={cn({
+                                            'border-red-600':
+                                                atelierId === codeAtelier
+                                        })}
+                                    >
                                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                             <CardTitle className="text-sm font-medium">
                                                 {libAtelier}
@@ -65,12 +68,17 @@ export default function Secteur() {
                                             <div className="text-2xl font-bold">
                                                 <span
                                                     className={
-                                                        stats.NC > 0
+                                                        stats?.NC ||
+                                                        stats?.NV > 0
                                                             ? 'text-red-700'
                                                             : ''
                                                     }
                                                 >
-                                                    {stats.NC} NC
+                                                    {stats?.NC
+                                                        ? `${stats.NC} NC`
+                                                        : (stats.NV
+                                                        ? `${stats.NV} NV`
+                                                        : '--')}
                                                 </span>{' '}
                                                 / {nombreControle}
                                             </div>
@@ -84,6 +92,7 @@ export default function Secteur() {
                         }
                     )}
             </div>
+            <Outlet />
         </div>
     );
 }
