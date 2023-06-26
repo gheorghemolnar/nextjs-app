@@ -1,53 +1,68 @@
 import { Link, useParams } from 'react-router-dom';
 
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@big/client';
+import { STATISTIQUE_CONTROLE, STATS_TOTAUX } from '@big/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@big/ui';
 
-import { CONTROL_TYPES, getControles, SECTEUR } from '@backoffice/lib/data';
+import { useListStatistiqueControleByGrille } from '@backoffice/api/statistique-controle';
+import { extractStats } from '@backoffice/lib/utils';
 import { Example1, Overview } from '@backoffice/tmp/overview';
 
 function Controles() {
-    const parameters = useParams();
-    let secteurs: SECTEUR[] = [];
+    const { typeControle = '' } = useParams();
+    const {
+        data
+        //    isLoading, isSuccess, isError
+    } = useListStatistiqueControleByGrille({
+        typeControle,
+        pageIndex : DEFAULT_PAGE_INDEX,
+        pageSize  : DEFAULT_PAGE_SIZE
+    });
 
-    if (parameters?.controleId)
-        secteurs = getControles(parameters?.controleId as CONTROL_TYPES);
-
-    console.log(
-        '🚀 ~ file: Controles.tsx:14 ~ Controles ~ secteurs:',
-        secteurs
+    const secteurs: STATISTIQUE_CONTROLE[] = data.sort(
+        (a, b) => a.secteur.ordreAff - b.secteur.ordreAff
     );
+
+    console.log('🚀 Controles > Secteurs:', secteurs);
 
     return (
         <div className="grid grid-cols-1 gap-2 m-4">
-            Mes Contrôles - {`${parameters?.controleId}`.toUpperCase()} -
-            SECTEURS
+            Mes Contrôles - {`${typeControle}`.toUpperCase()} - SECTEURS
             <div className="flex flex-column gap-4 m-2">
                 {secteurs.map(
-                    ({ codeSecteur, name, nc, total, comm }, index) => {
+                    (
+                        {
+                            nombreControle,
+                            secteur: { libSecteur, codeSecteur },
+                            statistiques
+                        },
+                        index
+                    ) => {
+                        const stats: STATS_TOTAUX = extractStats(statistiques);
+
                         return (
-                            <Link
-                                key={index}
-                                to={`/controles/matiere/secteur/${codeSecteur}`}
-                            >
+                            <Link key={index} to={`secteurs/${codeSecteur}`}>
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
-                                            {name}
+                                            {libSecteur}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
                                         <div className="text-2xl font-bold">
                                             <span
                                                 className={
-                                                    nc > 0 ? 'text-red-700' : ''
+                                                    stats.NC > 0
+                                                        ? 'text-red-700'
+                                                        : ''
                                                 }
                                             >
-                                                {nc} NC
+                                                {stats.NC} NC
                                             </span>{' '}
-                                            / {total}
+                                            / {nombreControle}
                                         </div>
                                         <p className="text-xs text-muted-foreground">
-                                            {comm}
+                                            0.12%
                                         </p>
                                     </CardContent>
                                 </Card>
