@@ -1,5 +1,4 @@
 /* eslint-disable unicorn/prefer-logical-operator-over-ternary */
-import clsx from 'clsx';
 import {
     BarChart2Icon,
     BookOpen,
@@ -21,6 +20,7 @@ import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
+    cn,
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
@@ -57,7 +57,7 @@ const mesCommunications: MenuItem[] = [
         items : [
             {
                 name  : 'Communication PST Groupe',
-                link  : '/communication/pst-groupe',
+                link  : 'communication/pst-groupe',
                 badge : {
                     text  : '',
                     count : 3
@@ -66,7 +66,7 @@ const mesCommunications: MenuItem[] = [
             },
             {
                 name  : 'Communication PST Site',
-                link  : '/communication/pst-site',
+                link  : 'communication/pst-site',
                 badge : {
                     text  : '',
                     count : 8
@@ -75,7 +75,7 @@ const mesCommunications: MenuItem[] = [
             },
             {
                 name : 'Communication Atelier',
-                link : '/communication/atelier',
+                link : 'communication/atelier',
                 icon : <NfcIcon className="mr-2 h-4 w-4" />
             }
         ]
@@ -89,7 +89,7 @@ const mesRessourcesHumaine: MenuItem[] = [
         items : [
             {
                 name  : 'Accueil',
-                link  : '/rh/accueil',
+                link  : 'rh/accueil',
                 badge : {
                     text  : '',
                     count : 7
@@ -98,7 +98,7 @@ const mesRessourcesHumaine: MenuItem[] = [
             },
             {
                 name : 'Fiche de poste',
-                link : '/rh/fiche-poste',
+                link : 'rh/fiche-poste',
                 icon : <FileTextIcon className="mr-2 h-4 w-4" />
             },
             {
@@ -108,7 +108,7 @@ const mesRessourcesHumaine: MenuItem[] = [
             },
             {
                 name : 'Indicateurs RH',
-                link : '/rh/indicateurs-rh',
+                link : 'rh/indicateurs-rh',
                 icon : <BarChart2Icon className="mr-2 h-4 w-4" />
             }
         ]
@@ -122,7 +122,7 @@ const mesDocuments: MenuItem[] = [
         items : [
             {
                 name  : 'Cahiers des charges',
-                link  : '/mes-docs/cahiers-de-charges',
+                link  : 'mes-docs/cahiers-de-charges',
                 badge : {
                     text  : '',
                     count : 7
@@ -131,7 +131,7 @@ const mesDocuments: MenuItem[] = [
             },
             {
                 name  : 'Fiches techniques',
-                link  : '/mes-docs/fiches-techniques',
+                link  : 'mes-docs/fiches-techniques',
                 badge : {
                     text  : 'New',
                     count : 25
@@ -154,7 +154,7 @@ const mesControles: MenuItem[] = [
         items : [
             {
                 name  : 'Matière',
-                link  : '/controles/m',
+                link  : 'controles/m',
                 badge : {
                     text  : '',
                     count : 43
@@ -163,7 +163,7 @@ const mesControles: MenuItem[] = [
             },
             {
                 name  : 'Nettoyage',
-                link  : '/controles/n',
+                link  : 'controles/n',
                 badge : {
                     text  : '',
                     count : 15
@@ -172,12 +172,12 @@ const mesControles: MenuItem[] = [
             },
             {
                 name : 'Sécurité',
-                link : '/controles/s',
+                link : 'controles/s',
                 icon : <ShieldIcon className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Réception',
-                link : '/controles/r',
+                link : 'controles/r',
                 icon : <ConciergeBellIcon className="mr-2 h-4 w-4" />
             }
         ]
@@ -191,12 +191,12 @@ const administration: MenuItem[] = [
         items : [
             {
                 name : 'Ateliers',
-                link : '/params/ateliers',
+                link : 'params/ateliers',
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name  : 'Secteurs',
-                link  : '/params/secteurs',
+                link  : 'params/secteurs',
                 badge : {
                     text  : '',
                     count : 7
@@ -205,22 +205,22 @@ const administration: MenuItem[] = [
             },
             {
                 name : 'Utilisateurs',
-                link : '/params/utilisateurs',
+                link : 'params/utilisateurs',
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Profils',
-                link : '/params/profils',
+                link : 'params/profils',
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Param Sites',
-                link : '/params/paramssite',
+                link : 'params/paramssite',
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             },
             {
                 name : 'Grilles groupe',
-                link : '/params/grillesgroupe',
+                link : 'params/grillesgroupe',
                 icon : <LayoutGrid className="mr-2 h-4 w-4" />
             }
         ]
@@ -315,7 +315,7 @@ type Properties = {
 export function AccordionDemo({ collapsed }: Properties) {
     return (
         <div
-            className={clsx({
+            className={cn({
                 'my-2 flex flex-col gap-2' : true,
                 'items-stretch'            : !collapsed,
                 'items-center'             : collapsed
