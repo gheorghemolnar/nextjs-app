@@ -1,6 +1,9 @@
 import axios, { AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 
-import { QueryPaginationParameters } from '@big/types';
+import {
+    QueryControlesParameters,
+    QueryPaginationParameters
+} from '@big/types';
 import { DEFAULT_TIMEOUT } from '@big/validators';
 
 import { atelierREST } from './atelier';
@@ -68,7 +71,9 @@ export const CLIENT_API = ({
     const ateliers = atelierREST<QueryPaginationParameters>({
         client: axiosClient
     });
-    const controles = controleREST({ client: axiosClient });
+    const controles = controleREST<QueryControlesParameters>({
+        client: axiosClient
+    });
     const sites = siteREST({ client: axiosClient });
     const grillesgroupe = grillegroupeREST({ client: axiosClient });
     const paramsites = paramsiteREST({ client: axiosClient });

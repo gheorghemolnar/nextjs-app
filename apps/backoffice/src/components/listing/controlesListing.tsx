@@ -201,16 +201,16 @@ export default function ControlsListing() {
             <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
                 <div className="flex max-w-[1200px] flex-col items-start gap-2">
                     {/*           <h1 className="text-lg font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-1xl lg:text-2xl">
-            {site.siteLabel}
+                {site.siteLabel}
           </h1> */}
 
                     {/*
-          <p className="max-w-[700px] text-sm text-muted-foreground">
-            ID site : {siteId} / Code RH: {site.code_RH} / Code BG:{" "}
-            {site.code_BG}
-            &nbsp;
-          </p>
-          */}
+            <p className="max-w-[700px] text-sm text-muted-foreground">
+                ID site : {siteId} / Code RH: {site.code_RH} / Code BG:{" "}
+                {site.code_BG}
+                &nbsp;
+            </p>
+            */}
                 </div>
                 {/*
                 // !!! TEMPORARY !!!

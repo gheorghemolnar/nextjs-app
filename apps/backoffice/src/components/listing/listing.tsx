@@ -1,15 +1,22 @@
 import { LucideIcon } from 'lucide-react';
 
-import { CONTROL, CONTROL_STATUS, IResponseRO } from '@big/types';
+import { CONTROLE, CONTROLE_STATUS, IResponseRO } from '@big/types';
 
 import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTable } from './components/data-table';
 
+export interface TABLE_CONTROLE_STATUS {
+    value: CONTROLE_STATUS;
+    label: string;
+    icon: LucideIcon;
+    color: string;
+}
+
 type ListingProperties = {
-    columns: ColumnDef<CONTROL, any>[];
+    columns: ColumnDef<CONTROLE, any>[];
     siteId: string;
-    options: { statuses: TABLE_CONTROL_STATUS[] };
+    options: { statuses: TABLE_CONTROLE_STATUS[] };
     getData: <T>({
         siteId,
         pageIndex,
@@ -20,13 +27,6 @@ type ListingProperties = {
         pageSize: number;
     }) => Promise<IResponseRO<T>>;
 };
-
-export interface TABLE_CONTROL_STATUS {
-    value: CONTROL_STATUS;
-    label: string;
-    icon: LucideIcon;
-    color: string;
-}
 
 export default function Listing({
     columns,

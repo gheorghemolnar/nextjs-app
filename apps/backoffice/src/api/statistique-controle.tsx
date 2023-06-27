@@ -21,7 +21,7 @@ export const useListStatistiqueControleByGrille = ({
             return await client().statistiquesControles.getAllByGrilleType({
                 pageIndex,
                 pageSize,
-                typeControle
+                typeControle: typeControle.toUpperCase()
             });
         },
         onError: (error) => {
@@ -51,7 +51,7 @@ export const useListStatistiqueControleByGrilleSecteur = ({
         ],
         queryFn: async () => {
             return await client().statistiquesControles.getAllByGrilleTypeSecteur(
-                { pageIndex, pageSize, secteurId, typeControle }
+                { pageIndex, pageSize, typeControle, secteurId }
             );
         },
         onError: (error) => {
