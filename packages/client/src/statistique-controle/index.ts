@@ -22,11 +22,14 @@ export const statistiqueControleREST = ({
     const getAllByGrilleType = async (
         queryParameters: QueryStatsGrilleParameters
     ) => {
+        //const sQueryParameters = objectToString(queryParameters);
         const { typeControle, ...others } = queryParameters;
         const sQueryParameters = objectToString(others);
+
         const response = await client<STATISTIQUE_CONTROLE[]>({
             method : 'GET',
-            url    : `statistiquescontrole/typegrille/${typeControle.toUpperCase()}/secteurs?${sQueryParameters}`
+            url    : `/statistiquesentetescontroles/typegrille/${typeControle.toUpperCase()}/secteurs?${sQueryParameters}`
+            //url    : `statistiquescontrole/typegrille/${typeControle.toUpperCase()}/secteurs?${sQueryParameters}`
         });
 
         //Check if the response is valid
@@ -42,7 +45,7 @@ export const statistiqueControleREST = ({
         const sQueryParameters = objectToString(others);
         const response = await client<STATISTIQUE_CONTROLE_SECTEUR[]>({
             method : 'GET',
-            url    : `statistiquescontrole/typegrille/${typeControle.toUpperCase()}/secteurs/${secteurId}?${sQueryParameters}`
+            url    : `/statistiquesentetescontroles/typegrille/${typeControle.toUpperCase()}/secteurs/${secteurId}?${sQueryParameters}`
         });
 
         //Check if the response is valid

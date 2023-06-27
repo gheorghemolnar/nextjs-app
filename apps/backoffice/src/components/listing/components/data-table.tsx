@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IResponseRO } from '@big/types';
+/* import { IResponseRO } from '@big/types'; */
 import { Button } from '@big/ui';
 /* import { ControlDetails } from "@big/ui/rti/controlDetails"; */
 import { Skeleton } from '@big/ui';
@@ -13,8 +13,7 @@ import {
     TableRow
 } from '@big/ui';
 
-import { TABLE_CONTROL_STATUS } from '@backoffice/components/listing/listing';
-/* import { formatDate } from '@backoffice/lib/utils'; */
+import { TABLE_CONTROLE_STATUS } from '@backoffice/components/listing/listing';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
     ColumnDef,
@@ -44,17 +43,13 @@ const pageCountDefault = -1;
 
 interface DataTableProperties<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
-    options: { statuses: TABLE_CONTROL_STATUS[] };
-    getData: <T>(options: {
-        siteId: string;
-        pageIndex: number;
-        pageSize: number;
-    }) => Promise<IResponseRO<T>>;
-    siteId: string;
+    data: TData[];
+    options: { statuses: TABLE_CONTROLE_STATUS[] };
 }
 
 export function DataTable<TData, TValue>({
     columns,
+    data: dataFetched,
     options
 }: /*     siteId,
     getData, */
@@ -66,7 +61,7 @@ DataTableProperties<TData, TValue>) {
     /** Modal */
 
     /**  Pagination*/
-    const [dataFetched, _setDataFetched] = React.useState<IResponseRO<TData>>();
+    //const [dataFetched, setDataFetched] = React.useState<IResponseRO<TData>>();
 
     const [{ pageIndex, pageSize }, setPagination] =
         React.useState<PaginationState>({
@@ -89,10 +84,9 @@ DataTableProperties<TData, TValue>) {
     }, [pageIndex, pageSize]);
 
     React.useEffect(() => {
-        setIsLoading(true);
-
-        /* TODO: !!! TO REWORK !!!
-         const fetchData = async () => {
+        //setIsLoading(true);
+        //TODO: !!! TO REWORK !!!
+        /*  const fetchData = async () => {
             try {
                 const data = await getData<TData>({
                     siteId,
@@ -107,8 +101,7 @@ DataTableProperties<TData, TValue>) {
                 setIsLoading(false);
             }
         };
-        fetchData(); 
-    */
+        fetchData(); */
     }, [pageIndex, pageSize]);
 
     const pageCount = dataFetched?.numberOfRecords
@@ -116,7 +109,7 @@ DataTableProperties<TData, TValue>) {
         : pageCountDefault;
 
     /**  Pagination*/
-    const [isLoading, setIsLoading] = React.useState(true);
+    /* const [isLoading, setIsLoading] = React.useState(false); */
 
     const [rowSelection, setRowSelection] = React.useState({});
     const [columnVisibility, setColumnVisibility] =

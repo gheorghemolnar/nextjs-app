@@ -5,7 +5,7 @@ import {
     RouterProvider
 } from 'react-router-dom';
 
-import ControlsListing from './components/listing/controlesListing';
+import Listing from './components/listings';
 import MainLayout from './layouts/MainLayout';
 import Controles from './pages/Controles';
 import ErrorPage from './pages/ErrorPage';
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
                     <Route
                         path="ateliers/:atelierId"
                         handle="Atelier"
-                        element={<ControlsListing />}
+                        element={<Listing />}
                     />
                 </Route>
             </Route>

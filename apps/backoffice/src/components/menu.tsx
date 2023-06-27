@@ -256,7 +256,7 @@ function generateMenu(
                                                     return (
                                                         <Link
                                                             key={`${prefix}-${index}-${indexSec}`}
-                                                            className="flex gap-1"
+                                                            className="flex gap-1 items-center rounded-sm hover:bg-orange-300 hover:text-white"
                                                             to={item.link}
                                                         >
                                                             {item?.icon
@@ -290,7 +290,7 @@ function generateMenu(
                                     return (
                                         <Link
                                             key={`${prefix}-${index}-${indexSec}`}
-                                            className="flex gap-2"
+                                            className="flex items-center gap-2 rounded-sm hover:bg-orange-300 hover:text-white"
                                             to={item.link}
                                         >
                                             {item?.icon ? item.icon : ''}

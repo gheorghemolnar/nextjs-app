@@ -1,5 +1,4 @@
-import { QueryPaginationParameters } from '@big/client';
-import { CONTROLE_EDIT } from '@big/types';
+import { CONTROLE_EDIT, QueryControlesParameters } from '@big/types';
 import { Schema_Controle_Edit_DTO } from '@big/validators';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -7,13 +6,37 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { client, errorHandler, successHandler } from '.';
 
 export const useListControle = ({
+    typeGrille,
+    idSecteur,
+    idAtelier,
+    startPeriode,
+    endPeriode,
     pageIndex,
     pageSize
-}: QueryPaginationParameters) => {
+}: QueryControlesParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
-        queryKey : ['controles', { pageIndex, pageSize }],
-        queryFn  : async () => {
-            return await client().controles.getAll({ pageIndex, pageSize });
+        queryKey: [
+            'controles',
+            {
+                typeGrille,
+                idSecteur,
+                idAtelier,
+                startPeriode,
+                endPeriode,
+                pageIndex,
+                pageSize
+            }
+        ],
+        queryFn: async () => {
+            return await client().controles.getAll({
+                typeGrille,
+                idSecteur,
+                idAtelier,
+                startPeriode,
+                endPeriode,
+                pageIndex,
+                pageSize
+            });
         },
         onError: (error) => {
             errorHandler(error);
@@ -31,7 +54,7 @@ export const useListControle = ({
 
 export const useEditControle = () => {
     const { data, isLoading, isSuccess, mutateAsync, isError } = useMutation({
-        mutationKey : ['createControle'],
+        mutationKey : ['editControle'],
         mutationFn  : async (dto: CONTROLE_EDIT) => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
             const parsedDto = Schema_Controle_Edit_DTO.parse(dto);
@@ -50,8 +73,8 @@ export const useEditControle = () => {
     });
 
     return {
-        data  : data?.data ?? null,
-        count : data?.numberOfRecords ?? 0,
+        data: data?.data ?? null,
+        //count : data?.numberOfRecords ?? 0,
         isLoading,
         isSuccess,
         isError,

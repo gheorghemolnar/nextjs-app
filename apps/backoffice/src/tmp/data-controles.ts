@@ -1,6 +1,6 @@
-import { CONTROL, CONTROL_STATUS, IResponseRO } from '@big/types';
+import { CONTROLE, IResponseRO } from '@big/types';
 
-export const controlesData: IResponseRO<CONTROL> = {
+export const controlesData: IResponseRO<CONTROLE> = {
     status : '200',
     data   : [
         {
@@ -21,11 +21,11 @@ export const controlesData: IResponseRO<CONTROL> = {
             LibCtrl     : 'Contrôle dégrillage 6 mm',
             LibSecteur  : '1ère transformation Boeuf',
             Photos      : null,
-            ResultCont  : 'C' as CONTROL_STATUS,
+            ResultCont  : 'C',
             TypeGrille  : 'M'
         },
         {
-            CodeAtelier : '3.0',
+            CodeAtelier : '370',
             CodeCont    : '2023061608594134_eac9587dc6d344dc_13',
             CodeSecteur : '1',
             CreaQuand   : '2023-06-16T06:59:41.000Z',
