@@ -1,6 +1,5 @@
 import { Link, Outlet, useParams } from 'react-router-dom';
 
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@big/client';
 import { STATISTIQUE_CONTROLE, STATS_TOTAUX } from '@big/types';
 import { Card, CardContent, CardHeader, CardTitle, cn } from '@big/ui';
 
@@ -11,12 +10,14 @@ function Controles() {
     const { typeControle = '', secteurId = '' } = useParams();
     const { data, isLoading } = useListStatistiqueControleByGrille({
         typeControle,
-        pageIndex : DEFAULT_PAGE_INDEX,
-        pageSize  : DEFAULT_PAGE_SIZE
+        startPeriode : '2023-06-01T00:00:00.000Z',
+        endPeriode   : '2023-06-30T00:00:00.000Z'
     });
 
     const secteurs: STATISTIQUE_CONTROLE[] =
-        sortArrayByKey<STATISTIQUE_CONTROLE>(data, 'secteur.ordreAff');
+        (data?.length &&
+            sortArrayByKey<STATISTIQUE_CONTROLE>(data, 'secteur.ordreAff')) ||
+        [];
 
     console.log('🚀 Controles > Secteurs > isLoading >', isLoading);
 
@@ -24,7 +25,7 @@ function Controles() {
         <>
             {!secteurId && (
                 <div className="grid grid-cols-1 gap-2 m-4">
-                    Matière {`${typeControle}`.toUpperCase()} - SECTEURS
+                    <h1 className="font-bold pl-2">SECTEURS</h1>
                     <div className="flex flex-wrap gap-4 m-2">
                         {secteurs.map(
                             (

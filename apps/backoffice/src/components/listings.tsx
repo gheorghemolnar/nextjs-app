@@ -332,7 +332,6 @@ export default function Listing() {
         [pageIndex, pageSize]
     );
     const table = useReactTable({
-        //data      : controleDataTemporary,
         data      : dataQuery?.data ?? defaultData,
         columns,
         pageCount : dataQuery?.totalCount
@@ -352,16 +351,18 @@ export default function Listing() {
     });
 
     return (
-        <>
+        <div className="m-4 p-2">
             {isLoading ? <Loader2 /> : null}
             {
                 <>
+                    <h1 className="m-4 text-lg font-extrabold">Contrôles</h1>
                     <div
                         //className="m-4 p-3 bg-white rounded-md border border-slate-1600 hidden h-full flex-1 flex-col space-y-8 p-8 md:flex"
-                        className="m-4 p-4 bg-white rounded-md border border-slate-1600 hidden flex-1 flex-col space-y-6 md:flex"
+                        //className="m-4 p-4 bg-white rounded-md border border-slate-1600 hidden flex-1 flex-col space-y-6 md:flex"
+                        className="container bg-white h-[550px] w-full m-4 rounded-md border border-slate-1600 hidden flex-1 flex-col space-y-8 p-8 md:flex overflow-auto"
                     >
                         <Table>
-                            <TableHeader>
+                            <TableHeader className="sticky top-0">
                                 {table.getHeaderGroups().map((headerGroup) => (
                                     <TableRow key={headerGroup.id}>
                                         {headerGroup.headers.map((header) => {
@@ -369,7 +370,7 @@ export default function Listing() {
                                                 <TableHead
                                                     key={header.id}
                                                     colSpan={header.colSpan}
-                                                    className="h-12 px-2"
+                                                    className="h-12 px-2  bg-orange-200"
                                                 >
                                                     {header.isPlaceholder
                                                         ? null
@@ -415,6 +416,6 @@ export default function Listing() {
                     </div>
                 </>
             }
-        </>
+        </div>
     );
 }
