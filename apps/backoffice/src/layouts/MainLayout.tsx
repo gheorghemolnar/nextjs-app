@@ -14,24 +14,27 @@ const MainLayout = () => {
     const [showSidebar, setShowSidebar] = useState(true);
     const [URLSearchParameters] = useSearchParams();
 
-    let x = 'bg-brand1main';
+    let bagColor = 'bg-brand1main';
     if (URLSearchParameters.has('v') && URLSearchParameters.get('v') === '1') {
-        x = 'bg-brand2main';
+        bagColor = 'bg-brand2main';
     }
 
     return (
         <div
-            className={cn({
-                //"grid bg-zinc-100 text-black min-h-screen": true,
-                //"grid bg-[#D0E3D5] text-black min-h-screen": true,
-                //"grid bg-[#FBF9CB] text-black min-h-screen": true,
-                [x]                            : true,
-                'grid text-black min-h-screen' : true,
-                'grid-cols-sidebar'            : !collapsed,
-                'grid-cols-sidebar-collapsed'  : collapsed,
-                'transition-[grid-template-columns] duration-300 ease-in-out':
-                    true
-            })}
+            className={cn(
+                {
+                    //"grid bg-zinc-100 text-black min-h-screen": true,
+                    //"grid bg-[#D0E3D5] text-black min-h-screen": true,
+                    //"grid bg-[#FBF9CB] text-black min-h-screen": true,
+                    [bagColor]                     : true,
+                    'grid text-black min-h-screen' : true,
+                    'grid-cols-sidebar'            : !collapsed,
+                    'grid-cols-sidebar-collapsed'  : collapsed,
+                    'transition-[grid-template-columns] duration-300 ease-in-out':
+                        true
+                },
+                'h-full'
+            )}
         >
             <Sidebar
                 collapsed={collapsed}
@@ -44,6 +47,8 @@ const MainLayout = () => {
                         setShowSidebar((previous) => !previous)
                     }
                 />
+                {/*                 <div __className="grid grid-cols-1">
+                </div> */}
                 <Breadcrumbs />
                 <Outlet />
             </div>

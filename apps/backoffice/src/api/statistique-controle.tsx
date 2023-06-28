@@ -8,20 +8,20 @@ import { useQuery } from '@tanstack/react-query';
 import { client, errorHandler } from '.';
 
 export const useListStatistiqueControleByGrille = ({
-    pageIndex,
-    pageSize,
-    typeControle
+    typeControle,
+    startPeriode,
+    endPeriode
 }: QueryStatsGrilleParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
         queryKey: [
             'statistiquesControlesGrille',
-            { pageIndex, pageSize, typeControle }
+            { typeControle, startPeriode, endPeriode }
         ],
         queryFn: async () => {
             return await client().statistiquesControles.getAllByGrilleType({
-                pageIndex,
-                pageSize,
-                typeControle: typeControle.toUpperCase()
+                typeControle: typeControle.toUpperCase(),
+                startPeriode,
+                endPeriode
             });
         },
         onError: (error) => {
@@ -39,19 +39,19 @@ export const useListStatistiqueControleByGrille = ({
 };
 
 export const useListStatistiqueControleByGrilleSecteur = ({
-    pageIndex,
-    pageSize,
     secteurId,
-    typeControle
+    typeControle,
+    startPeriode,
+    endPeriode
 }: QueryStatsSecteurParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
         queryKey: [
             'statistiquesControlesGrilleSecteur',
-            { pageIndex, pageSize, typeControle, secteurId }
+            { typeControle, secteurId }
         ],
         queryFn: async () => {
             return await client().statistiquesControles.getAllByGrilleTypeSecteur(
-                { pageIndex, pageSize, typeControle, secteurId }
+                { typeControle, secteurId, startPeriode, endPeriode }
             );
         },
         onError: (error) => {

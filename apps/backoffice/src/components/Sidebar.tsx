@@ -5,6 +5,8 @@ import { cn } from '@big/ui';
 
 import { AccordionDemo } from '@backoffice/components/menu';
 
+import { DebugSizeIndicator } from './debug-size';
+
 type NavItem = {
     label: string;
     href: string;
@@ -29,9 +31,9 @@ const Sidebar = ({
 
     const [URLSearchParameters] = useSearchParams();
 
-    let x = 'bg-brand1sidebar';
+    let bgColor = 'bg-brand1sidebar';
     if (URLSearchParameters.has('v') && URLSearchParameters.get('v') === '1') {
-        x = 'bg-brand2sidebar';
+        bgColor = 'bg-brand2sidebar';
     }
     const navigation = useNavigate();
 
@@ -41,7 +43,7 @@ const Sidebar = ({
                 //"bg-red-700 text-zinc-50 fixed md:static md:translate-x-0 z-20": false,
                 // "bg-[#D0E3D5]": true,
                 //"bg-[#89B5B8]": true,
-                [x]                                       : true,
+                [bgColor]                                 : true,
                 'fixed md:static md:translate-x-0 z-20'   : true,
                 'transition-all duration-300 ease-in-out' : true,
                 'w-[300px]'                               : !collapsed,
@@ -135,6 +137,7 @@ const Sidebar = ({
                                         View Profile
                                     </Link>
                                 */}
+                                <DebugSizeIndicator />
                             </div>
                         )}
                     </div>
