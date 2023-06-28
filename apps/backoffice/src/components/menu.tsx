@@ -283,7 +283,7 @@ function generateMenu(
                     </div>
                 </CollapsibleTrigger>
                 {!collapsed && (
-                    <CollapsibleContent className="hidden sm:block grid grid-cols-1 gap-y-1 ml-3">
+                    <CollapsibleContent className="sm:block md:grid grid-cols-1 gap-y-1 ml-3">
                         {section.items &&
                             section.items.map(
                                 (item: MenuSecItem, indexSec: number) => {
