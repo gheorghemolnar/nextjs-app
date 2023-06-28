@@ -21,6 +21,12 @@ type Host = `https://${string}` | `http://${string}`;
 export const DEFAULT_PAGE_INDEX = 0;
 export const DEFAULT_PAGE_SIZE = 20;
 
+export const APP_ID = 'RTI_BO';
+
+export enum ServerRequestHeaders {
+    appId = 'x-app-id'
+}
+
 export enum ServerResponseHeaders {
     totalCount = 'x-total-count',
     serverErrorCode = 'x-error-code'
@@ -67,6 +73,10 @@ export const CLIENT_API = ({
 
     const url = `${host}`;
     const axiosClient = axios.create({ baseURL: url, timeout });
+    axiosClient.interceptors.request.use(function (config) {
+        //config.headers[ServerRequestHeaders.appId] = APP_ID
+        return config;
+    });
 
     const ateliers = atelierREST<QueryPaginationParameters>({
         client: axiosClient
