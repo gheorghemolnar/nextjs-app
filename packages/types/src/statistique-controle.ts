@@ -6,7 +6,7 @@ import {
     Schema_StatistiqueControleSecteur_RO
 } from '@big/validators';
 
-import { CONTROLE_STATUS, QueryPaginationParameters } from '.';
+import { CONTROLE_STATUS } from '.';
 
 export type STATISTIQUE_CONTROLE = z.infer<
     typeof Schema_StatistiqueControle_RO
@@ -17,8 +17,10 @@ export type STATISTIQUE_CONTROLE_SECTEUR = z.infer<
 
 export type STATISTIQUE_TOTAUX = z.infer<typeof Schema_Statistique_Totaux>;
 
-export type QueryStatsGrilleParameters = QueryPaginationParameters & {
+export type QueryStatsGrilleParameters = {
     typeControle: string;
+    startPeriode: string;
+    endPeriode: string;
 };
 export type QueryStatsSecteurParameters = QueryStatsGrilleParameters & {
     secteurId: string;
