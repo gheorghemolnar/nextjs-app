@@ -74,7 +74,7 @@ export const CLIENT_API = ({
     const url = `${host}`;
     const axiosClient = axios.create({ baseURL: url, timeout });
     axiosClient.interceptors.request.use(function (config) {
-        //config.headers[ServerRequestHeaders.appId] = APP_ID
+        config.headers[ServerRequestHeaders.appId] = APP_ID;
         return config;
     });
 
