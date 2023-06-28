@@ -32,7 +32,7 @@ const router = createBrowserRouter(
             >
                 <Route
                     path="secteurs/:secteurId"
-                    handle="Secteur"
+                    handle={{ paramName: 'secteurId' }}
                     element={<Secteur />}
                 >
                     <Route
