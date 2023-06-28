@@ -4,6 +4,14 @@ import React from 'react';
 
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@big/client';
 import { SECTEUR } from '@big/types';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow
+} from '@big/ui';
 
 import { useListSecteur } from '@backoffice/api/secteur';
 import {
@@ -182,16 +190,20 @@ export default function Secteurs() {
             {isLoading ? <Loader2 /> : null}
             {
                 <>
-                    <div className="m-4 p-3 rounded-md border border-slate-1600 hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-                        <table>
-                            <thead>
+                    <div
+                        //className="m-4 rounded-md border border-slate-1600 hidden h-full flex-1 flex-col space-y-8 p-8 md:flex"
+                        className="container bg-white h-[500px] w-full m-4 rounded-md border border-slate-1600 hidden flex-1 flex-col space-y-8 p-8 md:flex overflow-auto"
+                    >
+                        <Table>
+                            <TableHeader>
                                 {table.getHeaderGroups().map((headerGroup) => (
-                                    <tr key={headerGroup.id}>
+                                    <TableRow key={headerGroup.id}>
                                         {headerGroup.headers.map((header) => {
                                             return (
-                                                <th
+                                                <TableHead
                                                     key={header.id}
                                                     colSpan={header.colSpan}
+                                                    className="h-12 px-2"
                                                 >
                                                     {header.isPlaceholder ? null : (
                                                         <div>
@@ -203,37 +215,40 @@ export default function Secteurs() {
                                                             )}
                                                         </div>
                                                     )}
-                                                </th>
+                                                </TableHead>
                                             );
                                         })}
-                                    </tr>
+                                    </TableRow>
                                 ))}
-                            </thead>
-                            <tbody>
+                            </TableHeader>
+                            <TableBody>
                                 {table.getRowModel().rows.map((row) => {
                                     return (
-                                        <tr key={row.id}>
+                                        <TableRow key={row.id}>
                                             {row
                                                 .getVisibleCells()
                                                 .map((cell) => {
                                                     return (
-                                                        <td key={cell.id}>
+                                                        <TableCell
+                                                            key={cell.id}
+                                                            className="p-1"
+                                                        >
                                                             {flexRender(
                                                                 cell.column
                                                                     .columnDef
                                                                     .cell,
                                                                 cell.getContext()
                                                             )}
-                                                        </td>
+                                                        </TableCell>
                                                     );
                                                 })}
-                                        </tr>
+                                        </TableRow>
                                     );
                                 })}
-                            </tbody>
-                        </table>
+                            </TableBody>
+                        </Table>
+                        <TablePagination table={table} />
                     </div>
-                    <TablePagination table={table} />
                 </>
             }
         </div>
