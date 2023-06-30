@@ -10,7 +10,8 @@ import { client, errorHandler } from '.';
 export const useListStatistiqueControleByGrille = ({
     typeControle,
     startPeriode,
-    endPeriode
+    endPeriode,
+    resultatCtrl
 }: QueryStatsGrilleParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
         queryKey: [
@@ -21,7 +22,8 @@ export const useListStatistiqueControleByGrille = ({
             return await client().statistiquesControles.getAllByGrilleType({
                 typeControle: typeControle.toUpperCase(),
                 startPeriode,
-                endPeriode
+                endPeriode,
+                resultatCtrl
             });
         },
         onError: (error) => {
@@ -39,19 +41,26 @@ export const useListStatistiqueControleByGrille = ({
 };
 
 export const useListStatistiqueControleByGrilleSecteur = ({
-    secteurId,
+    idSecteur,
     typeControle,
     startPeriode,
-    endPeriode
+    endPeriode,
+    resultatCtrl
 }: QueryStatsSecteurParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
         queryKey: [
             'statistiquesControlesGrilleSecteur',
-            { typeControle, secteurId }
+            { typeControle, idSecteur }
         ],
         queryFn: async () => {
             return await client().statistiquesControles.getAllByGrilleTypeSecteur(
-                { typeControle, secteurId, startPeriode, endPeriode }
+                {
+                    typeControle,
+                    idSecteur,
+                    startPeriode,
+                    endPeriode,
+                    resultatCtrl
+                }
             );
         },
         onError: (error) => {

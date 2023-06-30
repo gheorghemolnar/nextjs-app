@@ -19,4 +19,5 @@ export type QueryControlesParameters = QueryPaginationParameters & {
     idAtelier?: string;
     startPeriode?: string;
     endPeriode?: string;
+    resultatCtrl?: string;
 };

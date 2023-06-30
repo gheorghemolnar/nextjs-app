@@ -21,9 +21,10 @@ export type QueryStatsGrilleParameters = {
     typeControle: string;
     startPeriode: string;
     endPeriode: string;
+    resultatCtrl: string;
 };
 export type QueryStatsSecteurParameters = QueryStatsGrilleParameters & {
-    secteurId: string;
+    idSecteur: string;
 };
 
 export type STATS_TOTAUX = {

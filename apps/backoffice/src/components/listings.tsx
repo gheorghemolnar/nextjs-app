@@ -1,7 +1,7 @@
 import { EditIcon, EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react';
 import { Check, X } from 'lucide-react';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@big/client';
 import { CONTROLE } from '@big/types';
@@ -25,7 +25,7 @@ import {
 } from '@big/ui';
 import { Schema_Controle_Status } from '@big/validators';
 
-import { useListControle } from '@backoffice/api/controle';
+import { useGetByIdControle, useListControle } from '@backoffice/api/controle';
 import { formatDate } from '@backoffice/lib/utils';
 import {
     ColumnDef,
@@ -38,6 +38,7 @@ import {
     useReactTable
 } from '@tanstack/react-table';
 
+import { ControleForm } from './forms/controle';
 import { SortableColumn, TablePagination } from './commons';
 
 export const statuses = [
@@ -62,7 +63,12 @@ export const statuses = [
 ];
 
 export default function Listing() {
-    const { typeControle = '', secteurId = '', atelierId = '' } = useParams();
+    const startPeriode = '2023-06-01T00:00:00.000Z';
+    const endPeriode = '2023-06-30T00:00:00.000Z';
+    const [searchParameters] = useSearchParams();
+    const { resultatCtrl } = Object.fromEntries(searchParameters);
+
+    const { typeControle = '', idSecteur = '', idAtelier = '' } = useParams();
     const [{ pageIndex, pageSize }, setPagination] =
         React.useState<PaginationState>({
             pageIndex : DEFAULT_PAGE_INDEX,
@@ -76,12 +82,14 @@ export default function Listing() {
         isSuccess,
         isError
     } = useListControle({
-        typeGrille : typeControle.toUpperCase(),
-        idSecteur  : secteurId,
-        idAtelier  : atelierId,
-        //startPeriode: "2023-06-01T00:00:00", endPeriode: "2023-06-30T00:00:00",
+        typeGrille: typeControle.toUpperCase(),
+        idSecteur,
+        idAtelier,
         pageIndex,
-        pageSize
+        pageSize,
+        startPeriode,
+        endPeriode,
+        resultatCtrl
     });
     console.log({ isLoading, isSuccess, isError, dataQuery });
 
@@ -113,7 +121,8 @@ export default function Listing() {
                 ),
                 cell: ({ row }) => {
                     const cellValue =
-                        row.original.grilleSite.paramSite.secteur.libSecteur;
+                        row.original.grilleSite.enteteGrilleSite.paramSite
+                            .secteur.libSecteur;
                     return (
                         <div className="flex space-x-2">
                             <span className="max-w-[500px] truncate">
@@ -132,7 +141,8 @@ export default function Listing() {
                 ),
                 cell: ({ row }) => {
                     const cellValue =
-                        row.original.grilleSite.paramSite.atelier.libAtelier;
+                        row.original.grilleSite.enteteGrilleSite.paramSite
+                            .atelier.libAtelier ?? '';
                     return (
                         <div className="flex space-x-2">
                             <span className="max-w-[500px] truncate">
@@ -215,7 +225,7 @@ export default function Listing() {
             {
                 id     : 'actions',
                 header : () => <div className="text-center">Actions</div>,
-                cell   : () => {
+                cell   : ({ row }) => {
                     return (
                         <div className="flex items-center px-3 justify-center">
                             <Dialog>
@@ -228,44 +238,9 @@ export default function Listing() {
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="sm:max-w-[625px] lg:max-w-[840px]">
-                                    <DialogHeader>
-                                        <DialogTitle>
-                                            Détails Contrôle
-                                        </DialogTitle>
-                                        <DialogDescription>
-                                            Contrôle{' '}
-                                            <span className="font-bold">
-                                                Matière
-                                            </span>{' '}
-                                            / Secteur{' '}
-                                            <span className="font-bold">
-                                                1ère Tranformation Boeuf
-                                            </span>{' '}
-                                            / Atelier{' '}
-                                            <span className="font-bold">
-                                                Mise en quartier
-                                            </span>{' '}
-                                            <br /> du 28/06/2023 à 04:30, par
-                                            Titi Dupont.
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="rounded-md p-6">
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <img src="/assets/pic01.jpg" />
-                                            <img src="/assets/pic02.jpg" />
-                                        </div>
-
-                                        <div>
-                                            <p className="text-extra-bold">
-                                                Commentaire:
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                Le commentaires du contrôles non
-                                                conforme /vu seront affichés
-                                                ici.
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <ReadDialog
+                                        controleId={row.original.idControle}
+                                    />
                                 </DialogContent>
                             </Dialog>
                             <Dialog>
@@ -278,40 +253,9 @@ export default function Listing() {
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="sm:max-w-[625px]">
-                                    <DialogHeader>
-                                        <DialogTitle>
-                                            Edition Contrôle
-                                        </DialogTitle>
-                                        <DialogDescription>
-                                            Contrôle{' '}
-                                            <span className="font-bold">
-                                                Matière
-                                            </span>{' '}
-                                            / Secteur{' '}
-                                            <span className="font-bold">
-                                                1ère Tranformation Boeuf
-                                            </span>{' '}
-                                            / Atelier{' '}
-                                            <span className="font-bold">
-                                                Mise en quartier
-                                            </span>{' '}
-                                            <br /> du 28/06/2023 à 04:30, par
-                                            Titi Dupont.
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="rounded-md p-6">
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <label htmlFor="commCont">
-                                                Commentaire
-                                            </label>
-                                            <input id="CommCont" />
-
-                                            <label htmlFor="resultContcommCont">
-                                                Résultat
-                                            </label>
-                                            <input id="resultCont" />
-                                        </div>
-                                    </div>
+                                    <EditDialog
+                                        controleId={row.original.idControle}
+                                    />
                                 </DialogContent>
                             </Dialog>
                         </div>
@@ -352,7 +296,9 @@ export default function Listing() {
 
     return (
         <div className="m-4 p-2">
-            {isLoading ? <Loader2 /> : null}
+            {isLoading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : null}
             {
                 <>
                     <h1 className="m-4 text-lg font-extrabold">Contrôles</h1>
@@ -417,5 +363,103 @@ export default function Listing() {
                 </>
             }
         </div>
+    );
+}
+
+export function Loader({ className }: { className?: string }) {
+    return (
+        <DialogHeader>
+            <DialogTitle>Chargement ...</DialogTitle>
+            <DialogDescription
+                className={cn('mx-auto flex items-center', className)}
+            >
+                <Loader2 className="mr-2 h-8 w-8 animate-spin text-brand" />
+            </DialogDescription>
+        </DialogHeader>
+    );
+}
+
+export function ReadDialog({ controleId }: EditProperties) {
+    const { isLoading, isError, data } = useGetByIdControle(controleId);
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const controle = data?.data ?? {};
+    console.log('DialogRead >', { isLoading, isError, controle });
+
+    if (!controle) return null;
+
+    return (
+        <>
+            <DialogHeader>
+                <DialogTitle className={cn({ 'bg-orange-100 p-2': true })}>
+                    Détails Contrôle
+                </DialogTitle>
+                <DialogDescription>
+                    Contrôle <span className="font-bold">Matière</span> /
+                    Secteur{' '}
+                    <span className="font-bold">1ère Tranformation Boeuf</span>{' '}
+                    / Atelier{' '}
+                    <span className="font-bold">Mise en quartier</span> <br />{' '}
+                    du 28/06/2023 à 04:30, par Titi Dupont.
+                </DialogDescription>
+            </DialogHeader>
+            <div className="rounded-md p-6">
+                <div className="grid grid-cols-2 gap-3">
+                    <img src="/assets/pic01.jpg" />
+                    <img src="/assets/pic02.jpg" />
+                </div>
+                <div>
+                    <p className="text-extra-bold">Commentaire:</p>
+                    <p className="text-sm text-muted-foreground">
+                        Le commentaires du contrôles non conforme /vu seront
+                        affichés ici.
+                    </p>
+                </div>
+            </div>
+        </>
+    );
+}
+
+type EditProperties = {
+    controleId: number;
+};
+
+export function EditDialog({ controleId }: EditProperties) {
+    const { isLoading, isError, data } = useGetByIdControle(controleId);
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const controle = data?.data ?? null;
+    console.log('DialogEdit >', { isLoading, isError, controle });
+    if (!controle) {
+        return null;
+    }
+
+    return (
+        <>
+            <DialogHeader>
+                <DialogTitle className="bg-orange-100 p-2">
+                    Edition Contrôle
+                </DialogTitle>
+                <DialogDescription>
+                    Contrôle <span className="font-bold">Matière</span> /
+                    Secteur{' '}
+                    <span className="font-bold">1ère Tranformation Boeuf</span>{' '}
+                    / Atelier{' '}
+                    <span className="font-bold">Mise en quartier</span> <br />{' '}
+                    du 28/06/2023 à 04:30, par Titi Dupont.
+                </DialogDescription>
+            </DialogHeader>
+            <div className="rounded-md p-6">
+                <div className="grid grid-cols-1 gap-3">
+                    <ControleForm controle={controle} />
+                </div>
+            </div>
+        </>
     );
 }

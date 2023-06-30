@@ -1,5 +1,4 @@
-import { CONTROLE_EDIT, QueryControlesParameters } from '@big/types';
-import { Schema_Controle_Edit_DTO } from '@big/validators';
+import { QueryControlesParameters } from '@big/types';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -12,7 +11,8 @@ export const useListControle = ({
     startPeriode,
     endPeriode,
     pageIndex,
-    pageSize
+    pageSize,
+    resultatCtrl
 }: QueryControlesParameters) => {
     const { data, isLoading, refetch, isSuccess, isError } = useQuery({
         queryKey: [
@@ -24,7 +24,8 @@ export const useListControle = ({
                 startPeriode,
                 endPeriode,
                 pageIndex,
-                pageSize
+                pageSize,
+                resultatCtrl
             }
         ],
         queryFn: async () => {
@@ -35,7 +36,8 @@ export const useListControle = ({
                 startPeriode,
                 endPeriode,
                 pageIndex,
-                pageSize
+                pageSize,
+                resultatCtrl
             });
         },
         onError: (error) => {
@@ -52,13 +54,17 @@ export const useListControle = ({
     };
 };
 
-export const useEditControle = () => {
+type CONTROLE_EDIT_NEW = {
+    path: string;
+    op: string;
+    value: string;
+};
+export const useEditControle = (idControle: number) => {
     const { data, isLoading, isSuccess, mutateAsync, isError } = useMutation({
-        mutationKey : ['editControle'],
-        mutationFn  : async (dto: CONTROLE_EDIT) => {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            const parsedDto = Schema_Controle_Edit_DTO.parse(dto);
-            return await client().controles.edit(parsedDto);
+        mutationKey : ['editControle', { idControle }],
+        mutationFn  : async (dto: CONTROLE_EDIT_NEW[]) => {
+            //const parsedDto = Schema_Controle_Edit_DTO.parse(dto);
+            return await client().controles.edit(idControle, dto);
         },
         onError: (error) => {
             errorHandler(error);
@@ -66,18 +72,44 @@ export const useEditControle = () => {
         onSuccess: async () => {
             await successHandler({
                 title       : 'Contrôle mis à jour',
-                description : "L'contrôle a bien été mis à jour",
+                description : 'Le contrôle a bien été mis à jour',
                 queryKey    : ['controles']
             });
-        }
+        },
+        cacheTime: 0
     });
 
     return {
-        data: data?.data ?? null,
-        //count : data?.numberOfRecords ?? 0,
+        data: data ?? null,
         isLoading,
         isSuccess,
         isError,
         mutateAsync
+    };
+};
+
+export const useGetByIdControle = (idControle: number) => {
+    const { data, isLoading, refetch, isSuccess, isError } = useQuery({
+        queryKey: [
+            'controles',
+            {
+                idControle
+            }
+        ],
+        queryFn: async () => {
+            return await client().controles.getById(idControle);
+        },
+        onError: (error) => {
+            errorHandler(error);
+        },
+        cacheTime: 0
+    });
+
+    return {
+        data: data ?? { data: null },
+        isLoading,
+        refetch,
+        isError,
+        isSuccess
     };
 };

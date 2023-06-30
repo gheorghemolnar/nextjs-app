@@ -187,7 +187,9 @@ export default function Secteurs() {
     return (
         <div className="m-4 p-2">
             <h1 className="m-4 text-lg font-extrabold">Secteurs</h1>
-            {isLoading ? <Loader2 /> : null}
+            {isLoading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : null}
             {
                 <>
                     <div

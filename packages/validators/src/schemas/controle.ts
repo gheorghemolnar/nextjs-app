@@ -4,28 +4,7 @@ import z from 'zod';
 
 export const Schema_Controle_Status = z.enum(['C', 'NC', 'NV']);
 
-/* export const Schema_Controle_RO = z.object({
-    CodeAtelier : z.string(),
-    CodeCont    : z.string(),
-    CodeSecteur : z.string(),
-    CommCont    : z.string().optional(),
-    CreaQuand   : z.string(),
-    CreaQui     : z.string(),
-    DaHeCont    : z.string(),
-    DescCtrl    : z.string().optional(),
-    IdAtelier   : z.number(),
-    IdControle  : z.number(),
-    IdGrilleGr  : z.number(),
-    IdGrilleSit : z.number(),
-    IdParc      : z.number(),
-    IdSecteur   : z.number(),
-    LibAtelier  : z.string(),
-    LibCtrl     : z.string(),
-    LibSecteur  : z.string(),
-    Photos      : Schema_Photo_RO.nullable().optional(),
-    ResultCont  : Schema_Controle_Status,
-    TypeGrille  : z.string()
-}); */
+export const Schema_Type_Grille = z.enum(['M', 'N', 'S', 'R']);
 
 export const Schema_Controle_Atelier = z.object({
     codeAtelier : z.string(),
@@ -40,10 +19,60 @@ export const Schema_Controle_Secteur = z.object({
 });
 
 const Schema_Controle_GrilleGroupe = z.object({
-    idGrilleGr : z.number(),
-    // typeGrille : z.string(), TMP
-    libCtrl    : z.string(),
-    descCtrl   : z.string().nullable()
+    idGrilleGr   : z.number(),
+    codeGrilleGr : z.string(),
+    libCtrl      : z.string(),
+    descCtrl     : z.string().nullable(),
+    creaQuand    : z.string().nullable(),
+    creaQui      : z.string().nullable(),
+    modifQuand   : z.string().nullable(),
+    modifQui     : z.string().nullable(),
+    annuQuand    : z.string().nullable(),
+    annuQui      : z.string().nullable()
+});
+
+const Schema_Controle_EnteteGrilleSite = z.object({
+    idGrilEntSit     : z.number(),
+    codeGrilleEntSit : z.string(),
+    libGrilleEntSit  : z.string(),
+    descGrilleEntSit : z.string(),
+    creaQuand        : z.string().nullable(),
+    creaQui          : z.string().nullable(),
+    modifQuand       : z.string().nullable(),
+    modifQui         : z.string().nullable(),
+    annuQuand        : z.string().nullable(),
+    annuQui          : z.string().nullable(),
+    ordreAff         : z.number(),
+    mails            : z.string().nullable(),
+    idTypeGrille     : z.number(),
+    typeGrille       : z.object({
+        idTypeGrille   : z.number(),
+        codeTypeGrille : Schema_Type_Grille,
+        libTypeGrille  : z.string(),
+        creaQuand      : z.string().nullable(),
+        creaQui        : z.string().nullable(),
+        modifQuand     : z.string().nullable(),
+        modifQui       : z.string().nullable(),
+        annuQuand      : z.string().nullable(),
+        annuQui        : z.string().nullable(),
+        ordreAff       : z.number()
+    }),
+    idParamSite : z.number(),
+    paramSite   : z.object({
+        idParamSite : z.number().positive(),
+        idAtelier   : z.number().positive(),
+        idSecteur   : z.number().positive(),
+        idSite      : z.number(),
+        site        : z.object({}).nullable(),
+        atelier     : Schema_Controle_Atelier,
+        secteur     : Schema_Controle_Secteur
+    }),
+    idPeriodicite : z.number(),
+    periodicite   : z.string().nullable(),
+    idTypeBloc    : z.number(),
+    typeBloc      : z.string().nullable(),
+    idParc        : z.number(),
+    parc          : z.string().nullable()
 });
 
 /*
@@ -68,23 +97,33 @@ export const Schema_Controle_RO = z.object({
 */
 
 export const Schema_Controle_RO = z.object({
-    codeCont    : z.string(),
-    commCont    : z.string().nullable(),
-    creaQuand   : z.string(),
-    creaQui     : z.string(),
-    daHeCont    : z.string(),
-    idControle  : z.number(),
-    idGrilleSit : z.number(),
-    grilleSite  : z.object({
-        grilleGroupe : Schema_Controle_GrilleGroupe,
-        paramSite    : z.object({
-            atelier : Schema_Controle_Atelier,
-            secteur : Schema_Controle_Secteur
-        })
+    actionCorr : z.string().nullable(),
+    annuQuand  : z.string().nullable(),
+    annuQui    : z.string().nullable(),
+    codeCont   : z.string(),
+    commCont   : z.string().nullable(),
+    creaQuand  : z.string(),
+    creaQui    : z.string(),
+    daHeCont   : z.string(),
+    enteteCtrl : z.object({}).nullable(),
+    grilleSite : z.object({
+        idGrilleSit      : z.number(),
+        grilleGroupe     : Schema_Controle_GrilleGroupe,
+        enteteGrilleSite : Schema_Controle_EnteteGrilleSite
     }),
-    resultatCtrl: Schema_Controle_Status
+    idControle   : z.number().positive(),
+    idEnteteCtrl : z.number().positive(),
+    idGrilleSit  : z.number().positive(),
+    modifQuand   : z.string().nullable(),
+    modifQui     : z.string().nullable(),
+    resultatCtrl : Schema_Controle_Status.nullable(),
+    photos       : z.array(z.object({}))
 });
 
-export const Schema_Controle_Edit_DTO = Schema_Controle_RO.partial().extend({
-    idControle: z.number()
+export const Schema_Controle_Edit_DTO = Schema_Controle_RO.pick({
+    commCont     : true,
+    idControle   : true,
+    resultatCtrl : true
+}).extend({
+    modifQui: z.string()
 });

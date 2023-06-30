@@ -14,7 +14,7 @@ import NoMatch from './pages/NoMatch';
 import Ateliers from './pages/Params/Ateliers';
 import Secteurs from './pages/Params/Secteurs';
 import Utilisateurs from './pages/Params/Utilisateurs';
-import Secteur from './pages/Secteur';
+import Signin from './pages/Signin';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -27,20 +27,30 @@ const router = createBrowserRouter(
             <Route index element={<Home />} />
             <Route
                 path="controles/:typeControle"
-                handle="Mes Contrôles"
+                handle={{
+                    paramName : 'typeControle',
+                    prefix    : 'Mon Contrôle : '
+                }}
                 element={<Controles />}
             >
                 <Route
-                    path="secteurs/:secteurId"
-                    handle={{ paramName: 'secteurId' }}
+                    path="secteurs/:idSecteur/details"
+                    handle={{ paramName: 'idSecteur', prefix: 'Secteur : ' }}
+                    element={<Listing />}
+                />
+                {/*
+                <Route
+                    path="secteurs/:idSecteur"
+                    handle={{ paramName: 'idSecteur', prefix: "Secteur : " }}
                     element={<Secteur />}
                 >
-                    <Route
-                        path="ateliers/:atelierId"
+                     <Route
+                        path="ateliers/:idAtelier"
                         handle="Atelier"
                         element={<Listing />}
                     />
                 </Route>
+                */}
             </Route>
             <Route
                 path="/params/ateliers"
@@ -57,6 +67,7 @@ const router = createBrowserRouter(
                 handle="Params Utilisateurs"
                 element={<Utilisateurs />}
             />
+            <Route path="/login" handle="Connexion" element={<Signin />} />
             <Route path="*" element={<NoMatch />} />
         </Route>
     )

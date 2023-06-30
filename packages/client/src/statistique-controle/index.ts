@@ -24,7 +24,6 @@ export const statistiqueControleREST = ({
     ) => {
         const { typeControle, ...others } = queryParameters;
         const sQueryParameters = objectToString(others);
-
         const response = await client<STATISTIQUE_CONTROLE[]>({
             method : 'GET',
             url    : `/statistiquesentetescontroles/typegrille/${typeControle.toUpperCase()}/secteurs?${sQueryParameters}`
@@ -39,11 +38,11 @@ export const statistiqueControleREST = ({
     const getAllByGrilleTypeSecteur = async (
         queryParameters: QueryStatsSecteurParameters
     ) => {
-        const { typeControle, secteurId, ...others } = queryParameters;
+        const { typeControle, idSecteur, ...others } = queryParameters;
         const sQueryParameters = objectToString(others);
         const response = await client<STATISTIQUE_CONTROLE_SECTEUR[]>({
             method : 'GET',
-            url    : `/statistiquesentetescontroles/typegrille/${typeControle.toUpperCase()}/secteurs/${secteurId}?${sQueryParameters}`
+            url    : `/statistiquesentetescontroles/typegrille/${typeControle.toUpperCase()}/secteurs/${idSecteur}?${sQueryParameters}`
         });
 
         //Check if the response is valid
