@@ -7,23 +7,26 @@ import { useQueryClient } from '@tanstack/react-query';
 
 export type RouterHandleParameter = {
     paramName: string;
+    prefix?: string;
 };
 
 export default function Breadcrumbs() {
     const parameters = useParams();
     const matches = useMatches();
     const queryClient = useQueryClient();
-    const mappingSecteurs: { [k: string]: string } = {};
+    const mappingSecteurs: { [k: string]: string } = {
+        m : 'Matière',
+        n : 'Nettoyage',
+        s : 'Sécurité',
+        r : 'Réception'
+    };
     let queryData = [];
 
     if (parameters?.typeControle) {
         const queriesDataTemporary = queryClient.getQueriesData<
             STATISTIQUE_CONTROLE[]
         >(['statistiquesControlesGrille', { typeControle: 'm' }]);
-        console.log(
-            '🚀 ~ file: breadcrumb.tsx:17 ~ queriesDataTemporary:',
-            queriesDataTemporary
-        );
+
         // test if the query has data
         if (queriesDataTemporary[0] && queriesDataTemporary[0][1]?.length) {
             const [[_, dataTemporary = []]] = queriesDataTemporary;
@@ -49,8 +52,10 @@ export default function Breadcrumbs() {
                         label = crumb.handle;
                     } else if (typeof crumb.handle === 'object') {
                         key = (crumb.handle as RouterHandleParameter).paramName;
+                        label =
+                            (crumb.handle as RouterHandleParameter)?.prefix ??
+                            '';
                         const parameterValue = parameters[key];
-
                         if (queryData.length > 0 && parameterValue) {
                             label += mappingSecteurs[parameterValue];
                         }

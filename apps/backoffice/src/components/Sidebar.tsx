@@ -1,5 +1,5 @@
 import { ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { cn } from '@big/ui';
 
@@ -28,21 +28,12 @@ const Sidebar = ({
     setCollapsed
 }: Properties) => {
     const Icon = collapsed ? ChevronsRightIcon : ChevronsLeftIcon;
-
-    const [URLSearchParameters] = useSearchParams();
-
-    let bgColor = 'bg-brand1sidebar';
-    if (URLSearchParameters.has('v') && URLSearchParameters.get('v') === '1') {
-        bgColor = 'bg-brand2sidebar';
-    }
+    const bgColor = 'bg-brandsidebar';
     const navigation = useNavigate();
 
     return (
         <div
             className={cn({
-                //"bg-red-700 text-zinc-50 fixed md:static md:translate-x-0 z-20": false,
-                // "bg-[#D0E3D5]": true,
-                //"bg-[#89B5B8]": true,
                 [bgColor]                                 : true,
                 'fixed md:static md:translate-x-0 z-20'   : true,
                 'transition-all duration-300 ease-in-out' : true,

@@ -1,20 +1,17 @@
 /* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import {
-    BarChart2Icon,
     BookOpen,
     BookOpenCheckIcon,
     ConciergeBellIcon,
     FileDigitIcon,
     FilesIcon,
-    FileTextIcon,
     LayersIcon,
     LayoutGrid,
     NfcIcon,
     Radio,
     ShieldIcon,
     SmartphoneNfcIcon,
-    SparkleIcon,
-    UsersIcon
+    SparkleIcon
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -50,7 +47,7 @@ interface MenuItem {
     items?: MenuSecItem[];
 }
 
-const mesCommunications: MenuItem[] = [
+export const mesCommunications: MenuItem[] = [
     {
         name  : 'Mes Communications',
         icon  : <Radio className="mr-2" />,
@@ -82,40 +79,7 @@ const mesCommunications: MenuItem[] = [
     }
 ];
 
-const mesRessourcesHumaine: MenuItem[] = [
-    {
-        name  : 'Mes Ressources Humaines',
-        icon  : <UsersIcon className="mr-2" />,
-        items : [
-            {
-                name  : 'Accueil',
-                link  : 'rh/accueil',
-                badge : {
-                    text  : '',
-                    count : 7
-                },
-                icon: <UsersIcon className="mr-2 h-4 w-4" />
-            },
-            {
-                name : 'Fiche de poste',
-                link : 'rh/fiche-poste',
-                icon : <FileTextIcon className="mr-2 h-4 w-4" />
-            },
-            {
-                name : 'Consultation module / CP',
-                link : '/rh/consultation-modulation-cp',
-                icon : <BookOpen className="mr-2 h-4 w-4" />
-            },
-            {
-                name : 'Indicateurs RH',
-                link : 'rh/indicateurs-rh',
-                icon : <BarChart2Icon className="mr-2 h-4 w-4" />
-            }
-        ]
-    }
-];
-
-const mesDocuments: MenuItem[] = [
+export const mesDocuments: MenuItem[] = [
     {
         name  : 'Mes Documents',
         icon  : <FilesIcon className="mr-2" />,
@@ -147,7 +111,7 @@ const mesDocuments: MenuItem[] = [
     }
 ];
 
-const mesControles: MenuItem[] = [
+export const mesControles: MenuItem[] = [
     {
         name  : 'Mes Contrôles',
         icon  : <LayoutGrid className="mr-2" />,
@@ -323,7 +287,6 @@ export function AccordionDemo({ collapsed }: Properties) {
             //className="grid grid-cols-1 gap-y-1"
         >
             {generateMenu(collapsed, 'ctrl', mesControles)}
-            {generateMenu(collapsed, 'rh', mesRessourcesHumaine)}
             {generateMenu(collapsed, 'doc', mesDocuments)}
             {generateMenu(collapsed, 'com', mesCommunications)}
             {generateMenu(collapsed, 'adm', administration)}
