@@ -3,6 +3,7 @@ export * from './atelier';
 export * from './controle';
 export * from './grille-groupe';
 export * from './grille-site';
+export * from './login';
 export * from './paramsite';
 export * from './profil';
 export * from './secteur';
